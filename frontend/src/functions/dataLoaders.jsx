@@ -17,6 +17,7 @@ export async function saveEducation(data, stateSetters) {
     setId, setCountryId, setUniversityId, setFacultyId, setStartDate, setEndDate, setBatchNo, setRemarks,loadFunction
   } = stateSetters; // Destructure state setters
 
+  
   try {
     await axios.post("http://127.0.0.1:8000/education/", {
       id,
