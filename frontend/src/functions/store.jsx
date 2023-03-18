@@ -12,3 +12,4 @@ export async function saveData(event, endpoint, data, load, toast, reset) {
     toast.error(`Failed to register ${endpoint}`);
   }
 }
+
