@@ -123,6 +123,7 @@ function HR_Employee() {
       setRemarks("");
       Load();
     }
+    
     catch(err){
       toastr.error("Course Registration Failed");
     }
