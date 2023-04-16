@@ -349,4 +349,5 @@ function MenuItem({ icon, title, active }) {
   );
 }
 
+
 export default HomePage;
