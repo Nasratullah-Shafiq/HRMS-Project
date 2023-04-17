@@ -218,6 +218,7 @@ const UniversityComponent = () => {
                             </h4>
                         </div>
                         
+                        
                         <div className='card-body'>
                          
                             <table className="table table-stripped">
