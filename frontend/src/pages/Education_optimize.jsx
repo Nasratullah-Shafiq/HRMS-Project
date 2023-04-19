@@ -39,6 +39,7 @@ function HR_Employee() {
     } catch (error) {
       console.error(`Error loading ${url}:`, error);
     }
+    
   };
 
   // Load data on mount
