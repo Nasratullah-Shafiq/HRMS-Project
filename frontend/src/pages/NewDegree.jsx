@@ -218,6 +218,7 @@ const archiveSelectedDegrees = (e) => {
     alert("No degrees selected for archiving.");
     return;
   }
+  
 
   const updatedDegrees = degrees.map((degree) =>
     checkedDegrees.includes(degree.id)
