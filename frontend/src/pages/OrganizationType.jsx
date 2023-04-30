@@ -13,6 +13,7 @@ function OrganizationType() {
   useEffect(() =>{
     (async()=>await Load())();
   }, []);
+  
 
   async function Load(){
     const result = await axios.get(
