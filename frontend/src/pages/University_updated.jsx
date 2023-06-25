@@ -10,6 +10,7 @@ function University() {
   const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [universitys, setUniversity] = useState([]);
+  
 
   const [checkedUniversities, setCheckedUniversities] = useState([]); // Track checked universities
   const [selectAllChecked, setSelectAllChecked] = useState(false); // Track "select all" checkbox
