@@ -18,6 +18,7 @@ function University() {
   const [universitys, setUniversity] = useState([]);
   const [isChecked, setIsChecked] = useState(false); // State to control visibility
 
+  
   const resetForm = () => {
     setId("");
     setName("");
