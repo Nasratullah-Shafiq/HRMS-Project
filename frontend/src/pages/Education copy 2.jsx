@@ -217,6 +217,7 @@ const UniversityComponent = () => {
                                 <Link to ="/course/store" style={ {margin: '0px 0px 0px 1000px'} } className = "btn btn-primary"> New </Link>
                             </h4>
                         </div>
+                        
                         <div className='card-body'>
                          
                             <table className="table table-stripped">
