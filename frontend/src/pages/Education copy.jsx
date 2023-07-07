@@ -117,7 +117,6 @@ function HR_Employee() {
       // setDegree("");
       setUniversityId("");
       setFacultyId("");
-
       setStartDate("");
       setEndDate("");
       setBatchNo("");
