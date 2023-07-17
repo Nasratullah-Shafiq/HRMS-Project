@@ -42,7 +42,6 @@ const UniversityComponent = () => {
         batch_no,
         education_remarks
       };
-  
       const stateSetters = {
         setId,
         setCountry,
