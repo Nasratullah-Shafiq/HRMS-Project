@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 
 const API_BASE = "http://127.0.0.1:8000";
 
-
 export const loadRecord = async (endpoint) => {
   try {
     const response = await axios.get(`${API_BASE}/${endpoint}/`);
