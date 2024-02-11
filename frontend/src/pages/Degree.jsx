@@ -15,6 +15,7 @@ import { saveRecord, deleteRecord} from "../functions/crudService";
     const [error, setError] = useState(null);
 
     useEffect(() => {
+      
       async function fetchDegrees() {
         
         try {
