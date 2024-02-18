@@ -12,10 +12,11 @@ import { saveRecord, deleteRecord} from "../functions/crudService";
   const [selectAllChecked, setSelectAllChecked] = useState(false); // Track "Select All" checkbox state
 
     const [degrees, setDegrees] = useState([]);
+    
     const [error, setError] = useState(null);
 
     useEffect(() => {
-      
+
       async function fetchDegrees() {
         
         try {
