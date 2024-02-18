@@ -371,7 +371,6 @@ function Experience() {
 
     try {
       await axios.post(API_URL, formData);
-
       toast.success("Experience added successfully");
 
       resetForm();
