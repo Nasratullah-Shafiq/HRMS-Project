@@ -12,6 +12,7 @@ function Department() {
   
   useEffect(() =>{
     (async()=>await Load())();
+    
   }, []);
 
   async function Load(){
