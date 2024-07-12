@@ -33,6 +33,7 @@ function HR_Employee() {
   // Generic loader function to fetch data
   const loadData = async (url, setter) => {
     try {
+      
       const result = await axios.get(url);
       setter(result.data);
     } catch (error) {
