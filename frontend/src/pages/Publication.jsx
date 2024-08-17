@@ -57,7 +57,6 @@ function HR_Employee() {
     setId(employees.id);
   }
   
-
   async function DeleteStudent(id){
     await axios.delete("http://127.0.0.1:8000/employee/"+id);
     // alert("Course Deleted Successfully");
