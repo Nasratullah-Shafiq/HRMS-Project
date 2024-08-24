@@ -43,7 +43,6 @@ function HR_Employee() {
         full_name: full_name,
         last_name: last_name
       });
-      
     //   alert("This is not enogh");
       Swal.fire('Success!', 'Record Updated Successfully', 'success'); 
       toast.success("Course Added Successfully");
