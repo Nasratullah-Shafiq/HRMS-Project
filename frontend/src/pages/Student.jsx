@@ -1,5 +1,8 @@
 import axios from 'axios';
 import {useEffect, useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function Student() {
   const [id, setId] = useState('');
   const [name, setName] = useState('');
@@ -32,7 +35,8 @@ function Student() {
         address: address,
         fee: fee
       });
-      alert("Student Registration Successful");
+      toast.success("Record Registered Successfully");
+    
       setId("");
       setName("");
       setLastName("");
@@ -43,7 +47,8 @@ function Student() {
       Load();
     }
     catch(err){
-      alert("Student Registration Failed");
+      // alert("Student Registration Failed");
+      toast.error("Student Registration Failed");
     }
   }
 
@@ -59,9 +64,8 @@ function Student() {
 
   async function DeleteStudent(id){
     await axios.delete("http://127.0.0.1:8000/student/"+id);
-    alert("Student Deleted Successfully");
-    console.log("Data Deleted Failed");
-    Load();
+        toast.info("Student Deleted Successfully");
+        Load();
   }
 
   async function update(event){
@@ -76,7 +80,8 @@ function Student() {
         address: address,
         fee: fee
       });
-      alert("Record Updated Successfully");
+      toast.info("Record updated Successfully");
+    
       setId("");
       setName("");
       setLastName("");
@@ -87,7 +92,8 @@ function Student() {
       Load();
     }
     catch(err){
-      alert("User Registration Failed");
+    
+      toast.error("Student Registration Failed");
     }
   }
 
