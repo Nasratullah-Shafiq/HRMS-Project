@@ -5,20 +5,17 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Student() {
   const [id, setId] = useState('');
-  const [name, setName] = useState('');
-  const [last_name, setLastName] = useState('');
-  const [father_name, setFatherName] = useState('');
-  const [course, setCourse] = useState('');
-  const [address, setAddress] = useState('');
-  const [fee, setFee] = useState('');
-  const [students, setUsers] = useState([]);
+  const [status, setStatus] = useState('');
+  const [report, setReport] = useState('');
+  const [remark, setRemark] = useState('');
+  const [healths, setUsers] = useState([]);
   useEffect(() =>{
     (async()=>await Load())();
   }, []);
 
   async function Load(){
     const result = await axios.get(
-      "http://127.0.0.1:8000/student/");
+      "http://127.0.0.1:8000/health/");
       setUsers(result.data);
       console.log(result.data);
   }
@@ -26,24 +23,18 @@ function Student() {
   async function save(event){
     event.preventDefault();
     try{
-      await axios.post("http://127.0.0.1:8000/student/",{
+      await axios.post("http://127.0.0.1:8000/health/",{
         id: id,
-        name: name,
-        last_name: last_name,
-        father_name: father_name,
-        course: course,
-        address: address,
-        fee: fee
+        status: status,
+        remark: remark,
+        report: report
       });
       toast.success("Record Registered Successfully");
     
       setId("");
-      setName("");
-      setLastName("");
-      setFatherName("");
-      setCourse("");
-      setAddress("");
-      setFee("");
+      setStatus("");
+      setRemark("");
+      setReport("");
       Load();
     }
     catch(err){
@@ -52,18 +43,15 @@ function Student() {
     }
   }
 
-  async function editStudent(students){
-    setName(students.name);
-    setLastName(students.last_name);
-    setFatherName(students.father_name);
-    setCourse(students.course);
-    setAddress(students.address);
-    setFee(students.fee);
-    setId(students.id);
+  async function editStudent(healths){
+    setStatus(healths.status);
+    setRemark(healths.remark);
+    setFatherName(healths.report);
+    setId(healths.id);
   }
 
   async function DeleteStudent(id){
-    await axios.delete("http://127.0.0.1:8000/student/"+id);
+    await axios.delete("http://127.0.0.1:8000/health/"+id);
         toast.info("Student Deleted Successfully");
         Load();
   }
@@ -71,24 +59,19 @@ function Student() {
   async function update(event){
     event.preventDefault();
     try{
-      await axios.put("http://127.0.0.1:8000/student/" + students.find(u => u.id === id).id || id,{
+      await axios.put("http://127.0.0.1:8000/health/" + healths.find(u => u.id === id).id || id,{
         id: id,
-        name: name,
-        last_name: last_name,
-        father_name: father_name,
-        course: course,
-        address: address,
-        fee: fee
+        status: status,
+        report: report,
+        remark: remark,
+        
       });
       toast.info("Record updated Successfully");
     
       setId("");
-      setName("");
-      setLastName("");
-      setFatherName("");
-      setCourse("");
-      setAddress("");
-      setFee("");
+      setStatus("");
+      setRemark("");
+      setReport("");
       Load();
     }
     catch(err){
@@ -97,7 +80,7 @@ function Student() {
     }
   }
 
-  if(students.length <= 0) return null;
+  if(healths.length <= 0) return null;
 
     return (
       <div className="App">
@@ -117,7 +100,7 @@ function Student() {
             <label className="col-sm-2 col-form-label">First Name</label>
               <div class="col-sm-10">
                 <input type="Text" className="form-control" id="student_first_name" placeholder = "Enter First Name"
-                value={name}onChange={(event)=>{setName(event.target.value);}}/> 
+                value={status}onChange={(event)=>{setStatus(event.target.value);}}/> 
               </div>
           </div>
 
@@ -125,7 +108,7 @@ function Student() {
             <label className="col-sm-2 col-form-label">Last Name</label>
               <div class="col-sm-10">
                 <input type="Text" className="form-control" id="student_last_name" placeholder = "Enter Last Name"
-                value={last_name}onChange={(event)=>{setLastName(event.target.value);}}/> 
+                value={report}onChange={(event)=>{setReport(event.target.value);}}/> 
               </div>
           </div>
 
@@ -133,34 +116,9 @@ function Student() {
             <label className="col-sm-2 col-form-label">Father Name</label>
               <div class="col-sm-10">
                 <input type="Text" className="form-control" id="student_father_name" placeholder = "Enter Father Name"
-                value={father_name}onChange={(event)=>{setFatherName(event.target.value);}}/> 
+                value={remark}onChange={(event)=>{setRemark(event.target.value);}}/> 
               </div>
           </div>
-
-          <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label">Course</label>
-              <div class="col-sm-10">
-                <input type="Text" className="form-control" id="student_course" placeholder = "Enter Course"
-                value={course}onChange={(event)=>{setCourse(event.target.value);}}/> 
-              </div>
-          </div>
-
-          <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label">Student Name</label>
-              <div class="col-sm-10">
-                <input type="Text" className="form-control" id="student_fee" placeholder = "Enter Fee"
-                value={fee}onChange={(event)=>{setFee(event.target.value);}}/> 
-              </div>
-          </div>
-
-          <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label">Address</label>
-              <div class="col-sm-10">
-                <input type="Text" className="form-control" id="student_address" placeholder = "Enter Address"
-                value={address}onChange={(event)=>{setAddress(event.target.value);}}/> 
-              </div>
-          </div>
-
           <button className="btn btn-primary" onClick={save}>Register</button>
           <button className="btn btn-warning" onClick={update}>Update</button>
         </form>
