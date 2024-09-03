@@ -70,7 +70,8 @@ function Course() {
         course: course,
         fee: fee
       });
-      alert("Course Updated Successfully");
+      toastr.success("Course Added Successfully");
+      // alert("Course Updated Successfully");
       setId("");
       setCourse("");
       setFee("");

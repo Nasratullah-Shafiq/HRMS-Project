@@ -11,21 +11,21 @@ function HR_Employee() {
   const [id, setId] = useState('');
   const [full_name, setFull_Name] = useState('');
   const [last_name, setLast_Name] = useState('');
-  const [father_name, setFater_Name] = useState('');
-  const [grand_father_name, setGrand_Father_Name] = useState('');
-  const [date_of_birth, setDate_Of_Birth] = useState('');
-  const [placce_of_birth, setPlace_Of_Birth] = useState('');
-  const [gender, setGender] = useState('');
-  const [natinality, setNationality] = useState('');
-  const [degree, setDegree] = useState('');
-  const [gederal_directorate, setGeneral_Directorate] = useState('');
-  const [directorate, setDirectorate] = useState('');
-  const [head, setHead] = useState('');
-  const [job_position, setJob_Position] = useState('');
-  const [remarks, setRemarks] = useState([]);
-  const [blood_group, setBlood_Group] = useState('');
-  const [marital_status, setMarital_Status] = useState('');
-  const [religion, setReligion] = useState('');
+  // const [father_name, setFater_Name] = useState('');
+  // const [grand_father_name, setGrand_Father_Name] = useState('');
+  // const [date_of_birth, setDate_Of_Birth] = useState('');
+  // const [placce_of_birth, setPlace_Of_Birth] = useState('');
+  // const [gender, setGender] = useState('');
+  // const [natinality, setNationality] = useState('');
+  // const [degree, setDegree] = useState('');
+  // const [gederal_directorate, setGeneral_Directorate] = useState('');
+  // const [directorate, setDirectorate] = useState('');
+  // const [head, setHead] = useState('');
+  // const [job_position, setJob_Position] = useState('');
+  // const [remarks, setRemarks] = useState([]);
+  // const [blood_group, setBlood_Group] = useState('');
+  // const [marital_status, setMarital_Status] = useState('');
+  // const [religion, setReligion] = useState('');
   const [employees, setEmployee] = useState([]);
   
   useEffect(() =>{
@@ -35,7 +35,7 @@ function HR_Employee() {
 
   async function Load(){
     const result = await axios.get(
-      "http://127.0.0.1:8000/hr_employee/");
+      "http://127.0.0.1:8000/employee/");
       setEmployee(result.data);
       console.log(result.data);
   }
@@ -43,7 +43,7 @@ function HR_Employee() {
   async function save(event){
     event.preventDefault();
     try{
-      await axios.post("http://127.0.0.1:8000/hr_employee/",{
+      await axios.post("http://127.0.0.1:8000/employee/",{
         id: id,
         full_name: full_name,
         last_name: last_name
@@ -72,7 +72,7 @@ function HR_Employee() {
   }
 
   async function DeleteStudent(id){
-    await axios.delete("http://127.0.0.1:8000/hr_employee/"+id);
+    await axios.delete("http://127.0.0.1:8000/employee/"+id);
     // alert("Course Deleted Successfully");
     toast.error("Course Deleted Successfully");
     
@@ -82,7 +82,7 @@ function HR_Employee() {
   async function update(event){
     event.preventDefault();
     try{
-      await axios.put("http://127.0.0.1:8000/hr_employee/" + employees.find(u => u.id === id).id || id,{
+      await axios.put("http://127.0.0.1:8000/employee/" + employees.find(u => u.id === id).id || id,{
         id: id,
         full_name: full_name,
         last_name: last_name
@@ -98,15 +98,15 @@ function HR_Employee() {
     }
   }
 
-  if(employees.length <= 0) return null;
+  // if(employees.length <= 0) return null;
 
     return (
       <div className="App">
         <div className="container">
-                  <form >
+        <form >
         <div className="form-group">
             <label className="form-label"><h1>Student Management System in Django React API </h1></label>
-            <input type="Text" className="form-control" id="student_id" hidden
+            <input type="Text" className="form-control" id="Employee_id" hidden
             value={id}
             onChange={(event)=>{
               setId(event.target.value);
@@ -139,7 +139,7 @@ function HR_Employee() {
                 <div className='col-md-12'>
                     <div className='card'>
                         <div className='card-header'>
-                            <h4> Courses
+                            <h4> Employee
                                 {/* <Link to ="/student/create" style={ {margin: '0px 0px 0px 1000px'} } className = "btn btn-primary">Add Student </Link> */}
                                 <Link to ="/course/store" style={ {margin: '0px 0px 0px 1000px'} } className = "btn btn-primary"> New </Link>
                             </h4>
@@ -156,16 +156,16 @@ function HR_Employee() {
                                     </tr>
                                 </thead>
                               <tbody>
-                                {employees.map((emp) => (
-                                <tr key={emp.id}>
-                                  <th scope="row">{emp.id}</th>
-                                  <td>{emp.full_name}</td>
-                                  <td>{emp.last_name}</td>
+                                {employees.map((employee) => (
+                                <tr key={employee.id}>
+                                  <th scope="row">{employee.id}</th>
+                                  <td>{employee.full_name}</td>
+                                  <td>{employee.last_name}</td>
                                   <td>
                                     <button
                                       type="button"
                                       className="btn btn-warning"
-                                      onClick={() => editStudent(employees)}
+                                      onClick={() => editStudent(employee)}
                                     >
                                       Edit
                                     </button>
@@ -174,7 +174,7 @@ function HR_Employee() {
                                     <button
                                       type="button"
                                       className="btn btn-danger"
-                                      onClick={() => DeleteStudent(employees.id)}
+                                      onClick={() => DeleteStudent(employee.id)}
                                     >
                                       Delete
                                     </button>
