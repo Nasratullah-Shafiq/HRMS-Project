@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "axios": "^1.7.4"
+    "axios": "^1.7.4",
+    "sweetalert2": "^11.12.4",
+    "toastr": "^2.1.4"
   }
 }

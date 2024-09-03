@@ -37,8 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app.apps.AppConfig',
-    # 'HR.apps.HrConfig',
+    'HR.apps.HrConfig',
     'rest_framework',
     'corsheaders',
 
@@ -86,7 +85,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
    'default': {
 	'ENGINE': 'django.db.backends.postgresql',
-	'NAME': 'employee',
+	'NAME': 'HRMS',
 	'USER': 'postgres',
 	'PASSWORD': '_Postgres@1234',
 	'HOST': 'localhost',

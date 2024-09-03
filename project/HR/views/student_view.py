@@ -1,8 +1,8 @@
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
-from app.serializer import StudentSerializer
-from app.models.Student import Student
+from HR.serializer import StudentSerializer
+from HR.models.Student import Student
 # Create your views here.
 
 @csrf_exempt

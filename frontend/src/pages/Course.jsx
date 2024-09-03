@@ -1,6 +1,12 @@
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import {useEffect, useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
+import Swal from 'sweetalert2';  // Import SweetAlert2
+
 function Course() {
   const [id, setId] = useState('');
   const [course, setCourse] = useState('');
@@ -25,14 +31,20 @@ function Course() {
         course: course,
         fee: fee
       });
-      alert("Student Registration Successful");
+      // alert("This is not enogh");
+      // Swal.fire('Success!', 'Record Updated Successfully', 'success'); 
+      // toast.success("Course Added Successfully");
+      toastr.success("Course Added Successfully");
+    
       setId("");
       setCourse("");
       setFee("");
       Load();
     }
     catch(err){
-      alert("Course Registration Failed");
+      // alert("Course Registration Failed");
+      // toast.error("Record Registered failed");
+      toastr.error("Course Registration Failed");
     }
   }
 
@@ -44,8 +56,9 @@ function Course() {
 
   async function DeleteStudent(id){
     await axios.delete("http://127.0.0.1:8000/course/"+id);
-    alert("Course Deleted Successfully");
-    console.log("Data Deleted Failed");
+    // alert("Course Deleted Successfully");
+    toast.error("Course Deleted Successfully");
+    
     Load();
   }
 
