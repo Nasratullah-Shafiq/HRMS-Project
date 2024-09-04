@@ -3,7 +3,7 @@ from rest_framework import serializers
 from HR.models.Course import Course
 from HR.models.Student import Student  # Correct import path
 from HR.models.employee import Employee
-from HR.models.health import Health
+from HR.models.Health import Health
 
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:

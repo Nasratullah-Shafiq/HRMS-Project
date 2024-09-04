@@ -3,7 +3,7 @@ from django.urls import path, re_path
 from HR.views.student_view import studentApi  # Import from views.student_view
 from HR.views.course_view import courseApi     # Import from views.course_view
 from HR.views.employee_view import employeeApi # Import from views.employee_view
-from HR.views.health_view import healthApi
+from HR.views.health_view import healthApi  #Import from health.view
 urlpatterns = [
     path('student/', studentApi),  # This handles requests to "student/"
     re_path(r'^student/([0-9]+)$', studentApi),  # This handles requests to "student/<id>"

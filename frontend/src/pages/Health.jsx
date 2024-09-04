@@ -3,7 +3,7 @@ import {useEffect, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function Student() {
+function Health() {
   const [id, setId] = useState('');
   const [status, setStatus] = useState('');
   const [report, setReport] = useState('');
@@ -38,21 +38,20 @@ function Student() {
       Load();
     }
     catch(err){
-      // alert("Student Registration Failed");
-      toast.error("Student Registration Failed");
+      toast.error("Health Data Registration Failed");
     }
   }
 
   async function editStudent(healths){
     setStatus(healths.status);
     setRemark(healths.remark);
-    setFatherName(healths.report);
+    setReport(healths.report);
     setId(healths.id);
   }
 
   async function DeleteStudent(id){
     await axios.delete("http://127.0.0.1:8000/health/"+id);
-        toast.info("Student Deleted Successfully");
+        toast.info("Health Data Deleted Successfully");
         Load();
   }
 
@@ -76,7 +75,7 @@ function Student() {
     }
     catch(err){
     
-      toast.error("Student Registration Failed");
+      toast.error("Health Data Registration Failed");
     }
   }
 
@@ -87,7 +86,7 @@ function Student() {
         <div className="container">
         <form >
         <div className="form-group">
-            <label className="form-label"><h1>Student Management System in Django React API </h1></label>
+            <label className="form-label"><h4>Employee Health Information </h4></label>
             <input type="Text" className="form-control" id="student_id" hidden
             value={id}
             onChange={(event)=>{
@@ -128,31 +127,26 @@ function Student() {
   <thead>
     <tr>
       <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Father Name</th>
-      <th scope="col">Course</th>
-      <th scope="col">Address</th>
-      <th scope="col">Student Fee</th>
+      <th scope="col">Status</th>
+      <th scope="col">Report</th>
+      <th scope="col">Remark</th>
       <th scope="col">Edit</th>
       <th scope="col">Delete</th>
     </tr>
   </thead>
   <tbody>
-    {students.map((student) => (
-      <tr key={student.id}>
-        <th scope="row">{student.id}</th>
-        <td>{student.name}</td>
-        <td>{student.last_name}</td>
-        <td>{student.father_name}</td>
-        <td>{student.course}</td>
-        <td>{student.address}</td>
-        <td>{student.fee}</td>
+    {healths.map((health) => (
+      <tr key={health.id}>
+        <th scope="row">{health.id}</th>
+        <td>{health.status}</td>
+        <td>{health.report}</td>
+        <td>{health.remark}</td>
+        
         <td>
           <button
             type="button"
             className="btn btn-warning"
-            onClick={() => editStudent(student)}
+            onClick={() => editStudent(health)}
           >
             Edit
           </button>
@@ -161,7 +155,7 @@ function Student() {
           <button
             type="button"
             className="btn btn-danger"
-            onClick={() => DeleteStudent(student.id)}
+            onClick={() => DeleteStudent(health.id)}
           >
             Delete
           </button>
@@ -177,5 +171,5 @@ function Student() {
     );
   }
   
-  export default Student;
+  export default Health;
   
