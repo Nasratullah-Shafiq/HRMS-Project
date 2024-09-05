@@ -8,6 +8,7 @@ import StudentList from '../pages/Student.jsx';
 import Employee from '../pages/Employee.jsx';
 import HealthInfo from '../pages/Health.jsx';
 import Courses from '../pages/Course.jsx';
+import EducationData from '../pages/Education.jsx';
 
 
 function MyRouter(){
@@ -20,6 +21,7 @@ function MyRouter(){
             <Route path="/course" element={<Courses />} />
             <Route path="/employee" element={<Employee />} />
             <Route path="/health" element={<HealthInfo />} />
+            <Route path="/education" element={<EducationData />} />
         </Routes>
     )
 }
