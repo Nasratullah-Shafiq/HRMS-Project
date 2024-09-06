@@ -5,7 +5,7 @@ from HR.models.Student import Student  # Correct import path
 from HR.models.employee import Employee
 from HR.models.Health import Health
 from HR.models.education import Education
-
+from HR.models.experience import Experience
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
@@ -23,12 +23,18 @@ class employeeSerializer(serializers.ModelSerializer):
         model = Employee
         fields = '__all__'
         
+class educationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Education
+        fields = '__all__'
+
+class experienceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Experience
+        fields = '__all__'
+
 class healthSerializer(serializers.ModelSerializer):
     class Meta:
         model = Health
         fields = '__all__'
 
-class educationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Education
-        fields = '__all__'
