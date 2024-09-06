@@ -2,18 +2,36 @@ from django.db import models
 
 # Create your models here.
 class Employee(models.Model):
-    full_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    father_name = models.CharField(max_length=50)
-    grand_father_name = models.CharField(max_length=50)
-    date_of_birth = models.DateField()
-    place_of_birth = models.CharField(max_length=50)
-    nationality = models.CharField(max_length=50)
-    general_directorate = models.CharField(max_length=50)
-    directorate = models.CharField(max_length=50)
-    head = models.CharField(max_length=50)
-    job_position = models.CharField(max_length=50)
-    remarks = models.CharField(max_length=255)
+
+    fire_type = fields.Many2one('employee.fire.type', string='Fire Type', Tracking='true')
+    leave_reason = fields.Many2one('employee.leave.reason', string='reason for leaving the job', Tracking='true')
+
+    order_date = fields.Date(string='Order Date', Tracking='true')
+    order_no = fields.Integer(string='Order No', Tracking='true')
+    date_approved = fields.Date(string='Date Approved', Tracking='true')
+    fire_remarks = fields.Char(string='Remarks', Tracking='true')
+
+    
+class LeaveReason(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class FireType(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
+    fire_type_id = models.ForeignKey(FireType, on_delete=models.CASCADE)
+    leave_reason = models.ForeignKey(LeaveReason, on_delete=models.CASCADE)
+    
+    order_date = models.DateField()
+    order_no = models.CharField(max_length=50)
+    date_approved = models.DateField()
+    fire_remarks = models.CharField(max_length=255)
     staus = models.CharField(max_length=50)
     religion = models.CharField(max_length=50)
     degree = models.CharField(max_length=1, choices=[
