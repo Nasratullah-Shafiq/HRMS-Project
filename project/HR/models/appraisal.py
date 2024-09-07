@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Employee(models.Model):
+class Appraisal(models.Model):
     full_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     father_name = models.CharField(max_length=50)

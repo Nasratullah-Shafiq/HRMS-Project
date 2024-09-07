@@ -13,7 +13,7 @@ class FireType(models.Model):
     def __str__(self):
         return self.name
 
-class Exam(models.Model):
+class Fire(models.Model):
 
     fire_type_id = models.ForeignKey(FireType, on_delete=models.CASCADE)
     leave_reason = models.ForeignKey(LeaveReason, on_delete=models.CASCADE)

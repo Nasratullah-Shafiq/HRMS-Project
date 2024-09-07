@@ -1,8 +1,8 @@
 from django.db import models
 from HR.models import course 
 # Create your models here.
-class Training(models.Model):
 
+class Training(models.Model):
     course_id = models.ForeignKey(course, on_delete=models.CASCADE)
     training_location = models.CharField(max_length=50)
     training_start_date = models.DateField()
