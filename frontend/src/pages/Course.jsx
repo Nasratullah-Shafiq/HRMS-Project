@@ -67,14 +67,13 @@ function Course() {
     try{
       await axios.put("http://127.0.0.1:8000/course/" + courses.find(u => u.id === id).id || id,{
         id: id,
-        course: course,
-        fee: fee
+        course: course
       });
       toastr.success("Course Added Successfully");
       // alert("Course Updated Successfully");
       setId("");
       setCourse("");
-      setFee("");
+    
       Load();
     }
     catch(err){
@@ -87,8 +86,8 @@ function Course() {
     return (
       <div className="App">
         <div className="container">
-                  <form >
-        <div className="form-group">
+        <form >
+          <div className="form-group">
             <label className="form-label"><h1>Student Management System in Django React API </h1></label>
             <input type="Text" className="form-control" id="student_id" hidden
             value={id}
@@ -103,14 +102,6 @@ function Course() {
               <div class="col-sm-10">
                 <input type="Text" className="form-control" id="course" placeholder = "Enter Your Course"
                 value={course}onChange={(event)=>{setCourse(event.target.value);}}/> 
-              </div>
-          </div>
-
-          <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label"> Fee </label>
-              <div class="col-sm-10">
-                <input type="Text" className="form-control" id="fee" placeholder = "Enter Your fee"
-                value={fee}onChange={(event)=>{setFee(event.target.value);}}/> 
               </div>
           </div>
 
@@ -134,7 +125,6 @@ function Course() {
                                     <tr>
                                         <td>ID</td>
                                         <td>Course</td>
-                                        <td>Fee</td>
                                         <td>Edit</td>
                                         <td>Delete</td>
                                     </tr>
@@ -144,7 +134,7 @@ function Course() {
                                 <tr key={course.id}>
                                   <th scope="row">{course.id}</th>
                                   <td>{course.course}</td>
-                                  <td>{course.fee}</td>
+                                  
                                   <td>
                                     <button
                                       type="button"
