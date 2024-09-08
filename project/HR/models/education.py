@@ -1,5 +1,5 @@
 from django.db import models
-from HR.models import country 
+from HR.models.country import Country 
 # Create your models here.
 
 class Degree(models.Model):
@@ -22,7 +22,7 @@ class Faculty(models.Model):
 
 class Education(models.Model):
 
-    country = models.ForeignKey(country, on_delete=models.CASCADE)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
     degree = models.ForeignKey(Degree, on_delete=models.CASCADE)
     university = models.ForeignKey(University, on_delete=models.CASCADE)
     faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
@@ -32,6 +32,9 @@ class Education(models.Model):
     batch_no = models.CharField(max_length=50)
     education_remarks = models.CharField(max_length=500)
 
+    # def __str__(self):
+        # return f"{self.degree} from {self.university} in {self.country}"
+
     def __str__(self):
-        return f"{self.degree} from {self.university} in {self.country}"
+        return f"Education in {self.country}"
 
