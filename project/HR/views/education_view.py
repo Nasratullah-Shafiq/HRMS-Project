@@ -20,7 +20,7 @@ def educationApi(request, id=0):
         education_serializer = educationSerializer(data=education_data)
         if education_serializer.is_valid():
             education_serializer.save()
-            return JsonResponse("Employee Added Successfully", safe=False)
+            return JsonResponse("Data Added Successfully", safe=False)
         return JsonResponse("Failed to Add", safe=False)
     
     elif request.method == "PUT":
@@ -29,7 +29,7 @@ def educationApi(request, id=0):
         try:
             education = Education.objects.get(id=id)
         except Education.DoesNotExist:
-            return JsonResponse("Employee not found", safe=False, status=404)
+            return JsonResponse("Education not found", safe=False, status=404)
 
         education_serializer = educationSerializer(education, data=education_data)
         if education_serializer.is_valid():

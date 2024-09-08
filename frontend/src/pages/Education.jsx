@@ -9,24 +9,16 @@ import Swal from 'sweetalert2';  // Import SweetAlert2
 
 function HR_Employee() {
   const [id, setId] = useState('');
-  const [full_name, setFull_Name] = useState('');
-  const [last_name, setLast_Name] = useState('');
-  // const [father_name, setFater_Name] = useState('');
-  // const [grand_father_name, setGrand_Father_Name] = useState('');
-  // const [date_of_birth, setDate_Of_Birth] = useState('');
-  // const [placce_of_birth, setPlace_Of_Birth] = useState('');
-  // const [gender, setGender] = useState('');
-  // const [natinality, setNationality] = useState('');
-  // const [degree, setDegree] = useState('');
-  // const [gederal_directorate, setGeneral_Directorate] = useState('');
-  // const [directorate, setDirectorate] = useState('');
-  // const [head, setHead] = useState('');
-  // const [job_position, setJob_Position] = useState('');
-  // const [remarks, setRemarks] = useState([]);
-  // const [blood_group, setBlood_Group] = useState('');
-  // const [marital_status, setMarital_Status] = useState('');
-  // const [religion, setReligion] = useState('');
-  const [employees, setEmployee] = useState([]);
+  const [country, setCountry] = useState('');
+  const [degree, setDegree] = useState('');
+  const [university, setUniversity] = useState('');
+  const [faculty, setFaculty] = useState('');
+  const [major, setMajor] = useState('');
+  const [education_start_date, setStartDate] = useState('');
+  const [education_end_date, setEndDate] = useState('');
+  const [batch_no, setBatchNo] = useState('');
+  const [education_remarks, setRemarks] = useState('');
+  const [educations, setEducation] = useState([]);
   
   useEffect(() =>{
     (async()=>await Load())();
@@ -35,27 +27,41 @@ function HR_Employee() {
 
   async function Load(){
     const result = await axios.get(
-      "http://127.0.0.1:8000/employee/");
-      setEmployee(result.data);
+      "http://127.0.0.1:8000/education/");
+      setEducation(result.data);
       console.log(result.data);
   }
 
   async function save(event){
     event.preventDefault();
     try{
-      await axios.post("http://127.0.0.1:8000/employee/",{
+      await axios.post("http://127.0.0.1:8000/education/",{
         id: id,
-        full_name: full_name,
-        last_name: last_name
+        country: country, 
+        degree: degree, 
+        university: university, 
+        faculty: faculty, 
+        major: major, 
+        education_start_date: education_start_date, 
+        education_end_date: education_end_date, 
+        batch_no: batch_no, 
+        education_remarks: education_remarks
       });
-    //   alert("This is not enogh");
-      Swal.fire('Success!', 'Record Updated Successfully', 'success'); 
-      toast.success("Course Added Successfully");
-      toastr.success("Course Added Successfully");
+    
+      // Swal.fire('Success!', 'Record Updated Successfully', 'success'); 
+      // toast.success("Course Added Successfully");
+      toastr.success("Date Added Successfully");
     
       setId("");
-      setFull_Name("");
-      setLast_Name("");
+      setCountry("");
+      setDegree("");
+      setUniversity("");
+      setFaculty("");
+      setMajor("");
+      setStartDate("");
+      setEndDate("");
+      setBatchNo("");
+      setRemarks("");
       Load();
     }
     catch(err){
@@ -65,14 +71,21 @@ function HR_Employee() {
     }
   }
 
-  async function editStudent(employees){
-    setFull_Name(employees.full_name);
-    setLast_Name(employees.last_name);
-    setId(employees.id);
+  async function editEducation(educations){
+    setCountry(educations.country);
+    setDegree(educations.degree);
+    setUniversity(educations.university);
+    setFaculty(educations.faculty);
+    setMajor(educations.major);
+    setStartDate(educations.education_start_date);
+    setEndDate(educations.education_end_date);
+    setBatchNo(educations.batch_no);
+    setRemarks(educations.education_remarks);
+    setId(educations.id);
   }
 
-  async function DeleteStudent(id){
-    await axios.delete("http://127.0.0.1:8000/employee/"+id);
+  async function DeleteEducation(id){
+    await axios.delete("http://127.0.0.1:8000/education/"+id);
     // alert("Course Deleted Successfully");
     toast.error("Course Deleted Successfully");
     
@@ -82,19 +95,33 @@ function HR_Employee() {
   async function update(event){
     event.preventDefault();
     try{
-      await axios.put("http://127.0.0.1:8000/employee/" + employees.find(u => u.id === id).id || id,{
+      await axios.put("http://127.0.0.1:8000/education/" + educations.find(u => u.id === id).id || id,{
         id: id,
-        full_name: full_name,
-        last_name: last_name
+        country: country, 
+        degree: degree, 
+        university: university, 
+        faculty: faculty, 
+        major: major, 
+        education_start_date: education_start_date, 
+        education_end_date: education_end_date, 
+        batch_no: batch_no, 
+        education_remarks: education_remarks      
       });
-      toast.success("Course Updated Successfully");
+      toast.success("Data Updated Successfully");
       setId("");
-      setFull_Name("");
-      setLast_Name("");
+      setCountry("");
+      setDegree("");
+      setUniversity("");
+      setFaculty("");
+      setMajor("");
+      setStartDate("");
+      setEndDate("");
+      setBatchNo("");
+      setRemarks("");
       Load();
     }
     catch(err){
-        toast.error("Course Registration Failed");
+        toast.error("Data Registration Failed");
     }
   }
 
@@ -106,7 +133,7 @@ function HR_Employee() {
         <form >
         <div className="form-group">
          
-            <input type="Text" className="form-control" id="Employee_id" hidden
+            <input type="Text" className="form-control" id="Education_id" hidden
             value={id}
             onChange={(event)=>{
               setId(event.target.value);
@@ -115,21 +142,76 @@ function HR_Employee() {
           </div>
             
           <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label"> Course </label>
+            <label className="col-sm-2 col-form-label"> Country </label>
               <div class="col-sm-10">
-                <input type="Text" className="form-control" id="course" placeholder = "Enter Your Course"
-                value={full_name}onChange={(event)=>{setFull_Name(event.target.value);}}/> 
+                <input type="Text" className="form-control" id="country" placeholder = "Seletct Country"
+                value={country}onChange={(event)=>{setCountry(event.target.value);}}/> 
               </div>
           </div>
 
           <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label"> Fee </label>
+            <label className="col-sm-2 col-form-label"> Degree </label>
               <div class="col-sm-10">
-                <input type="Text" className="form-control" id="fee" placeholder = "Enter Your fee"
-                value={last_name}onChange={(event)=>{setLast_Name(event.target.value);}}/> 
+                <input type="Text" className="form-control" id="Degree" placeholder = "Enter Your Degree"
+                value={degree}onChange={(event)=>{setDegree(event.target.value);}}/> 
               </div>
           </div>
 
+          <div className="mb-3 row">
+            <label className="col-sm-2 col-form-label"> University </label>
+              <div class="col-sm-10">
+                <input type="Text" className="form-control" id="university" placeholder = "Enter Your University"
+                value={university}onChange={(event)=>{setUniversity(event.target.value);}}/> 
+              </div>
+          </div>
+
+          <div className="mb-3 row">
+            <label className="col-sm-2 col-form-label"> Faculty </label>
+              <div class="col-sm-10">
+                <input type="Text" className="form-control" id="faculty" placeholder = "Enter Your Faculty"
+                value={faculty}onChange={(event)=>{setFaculty(event.target.value);}}/> 
+              </div>
+          </div>
+
+          <div className="mb-3 row">
+            <label className="col-sm-2 col-form-label"> Major </label>
+              <div class="col-sm-10">
+                <input type="Text" className="form-control" id="major" placeholder = "Enter Your Major"
+                value={major}onChange={(event)=>{setMajor(event.target.value);}}/> 
+              </div>
+          </div>
+
+          <div className="mb-3 row">
+            <label className="col-sm-2 col-form-label"> Start Date </label>
+              <div class="col-sm-10">
+                <input type="Text" className="form-control" id="start_date" placeholder = "Enter Your Start Date"
+                value={education_start_date}onChange={(event)=>{setStartDate(event.target.value);}}/> 
+              </div>
+          </div>
+
+          <div className="mb-3 row">
+            <label className="col-sm-2 col-form-label"> End Date </label>
+              <div class="col-sm-10">
+                <input type="Text" className="form-control" id="end_date" placeholder = "Enter Your End Date"
+                value={education_end_date}onChange={(event)=>{setEndDate(event.target.value);}}/> 
+              </div>
+          </div>
+
+          <div className="mb-3 row">
+            <label className="col-sm-2 col-form-label"> Batch No </label>
+              <div class="col-sm-10">
+                <input type="Text" className="form-control" id="bacth_no" placeholder = "Enter Your Batch No"
+                value={batch_no}onChange={(event)=>{setBatchNo(event.target.value);}}/> 
+              </div>
+          </div>
+
+          <div className="mb-3 row">
+            <label className="col-sm-2 col-form-label"> Remarks </label>
+              <div class="col-sm-10">
+                <input type="Text" className="form-control" id="remark" placeholder = "Enter Your Remarks"
+                value={education_remarks}onChange={(event)=>{setRemarks(event.target.value);}}/> 
+              </div>
+          </div>
           <button className="btn btn-primary" onClick={save}>Register</button>
           <button className="btn btn-warning" onClick={update}>Update</button>
         </form>
@@ -139,7 +221,7 @@ function HR_Employee() {
                 <div className='col-md-12'>
                     <div className='card'>
                         <div className='card-header'>
-                            <h4> Employee
+                            <h4> Education
                                 {/* <Link to ="/student/create" style={ {margin: '0px 0px 0px 1000px'} } className = "btn btn-primary">Add Student </Link> */}
                                 <Link to ="/course/store" style={ {margin: '0px 0px 0px 1000px'} } className = "btn btn-primary"> New </Link>
                             </h4>
@@ -148,24 +230,36 @@ function HR_Employee() {
                             <table className="table table-stripped">
                                 <thead>
                                     <tr>
-                                        <td>ID</td>
-                                        <td>Course</td>
-                                        <td>Fee</td>
-                                        <td>Edit</td>
-                                        <td>Delete</td>
+                                        <td> ID </td>
+                                        <td> Country </td>
+                                        <td> Degree </td>
+                                        <td> University </td>
+                                        <td> Faculty </td>
+                                        <td> Major </td>
+                                        <td> Start Date </td>
+                                        <td> End Date </td>
+                                        <td> Batch No </td>
+                                        <td> Remarks </td>
                                     </tr>
                                 </thead>
                               <tbody>
-                                {employees.map((employee) => (
-                                <tr key={employee.id}>
-                                  <th scope="row">{employee.id}</th>
-                                  <td>{employee.full_name}</td>
-                                  <td>{employee.last_name}</td>
+                                {educations.map((education) => (
+                                <tr key={education.id}>
+                                  <th scope="row">{education.id}</th>
+                                  <td>{education.country}</td>
+                                  <td>{education.degree}</td>
+                                  <td>{education.faculty}</td>
+                                  <td>{education.university}</td>
+                                  <td>{education.major}</td>
+                                  <td>{education.education_start_date}</td>
+                                  <td>{education.education_end_date}</td>
+                                  <td>{education.batch_no}</td>
+                                  <td>{education.education_remarks}</td>
                                   <td>
                                     <button
                                       type="button"
                                       className="btn btn-warning"
-                                      onClick={() => editStudent(employee)}
+                                      onClick={() => editEducation(education)}
                                     >
                                       Edit
                                     </button>
@@ -174,7 +268,7 @@ function HR_Employee() {
                                     <button
                                       type="button"
                                       className="btn btn-danger"
-                                      onClick={() => DeleteStudent(employee.id)}
+                                      onClick={() => DeleteEducation(education.id)}
                                     >
                                       Delete
                                     </button>
