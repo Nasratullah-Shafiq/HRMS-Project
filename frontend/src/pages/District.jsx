@@ -7,26 +7,11 @@ import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
 import Swal from 'sweetalert2';  // Import SweetAlert2
 
-function HR_Employee() {
+function HR_District() {
   const [id, setId] = useState('');
-  const [full_name, setFull_Name] = useState('');
-  const [last_name, setLast_Name] = useState('');
-  // const [father_name, setFater_Name] = useState('');
-  // const [grand_father_name, setGrand_Father_Name] = useState('');
-  // const [date_of_birth, setDate_Of_Birth] = useState('');
-  // const [placce_of_birth, setPlace_Of_Birth] = useState('');
-  // const [gender, setGender] = useState('');
-  // const [natinality, setNationality] = useState('');
-  // const [degree, setDegree] = useState('');
-  // const [gederal_directorate, setGeneral_Directorate] = useState('');
-  // const [directorate, setDirectorate] = useState('');
-  // const [head, setHead] = useState('');
-  // const [job_position, setJob_Position] = useState('');
-  // const [remarks, setRemarks] = useState([]);
-  // const [blood_group, setBlood_Group] = useState('');
-  // const [marital_status, setMarital_Status] = useState('');
-  // const [religion, setReligion] = useState('');
-  const [employees, setEmployee] = useState([]);
+  const [name, setName] = useState('');
+  
+  const [districts, setDistrict] = useState([]);
   
   useEffect(() =>{
     (async()=>await Load())();
@@ -43,37 +28,30 @@ function HR_Employee() {
   async function save(event){
     event.preventDefault();
     try{
-      await axios.post("http://127.0.0.1:8000/employee/",{
+      await axios.post("http://127.0.0.1:8000/district/",{
         id: id,
-        full_name: full_name,
-        last_name: last_name
+        name: name
       });
-    //   alert("This is not enogh");
-      Swal.fire('Success!', 'Record Updated Successfully', 'success'); 
-      toast.success("Course Added Successfully");
-      toastr.success("Course Added Successfully");
+    
+      toastr.success("District Added Successfully");
     
       setId("");
-      setFull_Name("");
-      setLast_Name("");
+      setName("");
       Load();
     }
     catch(err){
-      // alert("Course Registration Failed");
-      // toast.error("Record Registered failed");
-      toastr.error("Course Registration Failed");
+      toastr.error("District Registration Failed");
     }
   }
 
-  async function editStudent(employees){
-    setFull_Name(employees.full_name);
-    setLast_Name(employees.last_name);
-    setId(employees.id);
+  async function editDistrict(districts){
+    setName(districts.name);
+    setId(districts.id);
   }
 
   async function DeleteStudent(id){
-    await axios.delete("http://127.0.0.1:8000/employee/"+id);
-    // alert("Course Deleted Successfully");
+    await axios.delete("http://127.0.0.1:8000/district/"+id);
+    
     toast.error("Course Deleted Successfully");
     
     Load();
@@ -193,5 +171,5 @@ function HR_Employee() {
     );
   }
 
-  export default HR_Employee;
+  export default HR_District;
   
