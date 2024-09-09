@@ -88,7 +88,7 @@ function Course() {
         <div className="container">
         <form >
           <div className="form-group">
-            <label className="form-label"><h1>Student Management System in Django React API </h1></label>
+            <label className="form-label"><h1> </h1></label>
             <input type="Text" className="form-control" id="student_id" hidden
             value={id}
             onChange={(event)=>{
