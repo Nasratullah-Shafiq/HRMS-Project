@@ -51,11 +51,12 @@ function Navbar(){
             <li><Link className="dropdown-item" to="/organization-type"> Organization Type </Link></li>
             <li><Link className="dropdown-item" to="/Organization"> Organization </Link></li>
             <li><Link className="dropdown-item" to="/job-position"> Job Postion </Link></li>
-            <li><Link className="dropdown-item" to="/grade"> Grade </Link></li>
+            <li><Link className="dropdown-item" to="#" data-bs-toggle="modal" data-bs-target="#gradeModal"> Grade </Link> </li>
+            {/* <li><Link className="dropdown-item" to="/grade"> Grade </Link></li> */}
             {/* <li><Link className="dropdown-item" to="/step"> Step </Link></li> */}
 
             <li>
-              <Link className="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#stepModal">Step</Link>
+              <Link className="dropdown-item" to="#" data-bs-toggle="modal" data-bs-target="#stepModal">Step</Link>
             </li>
           </ul>
         </li>
@@ -63,6 +64,27 @@ function Navbar(){
 
 
         </ul>
+        <div className="modal fade" id="gradeModal" tabIndex="-1" aria-labelledby="stepModalLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="stepModalLabel">Step Details</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div className="modal-body">
+        {/* Modal content goes here */}
+        <p>Here you can manage steps for employees, such as setting step levels, details, and more.</p>
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" className="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
         <div className="modal fade" id="stepModal" tabIndex="-1" aria-labelledby="stepModalLabel" aria-hidden="true">
   <div className="modal-dialog">
     <div className="modal-content">
