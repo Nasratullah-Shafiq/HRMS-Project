@@ -60,15 +60,13 @@ function HR_District() {
   async function update(event){
     event.preventDefault();
     try{
-      await axios.put("http://127.0.0.1:8000/employee/" + employees.find(u => u.id === id).id || id,{
+      await axios.put("http://127.0.0.1:8000/district/" + districts.find(u => u.id === id).id || id,{
         id: id,
-        full_name: full_name,
-        last_name: last_name
+        name: name
       });
       toast.success("Course Updated Successfully");
       setId("");
-      setFull_Name("");
-      setLast_Name("");
+      setName("");
       Load();
     }
     catch(err){
@@ -95,13 +93,13 @@ function HR_District() {
           <div className="mb-3 row">
             <label className="col-sm-2 col-form-label"> Course </label>
               <div class="col-sm-10">
-                <input type="Text" className="form-control" id="course" placeholder = "Enter Your Course"
-                value={full_name}onChange={(event)=>{setFull_Name(event.target.value);}}/> 
+                <input type="Text" className="form-control" id="district" placeholder = "District Your Course"
+                value={name}onChange={(event)=>{setName(event.target.value);}}/> 
               </div>
           </div>
 
           <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label"> Fee </label>
+            <label className="col-sm-2 col-form-label"> District </label>
               <div class="col-sm-10">
                 <input type="Text" className="form-control" id="fee" placeholder = "Enter Your fee"
                 value={last_name}onChange={(event)=>{setLast_Name(event.target.value);}}/> 
@@ -119,31 +117,29 @@ function HR_District() {
                         <div className='card-header'>
                             <h4> Employee
                                 {/* <Link to ="/student/create" style={ {margin: '0px 0px 0px 1000px'} } className = "btn btn-primary">Add Student </Link> */}
-                                <Link to ="/course/store" style={ {margin: '0px 0px 0px 1000px'} } className = "btn btn-primary"> New </Link>
+                                <Link to ="/" style={ {margin: '0px 0px 0px 1000px'} } className = "btn btn-primary"> New </Link>
                             </h4>
                         </div>
                         <div className='card-body'>
                             <table className="table table-stripped">
                                 <thead>
                                     <tr>
-                                        <td>ID</td>
-                                        <td>Course</td>
-                                        <td>Fee</td>
-                                        <td>Edit</td>
-                                        <td>Delete</td>
+                                        <td> ID</td>
+                                        <td> District </td>
+                                        <td> Edit</td>
+                                        <td> Delete</td>
                                     </tr>
                                 </thead>
                               <tbody>
-                                {employees.map((employee) => (
-                                <tr key={employee.id}>
-                                  <th scope="row">{employee.id}</th>
-                                  <td>{employee.full_name}</td>
-                                  <td>{employee.last_name}</td>
+                                {districtss.map((district) => (
+                                <tr key={district.id}>
+                                  <th scope="row">{district.id}</th>
+                                  <td>{district.name}</td>
                                   <td>
                                     <button
                                       type="button"
                                       className="btn btn-warning"
-                                      onClick={() => editStudent(employee)}
+                                      onClick={() => editDistrict(district)}
                                     >
                                       Edit
                                     </button>
@@ -152,7 +148,7 @@ function HR_District() {
                                     <button
                                       type="button"
                                       className="btn btn-danger"
-                                      onClick={() => DeleteStudent(employee.id)}
+                                      onClick={() => DeleteDistrict(district.id)}
                                     >
                                       Delete
                                     </button>

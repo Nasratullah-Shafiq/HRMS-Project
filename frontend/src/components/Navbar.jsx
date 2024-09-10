@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 function Navbar(){
     return(
-        <nav className="navbar navbar-expand-lg bg-body-tertiary shadow">
+<nav className="navbar navbar-expand-lg bg-body-tertiary shadow">
   <div className="container">
     <Link className="navbar-brand" to="#">React</Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,6 +32,32 @@ function Navbar(){
         <li className="nav-item">
           <Link className="nav-link active" aria-current="page" to="/course"> Course </Link>
         </li>
+
+        <li className="nav-item dropdown">
+          <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+            Configuration
+          </Link>
+          <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><Link className="dropdown-item" to="/country"> Country </Link></li>
+            <li><Link className="dropdown-item" to="/province"> Province </Link></li>
+            <li><Link className="dropdown-item" to="/district"> District </Link></li>
+            <li><hr className="dropdown-divider" /></li>
+            <li><h3 class="dropdown-header"> Education </h3></li>
+            <li><Link className="dropdown-item" to="/university"> University </Link></li>
+            <li><Link className="dropdown-item" to="/faculty"> Faculty </Link></li>
+            <li><Link className="dropdown-item" to="/major"> Major </Link></li>
+            <li><hr className="dropdown-divider" /> </li>
+            <li><h4 class="dropdown-header"> Experience </h4></li>
+            <li><Link className="dropdown-item" to="/organization-type"> Organization Type </Link></li>
+            <li><Link className="dropdown-item" to="/Organization"> Organization </Link></li>
+            <li><Link className="dropdown-item" to="/job-position"> Job Postion </Link></li>
+            <li><Link className="dropdown-item" to="/grade"> Grade </Link></li>
+            <li><Link className="dropdown-item" to="/step"> Step </Link></li>
+          </ul>
+        </li>
+
+
+
         </ul>
       <form className="d-flex" role="search">
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
