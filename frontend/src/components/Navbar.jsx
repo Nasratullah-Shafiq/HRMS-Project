@@ -93,8 +93,36 @@ function Navbar(){
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div className="modal-body">
-        {/* Modal content goes here */}
-        <p>Here you can manage steps for employees, such as setting step levels, details, and more.</p>
+      <form >
+        <div className="form-group">
+         
+            <input type="Text" className="form-control" id="Employee_id" hidden
+            value={id}
+            onChange={(event)=>{
+              setId(event.target.value);
+            }}/>           
+           
+          </div>
+            
+          <div className="mb-3 row">
+            <label className="col-sm-2 col-form-label"> Course </label>
+              <div class="col-sm-10">
+                <input type="Text" className="form-control" id="course" placeholder = "Enter Your Course"
+                value={full_name}onChange={(event)=>{setFull_Name(event.target.value);}}/> 
+              </div>
+          </div>
+
+          <div className="mb-3 row">
+            <label className="col-sm-2 col-form-label"> Fee </label>
+              <div class="col-sm-10">
+                <input type="Text" className="form-control" id="fee" placeholder = "Enter Your fee"
+                value={last_name}onChange={(event)=>{setLast_Name(event.target.value);}}/> 
+              </div>
+          </div>
+
+          <button className="btn btn-primary" onClick={save}>Register</button>
+          <button className="btn btn-warning" onClick={update}>Update</button>
+        </form>
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
