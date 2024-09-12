@@ -7,6 +7,10 @@ from HR.views.health_view import healthApi      # Import from health.view
 from HR.views.education_view import educationApi  # Import from education.view
 from HR.views.degree_view import degreeApi  # Import from education.view
 from HR.views.university_view import universityApi # Import from university.view
+from HR.views.faculty_view import facultyApi
+# from HR.views.major_view import majorApi
+
+
 urlpatterns = [
     path('student/', studentApi),  # This handles requests to "Student/"
     re_path(r'^student/([0-9]+)$', studentApi),  # This handles requests to "Student/<id>"
@@ -29,5 +33,11 @@ urlpatterns = [
 
     path('university/', universityApi),  # This handles requests to "University/"
     re_path(r'^university/([0-9]+)$', universityApi),  # This handles requests to "University/<id>"
+
+    path('faculty/', facultyApi),  # This handles requests to "Faculty/"
+    re_path(r'^faculty/([0-9]+)$', facultyApi),  # This handles requests to "Faculty/<id>"
+
+    # path('major/', majorApi),  # This handles requests to "Major/"
+    # re_path(r'^major/([0-9]+)$', majorApi),  # This handles requests to "Major/<id>"
 
 ]

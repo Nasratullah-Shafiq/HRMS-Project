@@ -11,6 +11,7 @@ import Courses from '../pages/Course.jsx';
 import EducationData from '../pages/Education.jsx';
 import DegreeData from '../pages/Degree.jsx';
 import UniversityData from '../pages/University.jsx';
+import FacultyData from '../pages/Faculty.jsx';
 // import ExperienceData from '../pages/Experience.jsx';
 // import AppraisalData from '../pages/Appraisal.jsx';
 // import DistrictData from '../pages/District.jsx';
@@ -40,6 +41,7 @@ function MyRouter(){
             <Route path="/education" element={<EducationData />} />
             <Route path="/degree" element={<DegreeData />} />
             <Route path="/university" element={<UniversityData />} />
+            <Route path="/faculty" element={<FacultyData />} />
             {/* <Route path="/experience" element={<ExperienceData />} /> */}
             {/* <Route path="/appraisal" element={<AppraisalData />} />
             <Route path="/district" element={<DistrictData />} />

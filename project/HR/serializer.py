@@ -93,7 +93,7 @@ class UniversitySerializer(serializers.ModelSerializer):
         model = University
         fields = '__all__'
 
-class facultySerializer(serializers.ModelSerializer):
+class FacultySerializer(serializers.ModelSerializer):
     class Meta:
         model = Faculty
         fields = '__all__'
@@ -107,6 +107,11 @@ class courseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
         fields = '__all__'
+
+# class MajorSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Major
+#         fields = '__all__'
 
 # class organizationSerializer(serializers.ModelSerializer):
 #     class Meta:
