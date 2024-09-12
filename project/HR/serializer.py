@@ -98,7 +98,7 @@ class facultySerializer(serializers.ModelSerializer):
         model = Faculty
         fields = '__all__'
 
-class degreeSerializer(serializers.ModelSerializer):
+class DegreeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Degree
         fields = '__all__'

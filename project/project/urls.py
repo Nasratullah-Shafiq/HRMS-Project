@@ -5,6 +5,7 @@ from HR.views.course_view import courseApi     # Import from views.course_view
 from HR.views.employee_view import employeeApi # Import from views.employee_view
 from HR.views.health_view import healthApi      # Import from health.view
 from HR.views.education_view import educationApi  # Import from education.view
+from HR.views.degree_view import degreeApi  # Import from education.view
 
 urlpatterns = [
     path('student/', studentApi),  # This handles requests to "Student/"
@@ -22,5 +23,8 @@ urlpatterns = [
 
     path('education/', educationApi),  # This handles requests to "Education/"
     re_path(r'^education/([0-9]+)$', educationApi),  # This handles requests to "Education/<id>"
+
+    path('degree/', degreeApi),  # This handles requests to "Education/"
+    re_path(r'^degree/([0-9]+)$', degreeApi),  # This handles requests to "Education/<id>"
 
 ]
