@@ -5,25 +5,25 @@ import 'react-toastify/dist/ReactToastify.css';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
 
-function Degree() {
+function University() {
   const [id, setId] = useState('');
   const [name, setName] = useState('');
-  const [degrees, setDegree] = useState([]);
+  const [universitys, setUniversity] = useState([]);
   useEffect(() =>{
     (async()=>await Load())();
   }, []);
 
   async function Load(){
     const result = await axios.get(
-      "http://127.0.0.1:8000/degree/");
-      setDegree(result.data);
+      "http://127.0.0.1:8000/university/");
+      setUniversity(result.data);
       console.log(result.data);
   }
 
   async function save(event){
     event.preventDefault();
     try{
-      await axios.post("http://127.0.0.1:8000/degree/",{
+      await axios.post("http://127.0.0.1:8000/university/",{
         id: id,
         name: name
       });
@@ -39,25 +39,25 @@ function Degree() {
     }
   }
 
-  async function editDegree(degrees){
-    setName(degrees.name);
-    setId(degrees.id);
+  async function editUniversity(universitys){
+    setName(universitys.name);
+    setId(universitys.id);
   }
 
-  async function DeleteDegree(id){
-    await axios.delete("http://127.0.0.1:8000/degree/"+id);
-        toast.info("Data Deleted Successfully");
+  async function DeleteUniversity(id){
+    await axios.delete("http://127.0.0.1:8000/university/"+id);
+        toastr.danger("Data Deleted Successfully");
         Load();
   }
 
   async function update(event){
     event.preventDefault();
     try{
-      await axios.put("http://127.0.0.1:8000/degree/" + degrees.find(u => u.id === id).id || id,{
+      await axios.put("http://127.0.0.1:8000/university/" + universitys.find(u => u.id === id).id || id,{
         id: id,
         name: name
       });
-      toast.info("Record updated Successfully");
+      toastr.info("Record updated Successfully");
     
       setId("");
       setName("");
@@ -65,19 +65,22 @@ function Degree() {
     }
     catch(err){
     
-      toast.error("Student Registration Failed");
+      toast.error("University Registration Failed");
     }
   }
 
-  if(degrees.length <= 0) return null;
+  // if(degrees.length <= 0) return null;
 
     return (
       <div className="App">
         <div className="container">
         <form >
         <div className="form-group">
-            <label className="form-label"><h1>Student Management System in Django React API </h1></label>
-            <input type="Text" className="form-control" id="degree_id" hidden
+            
+            <label className="form-label col-sm-3"><h1> University </h1></label>
+            <label className = "col-sm-1 col-form-label"> <button className="btn btn-primary" onClick={save}> Save </button></label>
+            <label className = "col-sm-1 col-form-label"> <button className="btn btn-warning" onClick={update}> Update </button> </label>
+            <input type="Text" className="form-control" id="university_id" hidden
             value={id}
             onChange={(event)=>{
               setId(event.target.value);
@@ -86,15 +89,13 @@ function Degree() {
           </div>
             
           <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label"> Employee Grade </label>
+            <label className="col-sm-2 col-form-label"> University </label> 
+            
               <div class="col-sm-10">
-                <input type="Text" className="form-control" id="degree_name" placeholder = "Enter Employee's Degree"
+                <input type="Text" className="form-control" id="university_name" placeholder = "Enter Employee's University"
                 value={name}onChange={(event)=>{setName(event.target.value);}}/> 
               </div>
           </div>
-
-          <button className="btn btn-primary" onClick={save}> Save </button>
-          <button className="btn btn-warning" onClick={update}> Update </button>
         </form>
 
       <table className="table table-striped" align="center">
@@ -102,28 +103,22 @@ function Degree() {
   <thead>
     <tr>
       <th scope="col"> ID </th>
-      <th scope="col"> Degree </th>
+      <th scope="col"> University </th>
       <th scope="col"> Edit </th>
       <th scope="col"> Delete </th>
     </tr>
   </thead>
   <tbody>
-    {degrees.map((degree) => (
-      <tr key={degree.id}>
-        <th scope="row">{degree.id}</th>
-        <td>{degree.name}</td>
+    {universitys.map((university) => (
+      <tr key={university.id}>
+        <th scope="row">{university.id}</th>
+        <td>{university.name}</td>
         
         <td>
-          <button
-            type="button"
-            className="btn btn-warning"
-            onClick={() => editDegree(degree)}
-          >
-            Edit
-          </button>
+          <button type="button" className="btn btn-warning" onClick={() => editUniversity(university)}> Edit </button>
           </td>
           <td>
-          <button type="button" className="btn btn-danger" onClick={() => DeleteDegree(degree.id)}> <i className="fas fa-star"></i> {/* Using a star icon as a favorite icon */} </button>
+          <button type="button" className="btn btn-danger" onClick={() => DeleteUniversity(university.id)}> <i className="fas fa-star"></i> {/* Using a star icon as a favorite icon */} </button>
         </td>
       </tr>
     ))}
@@ -136,5 +131,5 @@ function Degree() {
     );
   }
   
-  export default Degree;
+  export default University;
   

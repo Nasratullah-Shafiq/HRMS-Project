@@ -38,17 +38,13 @@ function Step() {
   }
 
   async function editStudent(students){
-    setName(students.name);
-    setLastName(students.last_name);
-    setFatherName(students.father_name);
-    setCourse(students.course);
-    setAddress(students.address);
-    setFee(students.fee);
-    setId(students.id);
+    setName(steps.name);
+    setStep(steps.last_name);
+    setId(steps.id);
   }
 
-  async function DeleteStudent(id){
-    await axios.delete("http://127.0.0.1:8000/student/"+id);
+  async function DeleteStep(id){
+    await axios.delete("http://127.0.0.1:8000/step/"+id);
         toast.info("Student Deleted Successfully");
         Load();
   }

@@ -45,6 +45,7 @@ function Navbar(){
                   <li><h3 class="dropdown-header"> Education </h3></li>
                   <li><Link className="dropdown-item" to="/university"> University </Link></li>
                   <li><Link className="dropdown-item" to="/faculty"> Faculty </Link></li>
+                  <li><Link className="dropdown-item" to="/degree"> Degree </Link></li>
                   <li><Link className="dropdown-item" to="/major"> Major </Link></li>
                   <li><hr className="dropdown-divider" /> </li>
                   <li><h4 class="dropdown-header"> Experience </h4></li>
@@ -64,7 +65,7 @@ function Navbar(){
 
 
               </ul>
-              <div className="modal fade" id="gradeModal" tabIndex="-1" aria-labelledby="stepModalLabel" aria-hidden="true">
+              {/* <div className="modal fade" id="gradeModal" tabIndex="-1" aria-labelledby="stepModalLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
@@ -73,7 +74,7 @@ function Navbar(){
             </div>
             <div className="modal-body">
               {/* Modal content goes here */}
-              <p>Here you can manage steps for employees, such as setting step levels, details, and more.</p>
+              {/* <p>Here you can manage steps for employees, such as setting step levels, details, and more.</p>
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -81,7 +82,7 @@ function Navbar(){
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
 
 

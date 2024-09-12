@@ -88,7 +88,7 @@ class healthSerializer(serializers.ModelSerializer):
         model = Health
         fields = '__all__'
 
-class universitySerializer(serializers.ModelSerializer):
+class UniversitySerializer(serializers.ModelSerializer):
     class Meta:
         model = University
         fields = '__all__'
