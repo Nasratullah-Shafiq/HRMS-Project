@@ -9,7 +9,7 @@ from HR.models.Student import Student  # Correct import path
 from HR.models.employee import Employee
 from HR.models.Health import Health
 from HR.models.education import Education, Faculty, University, Degree, Major
-from HR.models.experience import Experience, Status, Step, Grade, JobPosition, OrganizationTpye
+from HR.models.experience import Experience, Status, Step, Grade, JobPosition, OrganizationType
 # from HR.models.relative import Relative
 # from HR.models.exam import Exam
 # from HR.models.document import Document
@@ -60,9 +60,9 @@ class JobPositionSerializer(serializers.ModelSerializer):
         model = JobPosition
         fields = '__all__'
 
-class OrganizationTypeSrializer(serializers.ModelSerializer):
+class OrganizationTypeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = OrganizationTpye
+        model = OrganizationType
         fields = '__all__'
 
 class GradeSerializer(serializers.ModelSerializer):

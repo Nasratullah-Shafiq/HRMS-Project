@@ -3,13 +3,14 @@ from HR.models.country import Country
 from HR.models.province import Province
 from HR.models.organization import Organization
 from HR.models.department import Department
+
 class Status(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
 
-class OrganizationTpye(models.Model):
+class OrganizationType(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
@@ -44,7 +45,7 @@ class Experience(models.Model):
     status_id = models.ForeignKey(Status, on_delete=models.CASCADE)
     job_start_data = models.DateField()
     job_end_date = models.DateField()
-    organization_type = models.ForeignKey(OrganizationTpye, on_delete=models.CASCADE)
+    organization_type = models.ForeignKey(OrganizationType, on_delete=models.CASCADE)
     remarks = models.CharField(max_length=255)
 
     def __str__(self):

@@ -5,10 +5,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
 
-function Major() {
+function OrganizationType() {
   const [id, setId] = useState('');
   const [name, setName] = useState('');
-  const [majors, setMajor] = useState([]);
+  const [organization_types, setOrganizationType] = useState([]);
   
   useEffect(() =>{
     (async()=>await Load())();
@@ -16,15 +16,15 @@ function Major() {
 
   async function Load(){
     const result = await axios.get(
-      "http://127.0.0.1:8000/major/");
-      setMajor(result.data);
+      "http://127.0.0.1:8000/organization-type/");
+      setOrganizationType(result.data);
       console.log(result.data);
   }
 
   async function save(event){
     event.preventDefault();
     try{
-      await axios.post("http://127.0.0.1:8000/major/",{
+      await axios.post("http://127.0.0.1:8000/organization-type/",{
         id: id,
         name: name
       });
@@ -39,13 +39,13 @@ function Major() {
     }
   }
 
-  async function editMajor(majors){
-    setName(majors.name);
-    setId(majors.id);
+  async function editOrganizationType(organization_types){
+    setName(organization_types.name);
+    setId(organization_types.id);
   }
 
-  async function DeleteMajor(id){
-    await axios.delete("http://127.0.0.1:8000/major/"+id);
+  async function DeleteOrganizationType(id){
+    await axios.delete("http://127.0.0.1:8000/organization-type/"+id);
         toastr.danger("Data Deleted Successfully");
         Load();
   }
@@ -53,7 +53,7 @@ function Major() {
   async function update(event){
     event.preventDefault();
     try{
-      await axios.put("http://127.0.0.1:8000/major/" + majors.find(u => u.id === id).id || id,{
+      await axios.put("http://127.0.0.1:8000/organization-type/" + organization_types.find(u => u.id === id).id || id,{
         id: id,
         name: name
       });
@@ -77,21 +77,21 @@ function Major() {
         <form >
         <div className="form-group">
             
-            <label className="form-label col-sm-2"><h2> Major </h2></label>
+            <label className="form-label col-sm-2"><h2> Organization Type </h2></label>
             <label className = "col-sm-1 col-form-label"> <button className="btn btn-primary" onClick={save} disabled={!name}> Save </button></label>
             <label className = "col-sm-1 col-form-label"> <button className="btn btn-warning" onClick={update}> Update </button> </label>
             <div className = "col-sm-12" style={{paddingTop: '20px'}}> </div>
-            <input type="Text" className="form-control" id="major_id" hidden
+            <input type="Text" className="form-control" id="organization_type_id" hidden
             value={id}
             onChange={(event)=>{setId(event.target.value); }}/>           
            
           </div>
             
           <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label"> Major </label> 
+            <label className="col-sm-2 col-form-label"> Organization Type </label> 
             
               <div class="col-sm-10">
-                <input type="Text" className="form-control" id="major_name" placeholder = "Enter Employee's Major"
+                <input type="Text" className="form-control" id="organization_type_name" placeholder = "Enter Organization Type"
                 value={name} onChange={(event)=>{setName(event.target.value);}}/> 
               </div>
           </div>
@@ -101,22 +101,22 @@ function Major() {
           <thead>
             <tr>
               <th scope="col"> ID </th>
-              <th scope="col"> Major </th>
+              <th scope="col"> Organization Type </th>
               <th scope="col"> Edit </th>
               <th scope="col"> Delete </th>
             </tr>
           </thead>
           <tbody>
-            {majors.map((major) => (
-              <tr key={major.id}>
-                <th scope="row">{major.id}</th>
-                <td>{major.name}</td>
+            {organization_types.map((organization_type) => (
+              <tr key={organization_type.id}>
+                <th scope="row">{organization_type.id}</th>
+                <td>{organization_type.name}</td>
                 
                 <td>
-                  <button type="button" className="btn btn-warning" onClick={() => editMajor(major)}> Edit </button>
+                  <button type="button" className="btn btn-warning" onClick={() => editOrganizationType(organization_type)}> Edit </button>
                   </td>
                   <td>
-                  <button type="button" className="btn btn-danger" onClick={() => DeleteMajor(major.id)}> <i className="fas fa-star"></i> {/* Using a star icon as a favorite icon */} </button>
+                  <button type="button" className="btn btn-danger" onClick={() => DeleteOrganizationType(organization_type.id)}> <i className="fas fa-star"></i> {/* Using a star icon as a favorite icon */} </button>
                 </td>
               </tr>
             ))}
@@ -129,5 +129,5 @@ function Major() {
     );
   }
   
-  export default Major;
+  export default OrganizationType;
   

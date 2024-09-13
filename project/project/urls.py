@@ -9,8 +9,8 @@ from HR.views.degree_view import degreeApi  # Import from education.view
 from HR.views.university_view import universityApi # Import from university.view
 from HR.views.faculty_view import facultyApi
 from HR.views.major_view import majorApi
-from HR.views.experience_view import experienceApi
-
+from HR.views.experience_view import experienceApi, organizationTypeApi
+# from HR.views.experience_view import 
 urlpatterns = [
     path('student/', studentApi),  # This handles requests to "Student/"
     re_path(r'^student/([0-9]+)$', studentApi),  # This handles requests to "Student/<id>"
@@ -40,11 +40,14 @@ urlpatterns = [
     path('faculty/', majorApi),  # This handles requests to Major/"
     re_path(r'^faculty/([0-9]+)$', majorApi),  # This handles requests to Major Api /<id>"
 
-    path('major/', experienceApi),  # This handles requests to "Experience/"
-    re_path(r'^major/([0-9]+)$', experienceApi),  # This handles requests to "Experience Api/<id>"
+    path('experience/', experienceApi),  # This handles requests to "Experience/"
+    re_path(r'^experience/([0-9]+)$', experienceApi),  # This handles requests to "Experience Api/<id>"
 
-    # path('major/', organizationTypeApi),  # This handles requests to "Organization Type Api/"
-    # re_path(r'^major/([0-9]+)$', organizationTypeApi),  # This handles requests to "Organization Type Api/<id>"
+    # path('major/', organizationApi),  # This handles requests to "Organization Type Api/"
+    # re_path(r'^major/([0-9]+)$', organizationApi),  # This handles requests to "Organization Type Api/<id>"
+    
+    path('organization-type/', organizationTypeApi),  # This handles requests to "Organization Type Api/"
+    re_path(r'^organization-type/([0-9]+)$', organizationTypeApi),  # This handles requests to "Organization Type Api/<id>"
 
     # path('major/', departmentApi),  # This handles requests to Department/
     # re_path(r'^major/([0-9]+)$', departmentApi),  # This handles requests to "Department Api/<id>"
