@@ -32,7 +32,7 @@ class Education(models.Model):
     degree = models.ForeignKey(Degree, on_delete=models.CASCADE)
     university = models.ForeignKey(University, on_delete=models.CASCADE)
     faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
-    major = models.CharField(max_length=100)
+    major = models.ForeignKey(Major, on_delete=models.CASCADE)
     education_start_date = models.DateField()
     education_end_date = models.DateField()
     batch_no = models.CharField(max_length=50)

@@ -8,8 +8,8 @@ from HR.views.education_view import educationApi  # Import from education.view
 from HR.views.degree_view import degreeApi  # Import from education.view
 from HR.views.university_view import universityApi # Import from university.view
 from HR.views.faculty_view import facultyApi
-# from HR.views.major_view import majorApi
-
+from HR.views.major_view import majorApi
+from HR.views.experience_view import experienceApi
 
 urlpatterns = [
     path('student/', studentApi),  # This handles requests to "Student/"
@@ -37,7 +37,28 @@ urlpatterns = [
     path('faculty/', facultyApi),  # This handles requests to "Faculty/"
     re_path(r'^faculty/([0-9]+)$', facultyApi),  # This handles requests to "Faculty/<id>"
 
-    # path('major/', majorApi),  # This handles requests to "Major/"
-    # re_path(r'^major/([0-9]+)$', majorApi),  # This handles requests to "Major/<id>"
+    path('faculty/', majorApi),  # This handles requests to Major/"
+    re_path(r'^faculty/([0-9]+)$', majorApi),  # This handles requests to Major Api /<id>"
+
+    path('major/', experienceApi),  # This handles requests to "Experience/"
+    re_path(r'^major/([0-9]+)$', experienceApi),  # This handles requests to "Experience Api/<id>"
+
+    # path('major/', organizationTypeApi),  # This handles requests to "Organization Type Api/"
+    # re_path(r'^major/([0-9]+)$', organizationTypeApi),  # This handles requests to "Organization Type Api/<id>"
+
+    # path('major/', departmentApi),  # This handles requests to Department/
+    # re_path(r'^major/([0-9]+)$', departmentApi),  # This handles requests to "Department Api/<id>"
+
+    # path('major/', jobPositionApi),  # This handles requests to Job Postion/"
+    # re_path(r'^major/([0-9]+)$', jobPositionApi),  # This handles requests to Job Position Api /<id>"
+
+    # path('major/', gradeApi),  # This handles requests to Grade/"
+    # re_path(r'^major/([0-9]+)$', gradeApi),  # This handles requests to Grade Api /<id>"
+
+    # path('major/', stepApi),  # This handles requests to Step/
+    # re_path(r'^major/([0-9]+)$', stepApi),  # This handles requests to Step Api /<id>"
+
+    # path('major/', statusApi),  # This handles requests to Status/"
+    # re_path(r'^major/([0-9]+)$', statusApi),  # This handles requests to Status Api /<id>"
 
 ]

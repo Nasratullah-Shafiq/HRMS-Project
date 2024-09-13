@@ -2,9 +2,9 @@ from .course import Course
 from .Student import Student
 from .employee import Employee
 from .Health import Health
-from .education import Education, University, Faculty, Degree
+from .education import Education, University, Faculty, Degree, Major
 # from .experience import Experience, Status, Grade, OrganizationTpye, Step, JobPosition
-# from .country import Country
+# from .department import Department
 # from .province import Province
 # from .district import District
 # from .publication import Publication, PublicationType
@@ -21,4 +21,4 @@ from .education import Education, University, Faculty, Degree
 #            'Faculty', 'Degree', 'Publication', 'PublicationType', 'Reward', 'RewardType', 'Exam', 'Fire', 
 #            'FireType', 'LeaveReason', 'Language', 'Organization', 'Property', 'Training', 'Travel']
 
-__all__ = ['Course', 'Student', 'Employee', 'Health', 'Education', 'University', 'Faculty', 'Degree'] 
+__all__ = ['Course', 'Student', 'Employee', 'Health', 'Education', 'University', 'Faculty', 'Degree', 'Major'] 

@@ -1,21 +1,17 @@
 from rest_framework import serializers
 # from .models import Student
 # from HR.models import reward, exam, travel, organization
-
+from HR.models.country import Country
+from HR.models.province import Province
+from HR.models.district import District
 from HR.models.course import Course
 from HR.models.Student import Student  # Correct import path
 from HR.models.employee import Employee
 from HR.models.Health import Health
-from HR.models.education import Education, Faculty, University, Degree
-# from HR.models.education import Faculty
-# from HR.models.education import University
-# from HR.models.education import Degree
+from HR.models.education import Education, Faculty, University, Degree, Major
+from HR.models.experience import Experience, Status, Step, Grade, JobPosition, OrganizationTpye
 # from HR.models.relative import Relative
-# from HR.models.experience import Experience, Status, Step, Grade, JobPosition, OrganizationTpye
 # from HR.models.exam import Exam
-from HR.models.country import Country
-# from HR.models.province import Province
-# from HR.models.district import District
 # from HR.models.document import Document
 # from HR.models.property import Property, PropertyType
 # from HR.models.publication import Publication
@@ -48,44 +44,46 @@ class employeeSerializer(serializers.ModelSerializer):
         model = Employee
         fields = '__all__'
         
-class educationSerializer(serializers.ModelSerializer):
+
+class ExperienceSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Education
+        model = Experience
         fields = '__all__'
 
-# class experienceSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Experience
-#         fields = '__all__'
+class StepSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Step
+        fields = '__all__'
 
-# class stepSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Step
-#         fields = '__all__'
+class JobPositionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobPosition
+        fields = '__all__'
 
-# class jobPositionSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = JobPosition
-#         fields = '__all__'
+class OrganizationTypeSrializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrganizationTpye
+        fields = '__all__'
 
-# class organizationTypeerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = OrganizationTpye
-#         fields = '__all__'
+class GradeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Grade
+        fields = '__all__'
 
-# class gradeSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Grade
-#         fields = '__all__'
-
-# class experienceSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Status
-#         fields = '__all__'
+class StatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Status
+        fields = '__all__'
 
 class healthSerializer(serializers.ModelSerializer):
     class Meta:
         model = Health
+        fields = '__all__'
+
+
+class educationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Education
         fields = '__all__'
 
 class UniversitySerializer(serializers.ModelSerializer):
@@ -103,25 +101,30 @@ class DegreeSerializer(serializers.ModelSerializer):
         model = Degree
         fields = '__all__'
 
+class MajorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Major
+        fields = '__all__'
+
 class courseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
         fields = '__all__'
 
-# class MajorSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Major
-#         fields = '__all__'
+class CountrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Country
+        fields = '__all__'
 
-# class organizationSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Organization
-#         fields = '__all__'
+class ProvinceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Province
+        fields = '__all__'
 
-# class rewardSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Reward
-#         fields = '__all__'
+class District(serializers.ModelSerializer):
+    class Meta:
+        model = District
+        fields = '__all__'
 
 # class countrySerializer(serializers.ModelSerializer):
 #     class Meta:
