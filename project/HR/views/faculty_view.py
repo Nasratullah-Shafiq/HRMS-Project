@@ -27,6 +27,6 @@ def facultyApi(request,id=0):
             return JsonResponse("Updated Successfully",safe=False)
         return JsonResponse("Failed to Update")
     elif request.method=="DELETE":
-        faculty=faculty.objects.get(id=id)
+        faculty=Faculty.objects.get(id=id)
         faculty.delete()
         return JsonResponse("Deleted Successfully",safe=False)

@@ -5,10 +5,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
 
-function Major() {
+function Status() {
   const [id, setId] = useState('');
   const [name, setName] = useState('');
-  const [majors, setMajor] = useState([]);
+  const [statuss, setStatus] = useState([]);
   
   useEffect(() =>{
     (async()=>await Load())();
@@ -16,15 +16,15 @@ function Major() {
 
   async function Load(){
     const result = await axios.get(
-      "http://127.0.0.1:8000/major/");
-      setMajor(result.data);
+      "http://127.0.0.1:8000/status/");
+      setStatus(result.data);
       console.log(result.data);
   }
 
   async function save(event){
     event.preventDefault();
     try{
-      await axios.post("http://127.0.0.1:8000/major/",{
+      await axios.post("http://127.0.0.1:8000/status/",{
         id: id,
         name: name
       });
@@ -39,13 +39,13 @@ function Major() {
     }
   }
 
-  async function editMajor(majors){
-    setName(majors.name);
-    setId(majors.id);
+  async function editStatus(statuss){
+    setName(statuss.name);
+    setId(statuss.id);
   }
 
-  async function DeleteMajor(id){
-    await axios.delete("http://127.0.0.1:8000/major/"+id);
+  async function DeleteStatus(id){
+    await axios.delete("http://127.0.0.1:8000/status/"+id);
         toastr.danger("Data Deleted Successfully");
         Load();
   }
@@ -53,7 +53,7 @@ function Major() {
   async function update(event){
     event.preventDefault();
     try{
-      await axios.put("http://127.0.0.1:8000/major/" + majors.find(u => u.id === id).id || id,{
+      await axios.put("http://127.0.0.1:8000/status/" + statuss.find(u => u.id === id).id || id,{
         id: id,
         name: name
       });
@@ -77,7 +77,7 @@ function Major() {
         <form >
         <div className="form-group">
             
-            <label className="form-label col-sm-2"><h2> Major </h2></label>
+            <label className="form-label col-sm-2"><h2> Status </h2></label>
             <label className = "col-sm-1 col-form-label"> <button className="btn btn-primary" onClick={save} disabled={!name}> Save </button></label>
             <label className = "col-sm-1 col-form-label"> <button className="btn btn-warning" onClick={update}> Update </button> </label>
             <div className = "col-sm-12" style={{paddingTop: '20px'}}> </div>
@@ -88,10 +88,10 @@ function Major() {
           </div>
             
           <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label"> Major </label> 
+            <label className="col-sm-2 col-form-label"> Status </label> 
             
               <div class="col-sm-10">
-                <input type="Text" className="form-control" id="major_name" placeholder = "Enter Employee's Major"
+                <input type="Text" className="form-control" id="status_name" placeholder = "Enter Employee's Status"
                 value={name} onChange={(event)=>{setName(event.target.value);}}/> 
               </div>
           </div>
@@ -101,22 +101,22 @@ function Major() {
           <thead>
             <tr>
               <th scope="col"> ID </th>
-              <th scope="col"> Major </th>
+              <th scope="col"> Status </th>
               <th scope="col"> Edit </th>
               <th scope="col"> Delete </th>
             </tr>
           </thead>
           <tbody>
-            {majors.map((major) => (
-              <tr key={major.id}>
-                <th scope="row">{major.id}</th>
-                <td>{major.name}</td>
+            {statuss.map((status) => (
+              <tr key={status.id}>
+                <th scope="row">{status.id}</th>
+                <td>{status.name}</td>
                 
                 <td>
-                  <button type="button" className="btn btn-warning" onClick={() => editMajor(major)}> Edit </button>
+                  <button type="button" className="btn btn-warning" onClick={() => editStatus(status)}> Edit </button>
                   </td>
                   <td>
-                  <button type="button" className="btn btn-danger" onClick={() => DeleteMajor(major.id)}> <i className="fas fa-star"></i> {/* Using a star icon as a favorite icon */} </button>
+                  <button type="button" className="btn btn-danger" onClick={() => DeleteStatus(status.id)}> <i className="fas fa-star"></i> {/* Using a star icon as a favorite icon */} </button>
                 </td>
               </tr>
             ))}
@@ -124,10 +124,8 @@ function Major() {
         </table>
         </div>
       </div>
-
-      
     );
   }
   
-  export default Major;
+  export default Status;
   

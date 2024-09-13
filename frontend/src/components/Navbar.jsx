@@ -51,87 +51,15 @@ function Navbar(){
                   <li><h4 class="dropdown-header"> Experience </h4></li>
                   <li><Link className="dropdown-item" to="/organization-type"> Organization Type </Link></li>
                   <li><Link className="dropdown-item" to="/Organization"> Organization </Link></li>
+                  <li><Link className="dropdown-item" to="/document"> Document </Link></li>
                   <li><Link className="dropdown-item" to="/job-position"> Job Postion </Link></li>
-                  <li><Link className="dropdown-item" to="#" data-bs-toggle="modal" data-bs-target="#gradeModal"> Grade </Link> </li>
-                  {/* <li><Link className="dropdown-item" to="/grade"> Grade </Link></li> */}
-                  {/* <li><Link className="dropdown-item" to="/step"> Step </Link></li> */}
-
-                  <li>
-                    <Link className="dropdown-item" to="#" data-bs-toggle="modal" data-bs-target="#stepModal">Step</Link>
-                  </li>
+                  <li><Link className="dropdown-item" to="/grade"> Grade </Link> </li>
+                  <li><Link className="dropdown-item" to="/step"> Step </Link></li>
+                  <li><Link className="dropdown-item" to="/status"> Status </Link></li>
                 </ul>
               </li>
-
-
-
-              </ul>
-              {/* <div className="modal fade" id="gradeModal" tabIndex="-1" aria-labelledby="stepModalLabel" aria-hidden="true">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="stepModalLabel">Step Details</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div className="modal-body">
-              {/* Modal content goes here */}
-              {/* <p>Here you can manage steps for employees, such as setting step levels, details, and more.</p>
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" className="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div> */}
-
-
-
-      {/* <div className="modal fade" id="stepModal" tabIndex="-1" aria-labelledby="stepModalLabel" aria-hidden="true">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="stepModalLabel">Step Details</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div className="modal-body">
-            <form >
-              <div className="form-group">
+            </ul>
               
-                  <input type="Text" className="form-control" id="Employee_id" hidden
-                  value={id}
-                  onChange={(event)=>{
-                    setId(event.target.value);
-                  }}/>           
-                
-                </div>
-                  
-                <div className="mb-3 row">
-                  <label className="col-sm-2 col-form-label"> Course </label>
-                    <div class="col-sm-10">
-                      <input type="Text" className="form-control" id="course" placeholder = "Enter Your Course"
-                      value={full_name}onChange={(event)=>{setFull_Name(event.target.value);}}/> 
-                    </div>
-                </div>
-
-                <div className="mb-3 row">
-                  <label className="col-sm-2 col-form-label"> Fee </label>
-                    <div class="col-sm-10">
-                      <input type="Text" className="form-control" id="fee" placeholder = "Enter Your fee"
-                      value={last_name}onChange={(event)=>{setLast_Name(event.target.value);}}/> 
-                    </div>
-                </div>
-
-                <button className="btn btn-primary" onClick={save}>Register</button>
-                <button className="btn btn-warning" onClick={update}>Update</button>
-              </form>
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" className="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div> */}
             <form className="d-flex" role="search">
               <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
               <button className="btn btn-outline-success" type="submit">Search</button>

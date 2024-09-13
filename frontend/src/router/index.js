@@ -15,8 +15,8 @@ import FacultyData from '../pages/Faculty.jsx';
 import MajorData from '../pages/Major.jsx';
 import ExperienceData from '../pages/Experience.jsx';
 import OrganizationTypeData from '../pages/OrganizationType.jsx';
-// import AppraisalData from '../pages/Appraisal.jsx';
-// import DistrictData from '../pages/District.jsx';
+import StatusData from '../pages/Status.jsx';
+import JobPositiontData from '../pages/JobPosition.jsx';
 // import FireData from '../pages/Fire.jsx';
 // import LanguageData from '../pages/Language.jsx';
 // import OrganizationData from '../pages/Organization.jsx';
@@ -46,8 +46,9 @@ function MyRouter(){
             <Route path="/faculty" element={<FacultyData />} />
             <Route path="/major" element={<MajorData />} />
             <Route path="/organization-type" element={<OrganizationTypeData />} />
-            {/* <Route path="/appraisal" element={<AppraisalData />} />
-            <Route path="/district" element={<DistrictData />} />
+            <Route path="/status" element={<StatusData />} />
+            <Route path="/job-position" element={<JobPositiontData />} />
+            {/* <Route path="/district" element={<DistrictData />} />
             <Route path="/fire" element={<FireData />} />
             <Route path="/guarantee" element={<GuaranteeData />} />
             <Route path="/language" element={<LanguageData />} />

@@ -45,7 +45,7 @@ function Faculty() {
 
   async function DeleteFaculty(id){
     await axios.delete("http://127.0.0.1:8000/faculty/"+id);
-        toastr.danger("Data Deleted Successfully");
+        toastr.error("Data Deleted Successfully");
         Load();
   }
 
