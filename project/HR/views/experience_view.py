@@ -144,30 +144,45 @@ def jobPositionApi(request, id=0):
     
 
 @csrf_exempt
-def gradeApi(request,id=0):
-    if request.method=='GET':
-        organization_type = OrganizationType.objects.all()
-        organization_type_serializer=OrganizationTypeSerializer(organization_type,many=True)
-        return JsonResponse(organization_type_serializer.data,safe=False)
-    elif request.method=='POST':
-        organization_type_data=JSONParser().parse(request)
-        organization_type_serializer=OrganizationTypeSerializer(data=organization_type_data)
-        if organization_type_serializer.is_valid():
-            organization_type_serializer.save()
-            return JsonResponse("Student Added Successfully",safe=False)
-        return JsonResponse("Failed to Add",safe=False)
-    elif request.method=="PUT":
-        organization_type_data=JSONParser().parse(request)
-        organization_type=OrganizationType.objects.get(id=id)
-        organization_type_serializer=OrganizationTypeSerializer(organization_type_data=organization_type_data)
-        if organization_type_serializer.is_valid():
-            organization_type_serializer.save()
-            return JsonResponse("Updated Successfully",safe=False)
-        return JsonResponse("Failed to Update")
-    elif request.method=="DELETE":
-        organization_type=organization_type.objects.get(id=id)
-        organization_type.delete()
-        return JsonResponse("Deleted Successfully",safe=False)
+def gradeApi(request, id=0):
+    if request.method == 'GET':
+        # Get all Grades
+        job_position = JobPosition.objects.all()
+        job_position_serializer = JobPositionSerializer(job_position, many=True)
+        return JsonResponse(job_position_serializer.data, safe=False)
+    
+    elif request.method == 'POST':
+        # Add a new employee
+        job_position_data = JSONParser().parse(request)
+        job_position_serializer = JobPositionSerializer(data=job_position_data)
+        if job_position_serializer.is_valid():
+            job_position_serializer.save()
+            return JsonResponse("Employee Added Successfully", safe=False)
+        return JsonResponse("Failed to Add", safe=False)
+    
+    elif request.method == "PUT":
+        # Update an existing employee
+        job_position_data = JSONParser().parse(request)
+        try:
+            job_position = JobPosition.objects.get(id=id)
+        except JobPosition.DoesNotExist:
+            return JsonResponse("Employee not found", safe=False, status=404)
+
+        job_position_serializer = JobPositionSerializer(job_position, data=job_position_data)
+        if job_position_serializer.is_valid():
+            job_position_serializer.save()
+            return JsonResponse("Updated Successfully", safe=False)
+        return JsonResponse("Failed to Update", safe=False)
+    
+    elif request.method == "DELETE":
+        # Delete an employee
+        try:
+            job_position = JobPosition.objects.get(id=id)
+        except JobPosition.DoesNotExist:
+            return JsonResponse("Employee not found", safe=False, status=404)
+
+        job_position.delete()
+        return JsonResponse("Deleted Successfully", safe=False)
     
 
 @csrf_exempt
