@@ -10,8 +10,9 @@ from HR.models.employee import Employee
 from HR.models.Health import Health
 from HR.models.education import Education, Faculty, University, Degree, Major
 from HR.models.experience import Experience, Status, Step, Grade, JobPosition, OrganizationType
-# from HR.models.relative import Relative
-# from HR.models.exam import Exam
+from HR.models.organization import Organization
+# from HR.models.department import Department
+# from HR.models.oexam import Exam
 # from HR.models.document import Document
 # from HR.models.property import Property, PropertyType
 # from HR.models.publication import Publication
@@ -64,6 +65,16 @@ class OrganizationTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrganizationType
         fields = '__all__'
+
+class OrganizationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Organization
+        fields = '__all__'
+
+# class DepartmentSerializer(serializers.ModelSerializer):
+    # class Meta:
+        # model = Department
+        # fields = '__all__'
 
 class GradeSerializer(serializers.ModelSerializer):
     class Meta:

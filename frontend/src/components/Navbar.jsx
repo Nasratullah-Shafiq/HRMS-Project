@@ -51,7 +51,7 @@ function Navbar(){
                   <li><h4 class="dropdown-header"> Experience </h4></li>
                   <li><Link className="dropdown-item" to="/organization-type"> Organization Type </Link></li>
                   <li><Link className="dropdown-item" to="/Organization"> Organization </Link></li>
-                  <li><Link className="dropdown-item" to="/document"> Document </Link></li>
+                  <li><Link className="dropdown-item" to="/department"> Department </Link></li>
                   <li><Link className="dropdown-item" to="/job-position"> Job Postion </Link></li>
                   <li><Link className="dropdown-item" to="/grade"> Grade </Link> </li>
                   <li><Link className="dropdown-item" to="/step"> Step </Link></li>
