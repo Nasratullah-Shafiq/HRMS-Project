@@ -6,7 +6,7 @@ from HR.views.employee_view import employeeApi # Import from views.employee_view
 from HR.views.health_view import healthApi      # Import from health.view
 from HR.views.education_view import educationApi, universityApi, degreeApi, facultyApi, majorApi # Import from education.view
 from HR.views.organization_view import organizationApi
-from HR.views.address_view import countryApi
+from HR.views.address_view import countryApi, provinceApi, districtApi
 # from HR.views.department_view import departmentApi  # Import from education.view
 # from HR.views.university_view import universityApi # Import from university.view
 # from HR.views.faculty_view import facultyApi
@@ -60,13 +60,15 @@ urlpatterns = [
     path('country/', countryApi),  # This handles requests to Department/"
     re_path(r'^country/([0-9]+)$', countryApi),  # This handles requests to Department Api /<id>"
 
-    # path('major/', gradeApi),  # This handles requests to Grade/"
-    # re_path(r'^major/([0-9]+)$', gradeApi),  # This handles requests to Grade Api /<id>"
+    path('province/', provinceApi),  # This handles requests to Grade/"
+    re_path(r'^province/([0-9]+)$', provinceApi),  # This handles requests to Grade Api /<id>"
+
+    path('district/', districtApi),  # This handles requests to District/"
+    re_path(r'^district/([0-9]+)$', districtApi),  # This handles requests to District Api /<id>"
 
     path('step/', stepApi),  # This handles requests to Step/
     re_path(r'^step/([0-9]+)$', stepApi),  # This handles requests to Step Api /<id>"
 
-    # path('major/', statusApi),  # This handles requests to Status/"
-    # re_path(r'^major/([0-9]+)$', statusApi),  # This handles requests to Status Api /<id>"
+    
 
 ]
