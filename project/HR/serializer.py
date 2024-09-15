@@ -130,7 +130,7 @@ class ProvinceSerializer(serializers.ModelSerializer):
         model = Province
         fields = '__all__'
 
-class District(serializers.ModelSerializer):
+class DistrictSerializer(serializers.ModelSerializer):
     class Meta:
         model = District
         fields = '__all__'

@@ -6,6 +6,7 @@ from HR.views.employee_view import employeeApi # Import from views.employee_view
 from HR.views.health_view import healthApi      # Import from health.view
 from HR.views.education_view import educationApi, universityApi, degreeApi, facultyApi, majorApi # Import from education.view
 from HR.views.organization_view import organizationApi
+from HR.views.address_view import countryApi
 # from HR.views.department_view import departmentApi  # Import from education.view
 # from HR.views.university_view import universityApi # Import from university.view
 # from HR.views.faculty_view import facultyApi
@@ -56,8 +57,8 @@ urlpatterns = [
     path('job-position/', jobPositionApi),  # This handles requests to Job Postion/"
     re_path(r'^job-position/([0-9]+)$', jobPositionApi),  # This handles requests to Job Position Api /<id>"
 
-    # path('department/', departmentApi),  # This handles requests to Department/"
-    # re_path(r'^department/([0-9]+)$', departmentApi),  # This handles requests to Department Api /<id>"
+    path('country/', countryApi),  # This handles requests to Department/"
+    re_path(r'^country/([0-9]+)$', countryApi),  # This handles requests to Department Api /<id>"
 
     # path('major/', gradeApi),  # This handles requests to Grade/"
     # re_path(r'^major/([0-9]+)$', gradeApi),  # This handles requests to Grade Api /<id>"
