@@ -1,6 +1,5 @@
 from django.db import models
-from HR.models.country import Country
-from HR.models.province import Province
+from HR.models.address import Country, Province
 from HR.models.organization import Organization
 from HR.models.department import Department
 

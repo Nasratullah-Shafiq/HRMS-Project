@@ -1,9 +1,7 @@
 from rest_framework import serializers
 # from .models import Student
 # from HR.models import reward, exam, travel, organization
-from HR.models.country import Country
-from HR.models.province import Province
-from HR.models.district import District
+from HR.models.address import Country, Province, District
 from HR.models.course import Course
 from HR.models.Student import Student  # Correct import path
 from HR.models.employee import Employee

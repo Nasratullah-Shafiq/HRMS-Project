@@ -1,5 +1,5 @@
 from django.db import models
-from HR.models.country import Country 
+from HR.models.address import Country 
 # Create your models here.
 
 class Degree(models.Model):
