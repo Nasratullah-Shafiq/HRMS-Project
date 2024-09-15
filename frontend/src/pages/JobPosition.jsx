@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
 
-function Major() {
+function JobPosition() {
   const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [job_positions, setJobPosition] = useState([]);
@@ -68,9 +68,6 @@ function Major() {
       toastr.error("Registration Failed");
     }
   }
-
-  // if(degrees.length <= 0) return null;
-
     return (
       <div className="App">
         <div className="container">
@@ -124,10 +121,9 @@ function Major() {
         </table>
         </div>
       </div>
-
       
     );
   }
   
-  export default Major;
+  export default JobPosition;
   
