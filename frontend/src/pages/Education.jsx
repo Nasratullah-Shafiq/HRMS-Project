@@ -142,72 +142,60 @@ function HR_Employee() {
           </div>
             
           <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label"> Country </label>
-              <div class="col-sm-10">
+            <label className="col-sm-1 col-form-label"> Country </label>
+              <div class="col-sm-5">
                 <input type="Text" className="form-control" id="country" placeholder = "Seletct Country"
                 value={country}onChange={(event)=>{setCountry(event.target.value);}}/> 
               </div>
-          </div>
-
-          <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label"> Degree </label>
-              <div class="col-sm-10">
-                <input type="Text" className="form-control" id="Degree" placeholder = "Enter Your Degree"
-                value={degree}onChange={(event)=>{setDegree(event.target.value);}}/> 
-              </div>
-          </div>
-
-          <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label"> University </label>
-              <div class="col-sm-10">
+              <label className="col-sm-1 col-form-label"> University </label>
+              <div class="col-sm-5">
                 <input type="Text" className="form-control" id="university" placeholder = "Enter Your University"
                 value={university}onChange={(event)=>{setUniversity(event.target.value);}}/> 
               </div>
           </div>
 
           <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label"> Faculty </label>
-              <div class="col-sm-10">
+            <label className="col-sm-1 col-form-label"> Start Date </label>
+              <div class="col-sm-5">
+                <input type="Text" className="form-control" id="start_date" placeholder = "Enter Your Start Date"
+                value={education_start_date}onChange={(event)=>{setStartDate(event.target.value);}}/> 
+              </div>
+              <label className="col-sm-1 col-form-label"> Faculty </label>
+              <div class="col-sm-5">
                 <input type="Text" className="form-control" id="faculty" placeholder = "Enter Your Faculty"
                 value={faculty}onChange={(event)=>{setFaculty(event.target.value);}}/> 
               </div>
           </div>
 
           <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label"> Major </label>
-              <div class="col-sm-10">
+          <label className="col-sm-1 col-form-label"> End Date </label>
+              <div class="col-sm-5">
+                <input type="Text" className="form-control" id="end_date" placeholder = "Enter Your End Date"
+                value={education_end_date}onChange={(event)=>{setEndDate(event.target.value);}}/> 
+              </div>
+              <label className="col-sm-1 col-form-label"> Degree </label>
+              <div class="col-sm-5">
+                <input type="Text" className="form-control" id="Degree" placeholder = "Enter Your Degree"
+                value={degree}onChange={(event)=>{setDegree(event.target.value);}}/> 
+              </div>
+          </div>
+
+          <div className="mb-3 row">
+          <label className="col-sm-1 col-form-label"> Batch No </label>
+              <div class="col-sm-5">
+                <input type="Text" className="form-control" id="bacth_no" placeholder = "Enter Your Batch No"
+                value={batch_no}onChange={(event)=>{setBatchNo(event.target.value);}}/> 
+              </div>
+            <label className="col-sm-1 col-form-label"> Major </label>
+              <div class="col-sm-5">
                 <input type="Text" className="form-control" id="major" placeholder = "Enter Your Major"
                 value={major}onChange={(event)=>{setMajor(event.target.value);}}/> 
               </div>
           </div>
 
           <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label"> Start Date </label>
-              <div class="col-sm-10">
-                <input type="Text" className="form-control" id="start_date" placeholder = "Enter Your Start Date"
-                value={education_start_date}onChange={(event)=>{setStartDate(event.target.value);}}/> 
-              </div>
-          </div>
-
-          <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label"> End Date </label>
-              <div class="col-sm-10">
-                <input type="Text" className="form-control" id="end_date" placeholder = "Enter Your End Date"
-                value={education_end_date}onChange={(event)=>{setEndDate(event.target.value);}}/> 
-              </div>
-          </div>
-
-          <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label"> Batch No </label>
-              <div class="col-sm-10">
-                <input type="Text" className="form-control" id="bacth_no" placeholder = "Enter Your Batch No"
-                value={batch_no}onChange={(event)=>{setBatchNo(event.target.value);}}/> 
-              </div>
-          </div>
-
-          <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label"> Remarks </label>
-              <div class="col-sm-10">
+            <label className="col-sm-1 col-form-label"> Remarks </label>
+              <div class="col-sm-11">
                 <input type="Text" className="form-control" id="remark" placeholder = "Enter Your Remarks"
                 value={education_remarks}onChange={(event)=>{setRemarks(event.target.value);}}/> 
               </div>
