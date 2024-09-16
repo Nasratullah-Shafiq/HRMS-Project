@@ -481,17 +481,6 @@ function Navbar(){
                               </option>
                             ))}
                           </select>
-
-
-                          {/* <select className="form-select" onChange={(event) => setProvinceId(event.target.value)}>
-                            <option value={province_id}> Select a Province </option>
-                            {districts.map((district) => (
-                              <option key={district.id} value={district.id}>
-                                {province.name}
-                                
-                              </option>
-                            ))}
-                          </select>    */}
                           </div>
                       </div>
                     </form>
