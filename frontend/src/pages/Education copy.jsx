@@ -1,193 +1,187 @@
-import React, { useState, useEffect } from 'react';
-import { loadUniversity, loadFaculty, loadMajor, loadDegree } from './components/functions/dataLoaders';  // Import the data loaders
-// import axios from 'axios';
-// import { Link } from 'react-router-dom';
-// import {useEffect, useState } from "react";
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import {useEffect, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
-// import Swal from 'sweetalert2';  // Import SweetAlert2
-  // UniversityComponent.js
+import Swal from 'sweetalert2';  // Import SweetAlert2
 
+function HR_Employee() {
+  const [id, setId] = useState('');
+  const [country, setCountryId] = useState('');
+  const [degree, setDegreeId] = useState('');
+  const [university, setUniversityId] = useState('');
+  const [faculty, setFacultyId] = useState('');
+  const [major, setMajorId] = useState('');
+  const [education_start_date, setStartDate] = useState('');
+  const [education_end_date, setEndDate] = useState('');
+  const [batch_no, setBatchNo] = useState('');
+  const [education_remarks, setRemarks] = useState('');
+  const [educations, setEducation] = useState([]);
 
-
-// function Education() {
-  // const [id, setId] = useState('');
-  // const [country, setCountryId] = useState('');
-  // const [degree, setDegreeId] = useState('');
-  // const [university, setUniversityId] = useState('');
-  // const [faculty, setFacultyId] = useState('');
-  // const [major, setMajorId] = useState('');
-  // const [education_start_date, setStartDate] = useState('');
-  // const [education_end_date, setEndDate] = useState('');
-  // const [batch_no, setBatchNo] = useState('');
-  // const [education_remarks, setRemarks] = useState('');
-  // const [educations, setEducation] = useState([]);
-
-
-const UniversityComponent = () => {
-  const [universities, setUniversity] = useState([]);
-  const [faculties, setFaculty] = useState([]);
-  const [majors, setMajor] = useState([]);
-  const [degrees, setDegree] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      await loadUniversity(setUniversity);  // Load university data
-      await loadFaculty(setFaculty);        // Load faculty data
-      await loadMajor(setMajor);            // Load major data
-      await loadDegree(setDegree);          // Load degree data
-    })();
+  const [countrys, setCountry] = useState([]);
+  
+  useEffect(() =>{
+    (async()=>await LoadCountry())();
   }, []);
-  // const [countrys, setCountry] = useState([]);
+
+  async function LoadCountry(){
+    const result = await axios.get(
+      "http://127.0.0.1:8000/country/");
+      setCountry(result.data);
+  }
+
+  const [universitys, setUniversity] = useState([]);
   
-  // useEffect(() =>{
-  //   (async()=>await LoadCountry())();
-  // }, []);
+  useEffect(() =>{
+    (async()=>await LoadUniversity())();
+  }, []);
 
-  // async function LoadCountry(){
-  //   const result = await axios.get(
-  //     "http://127.0.0.1:8000/country/");
-  //     setCountry(result.data);
-  // }
+  async function LoadUniversity(){
+    const result = await axios.get(
+      "http://127.0.0.1:8000/university/");
+      setUniversity(result.data);
+  }
 
-  // const [universitys, setUniversity] = useState([]);
+  const [facultys, setFaculty] = useState([]);
   
-  // useEffect(() =>{
-  //   (async()=>await LoadUniversity())();
-  // }, []);
+  useEffect(() =>{
+    (async()=>await LoadFaculty())();
+  }, []);
 
-  // async function LoadUniversity(){
-  //   const result = await axios.get("http://127.0.0.1:8000/university/");
-  //     setUniversity(result.data);
-  // }
+  async function LoadFaculty(){
+    const result = await axios.get(
+      "http://127.0.0.1:8000/faculty/");
+      setFaculty(result.data);
+  }
 
-  // const [facultys, setFaculty] = useState([]);
+  const [majors, setMajor] = useState([]);
   
-  // useEffect(() =>{
-  //   (async()=>await LoadFaculty())();
-  // }, []);
+  useEffect(() =>{
+    (async()=>await LoadMajor())();
+  }, []);
 
-  // async function LoadFaculty(){
-  //   const result = await axios.get("http://127.0.0.1:8000/faculty/");
-  //     setFaculty(result.data);
-  // }
+  async function LoadMajor(){
+    const result = await axios.get(
+      "http://127.0.0.1:8000/major/");
+      setMajor(result.data);
+  }
 
-  // const [majors, setMajor] = useState([]);
+
+  const [degrees, setDegree] = useState([]);
   
-  // useEffect(() =>{
-  //   (async()=>await LoadMajor())();
-  // }, []);
+  useEffect(() =>{
+    (async()=>await LoadDegree())();
+  }, []);
 
-  // async function LoadMajor(){
-  //   const result = await axios.get("http://127.0.0.1:8000/major/");
-  //     setMajor(result.data);
-  // }
-
-
-  // const [degrees, setDegree] = useState([]);
-  
-  // useEffect(() =>{
-  //   (async()=>await LoadDegree())();
-  // }, []);
-
-  // async function LoadDegree(){
-  //   const result = await axios.get("http://127.0.0.1:8000/degree/");
-  //     setDegree(result.data);
-  // }
+  async function LoadDegree(){
+    const result = await axios.get(
+      "http://127.0.0.1:8000/degree/");
+      setDegree(result.data);
+  }
 
 
-  // useEffect(() =>{
-  //   (async()=>await Load())();
-  // }, []);
+  useEffect(() =>{
+    (async()=>await Load())();
+  }, []);
 
-  // async function Load(){
-  //   const result = await axios.get("http://127.0.0.1:8000/education/");
-  //     setEducation(result.data);
-  //     console.log(result.data);
-  // }
+  async function Load(){
+    const result = await axios.get(
+      "http://127.0.0.1:8000/education/");
+      setEducation(result.data);
+      console.log(result.data);
+  }
 
-  // async function save(event){
-  //   event.preventDefault();
-  //   try{
-  //     await axios.post("http://127.0.0.1:8000/education/",{
-  //       id: id,
-  //       country: country, 
-  //       degree: degree, 
-  //       university: university, 
-  //       faculty: faculty, 
-  //       major: major, 
-  //       education_start_date: education_start_date, 
-  //       education_end_date: education_end_date, 
-  //       batch_no: batch_no, 
-  //       education_remarks: education_remarks
-  //     });
+  async function save(event){
+    event.preventDefault();
+    try{
+      await axios.post("http://127.0.0.1:8000/education/",{
+        id: id,
+        country: country, 
+        degree: degree, 
+        university: university, 
+        faculty: faculty, 
+        major: major, 
+        education_start_date: education_start_date, 
+        education_end_date: education_end_date, 
+        batch_no: batch_no, 
+        education_remarks: education_remarks
+      });
     
     
-  //     toastr.success("Date Added Successfully");
+      toastr.success("Date Added Successfully");
     
-  //     setId("");
-  //     setStartDate("");
-  //     setEndDate("");
-  //     setBatchNo("");
-  //     setRemarks("");
-  //     Load();
-  //   }
-  //   catch(err){
-  //     toastr.error("Course Registration Failed");
-  //   }
-  // }
+      setId("");
+      setCountryId("");
+      // setDegree("");
+      setUniversityId("");
+      setFacultyId("");
+      // setMajor("");
+      setStartDate("");
+      setEndDate("");
+      setBatchNo("");
+      setRemarks("");
+      Load();
+    }
+    catch(err){
+      toastr.error("Course Registration Failed");
+    }
+  }
 
-  // async function editEducation(educations){
-    
-  //   setStartDate(educations.education_start_date);
-  //   setEndDate(educations.education_end_date);
-  //   setBatchNo(educations.batch_no);
-  //   setRemarks(educations.education_remarks);
-  //   setId(educations.id);
-  // }
+  async function editEducation(educations){
+    setCountryId(educations.country);
+    // setDegree(educations.degree);
+    setUniversityId(educations.university);
+    setFacultyId(educations.faculty);
+    // setMajor(educations.major);
+    setStartDate(educations.education_start_date);
+    setEndDate(educations.education_end_date);
+    setBatchNo(educations.batch_no);
+    setRemarks(educations.education_remarks);
+    setId(educations.id);
+  }
 
-  // async function DeleteEducation(id){
-  //   await axios.delete("http://127.0.0.1:8000/education/"+id);
+  async function DeleteEducation(id){
+    await axios.delete("http://127.0.0.1:8000/education/"+id);
     
-  //   toast.error("Course Deleted Successfully");
+    toast.error("Course Deleted Successfully");
     
-  //   Load();
-  // }
+    Load();
+  }
 
-  // async function update(event){
-  //   event.preventDefault();
-  //   try{
-  //     await axios.put("http://127.0.0.1:8000/education/" + educations.find(u => u.id === id).id || id,{
-  //       id: id,
-  //       country: country, 
-  //       degree: degree, 
-  //       university: university, 
-  //       faculty: faculty, 
-  //       major: major, 
-  //       education_start_date: education_start_date, 
-  //       education_end_date: education_end_date, 
-  //       batch_no: batch_no, 
-  //       education_remarks: education_remarks      
-  //     });
-  //     toast.success("Data Updated Successfully");
-  //     setId("");
-  //     setCountryId("");
-  //     // setDegree("");
-  //     setUniversityId("");
-  //     setFacultyId("");
-  //     // setMajor("");
-  //     setStartDate("");
-  //     setEndDate("");
-  //     setBatchNo("");
-  //     setRemarks("");
-  //     Load();
-  //   }
-  //   catch(err){
-  //       toast.error("Data Registration Failed");
-  //   }
-  // }
+  async function update(event){
+    event.preventDefault();
+    try{
+      await axios.put("http://127.0.0.1:8000/education/" + educations.find(u => u.id === id).id || id,{
+        id: id,
+        country: country, 
+        degree: degree, 
+        university: university, 
+        faculty: faculty, 
+        major: major, 
+        education_start_date: education_start_date, 
+        education_end_date: education_end_date, 
+        batch_no: batch_no, 
+        education_remarks: education_remarks      
+      });
+      toast.success("Data Updated Successfully");
+      setId("");
+      setCountryId("");
+      // setDegree("");
+      setUniversityId("");
+      setFacultyId("");
+      // setMajor("");
+      setStartDate("");
+      setEndDate("");
+      setBatchNo("");
+      setRemarks("");
+      Load();
+    }
+    catch(err){
+        toast.error("Data Registration Failed");
+    }
+  }
 
     return (
       <div className="App">
@@ -382,5 +376,5 @@ const UniversityComponent = () => {
     );
   }
 
-  export default UniversityComponent;
+  export default HR_Employee;
   
