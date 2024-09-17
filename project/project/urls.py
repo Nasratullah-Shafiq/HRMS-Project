@@ -39,8 +39,8 @@ urlpatterns = [
     path('faculty/', facultyApi),  # This handles requests to "Faculty/"
     re_path(r'^faculty/([0-9]+)$', facultyApi),  # This handles requests to "Faculty/<id>"
 
-    path('faculty/', majorApi),  # This handles requests to Major/"
-    re_path(r'^faculty/([0-9]+)$', majorApi),  # This handles requests to Major Api /<id>"
+    path('major/', majorApi),  # This handles requests to Major/"
+    re_path(r'^major/([0-9]+)$', majorApi),  # This handles requests to Major Api /<id>"
 
     path('experience/', experienceApi),  # This handles requests to "Experience/"
     re_path(r'^experience/([0-9]+)$', experienceApi),  # This handles requests to "Experience Api/<id>"

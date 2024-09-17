@@ -3,10 +3,10 @@ from HR.models.address import Country
 # Create your models here.
 
 class Degree(models.Model):
-    title = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.title
+        return self.name
 
 class University(models.Model):
     name = models.CharField(max_length=100)

@@ -9,21 +9,82 @@ import Swal from 'sweetalert2';  // Import SweetAlert2
 
 function HR_Employee() {
   const [id, setId] = useState('');
-  const [country, setCountry] = useState('');
-  const [degree, setDegree] = useState('');
-  const [university, setUniversity] = useState('');
-  const [faculty, setFaculty] = useState('');
-  const [major, setMajor] = useState('');
+  const [country, setCountryId] = useState('');
+  const [degree, setDegreeId] = useState('');
+  const [university, setUniversityId] = useState('');
+  const [faculty, setFacultyId] = useState('');
+  const [major, setMajorId] = useState('');
   const [education_start_date, setStartDate] = useState('');
   const [education_end_date, setEndDate] = useState('');
   const [batch_no, setBatchNo] = useState('');
   const [education_remarks, setRemarks] = useState('');
   const [educations, setEducation] = useState([]);
+
+  const [countrys, setCountry] = useState([]);
   
+  useEffect(() =>{
+    (async()=>await LoadCountry())();
+  }, []);
+
+  async function LoadCountry(){
+    const result = await axios.get(
+      "http://127.0.0.1:8000/country/");
+      setCountry(result.data);
+  }
+
+  const [universitys, setUniversity] = useState([]);
+  
+  useEffect(() =>{
+    (async()=>await LoadUniversity())();
+  }, []);
+
+  async function LoadUniversity(){
+    const result = await axios.get(
+      "http://127.0.0.1:8000/university/");
+      setUniversity(result.data);
+  }
+
+  const [facultys, setFaculty] = useState([]);
+  
+  useEffect(() =>{
+    (async()=>await LoadFaculty())();
+  }, []);
+
+  async function LoadFaculty(){
+    const result = await axios.get(
+      "http://127.0.0.1:8000/faculty/");
+      setFaculty(result.data);
+  }
+
+  const [majors, setMajor] = useState([]);
+  
+  useEffect(() =>{
+    (async()=>await LoadMajor())();
+  }, []);
+
+  async function LoadMajor(){
+    const result = await axios.get(
+      "http://127.0.0.1:8000/major/");
+      setMajor(result.data);
+  }
+
+
+  const [degrees, setDegree] = useState([]);
+  
+  useEffect(() =>{
+    (async()=>await LoadDegree())();
+  }, []);
+
+  async function LoadDegree(){
+    const result = await axios.get(
+      "http://127.0.0.1:8000/degree/");
+      setDegree(result.data);
+  }
+
+
   useEffect(() =>{
     (async()=>await Load())();
   }, []);
-
 
   async function Load(){
     const result = await axios.get(
@@ -48,16 +109,15 @@ function HR_Employee() {
         education_remarks: education_remarks
       });
     
-      // Swal.fire('Success!', 'Record Updated Successfully', 'success'); 
-      // toast.success("Course Added Successfully");
+    
       toastr.success("Date Added Successfully");
     
       setId("");
-      setCountry("");
-      setDegree("");
-      setUniversity("");
-      setFaculty("");
-      setMajor("");
+      setCountryId("");
+      // setDegree("");
+      setUniversityId("");
+      setFacultyId("");
+      // setMajor("");
       setStartDate("");
       setEndDate("");
       setBatchNo("");
@@ -65,18 +125,16 @@ function HR_Employee() {
       Load();
     }
     catch(err){
-      // alert("Course Registration Failed");
-      // toast.error("Record Registered failed");
       toastr.error("Course Registration Failed");
     }
   }
 
   async function editEducation(educations){
-    setCountry(educations.country);
-    setDegree(educations.degree);
-    setUniversity(educations.university);
-    setFaculty(educations.faculty);
-    setMajor(educations.major);
+    setCountryId(educations.country);
+    // setDegree(educations.degree);
+    setUniversityId(educations.university);
+    setFacultyId(educations.faculty);
+    // setMajor(educations.major);
     setStartDate(educations.education_start_date);
     setEndDate(educations.education_end_date);
     setBatchNo(educations.batch_no);
@@ -86,7 +144,7 @@ function HR_Employee() {
 
   async function DeleteEducation(id){
     await axios.delete("http://127.0.0.1:8000/education/"+id);
-    // alert("Course Deleted Successfully");
+    
     toast.error("Course Deleted Successfully");
     
     Load();
@@ -109,11 +167,11 @@ function HR_Employee() {
       });
       toast.success("Data Updated Successfully");
       setId("");
-      setCountry("");
-      setDegree("");
-      setUniversity("");
-      setFaculty("");
-      setMajor("");
+      setCountryId("");
+      // setDegree("");
+      setUniversityId("");
+      setFacultyId("");
+      // setMajor("");
       setStartDate("");
       setEndDate("");
       setBatchNo("");
@@ -124,8 +182,6 @@ function HR_Employee() {
         toast.error("Data Registration Failed");
     }
   }
-
-  // if(employees.length <= 0) return null;
 
     return (
       <div className="App">
@@ -144,13 +200,31 @@ function HR_Employee() {
           <div className="mb-3 row">
             <label className="col-sm-1 col-form-label"> Country </label>
               <div class="col-sm-5">
-                <input type="Text" className="form-control" id="country" placeholder = "Seletct Country"
-                value={country}onChange={(event)=>{setCountry(event.target.value);}}/> 
+                <select className="form-select" onChange={(event) => setCountryId(event.target.value)}>
+                  <option value={country}> Select a country </option>
+                    {countrys.map((country) => (
+                    <option key={country.id} value={country.id}>
+                      {country.name}
+                                
+                      </option>
+                   ))}
+                </select>
+                {/* <input type="Text" className="form-control" id="country" placeholder = "Seletct Country" */}
+                {/* value={country}onChange={(event)=>{setCountry(event.target.value);}}/>  */}
               </div>
               <label className="col-sm-1 col-form-label"> University </label>
               <div class="col-sm-5">
-                <input type="Text" className="form-control" id="university" placeholder = "Enter Your University"
-                value={university}onChange={(event)=>{setUniversity(event.target.value);}}/> 
+              <select className="form-select" onChange={(event) => setUniversityId(event.target.value)}>
+                  <option value={university}> Select a University </option>
+                    {universitys.map((university) => (
+                    <option key={university.id} value={university.id}>
+                      {university.name}
+                                
+                      </option>
+                   ))}
+                </select>
+                {/* <input type="Text" className="form-control" id="university" placeholder = "Enter Your University" */}
+                {/* value={university}onChange={(event)=>{setUniversity(event.target.value);}}/>  */}
               </div>
           </div>
 
@@ -162,8 +236,17 @@ function HR_Employee() {
               </div>
               <label className="col-sm-1 col-form-label"> Faculty </label>
               <div class="col-sm-5">
-                <input type="Text" className="form-control" id="faculty" placeholder = "Enter Your Faculty"
-                value={faculty}onChange={(event)=>{setFaculty(event.target.value);}}/> 
+              <select className="form-select" onChange={(event) => setFacultyId(event.target.value)}>
+                  <option value={faculty}> Select a Faculty </option>
+                    {facultys.map((faculty) => (
+                    <option key={faculty.id} value={faculty.id}>
+                      {faculty.name}
+                                
+                      </option>
+                   ))}
+                </select>
+                {/* <input type="Text" className="form-control" id="faculty" placeholder = "Enter Your Faculty" */}
+                {/* value={faculty}onChange={(event)=>{setFaculty(event.target.value);}}/>  */}
               </div>
           </div>
 
@@ -175,8 +258,17 @@ function HR_Employee() {
               </div>
               <label className="col-sm-1 col-form-label"> Degree </label>
               <div class="col-sm-5">
-                <input type="Text" className="form-control" id="Degree" placeholder = "Enter Your Degree"
-                value={degree}onChange={(event)=>{setDegree(event.target.value);}}/> 
+              <select className="form-select" onChange={(event) => setDegreeId(event.target.value)}>
+                  <option value={faculty}> Select Degree </option>
+                    {degrees.map((degree) => (
+                    <option key={degree.id} value={degree.id}>
+                      {degree.name}
+                                
+                      </option>
+                   ))}
+                </select>
+                {/* <input type="Text" className="form-control" id="Degree" placeholder = "Enter Your Degree" */}
+                {/* value={degree}onChange={(event)=>{setDegreeId(event.target.value);}}/>  */}
               </div>
           </div>
 
@@ -188,8 +280,17 @@ function HR_Employee() {
               </div>
             <label className="col-sm-1 col-form-label"> Major </label>
               <div class="col-sm-5">
-                <input type="Text" className="form-control" id="major" placeholder = "Enter Your Major"
-                value={major}onChange={(event)=>{setMajor(event.target.value);}}/> 
+              <select className="form-select" onChange={(event) => setMajorId(event.target.value)}>
+                  <option value={faculty}> Select Major </option>
+                    {majors.map((major) => (
+                    <option key={major.id} value={major.id}>
+                      {major.name}
+                                
+                      </option>
+                   ))}
+                </select>
+                {/* <input type="Text" className="form-control" id="major" placeholder = "Enter Your Major" */}
+                {/* value={major}onChange={(event)=>{setMajor(event.target.value);}}/>  */}
               </div>
           </div>
 

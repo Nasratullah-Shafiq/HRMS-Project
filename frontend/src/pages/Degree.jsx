@@ -34,7 +34,7 @@ function Degree() {
       Load();
     }
     catch(err){
-      // alert("Student Registration Failed");
+  
       toast.error("Student Registration Failed");
     }
   }
@@ -69,32 +69,29 @@ function Degree() {
     }
   }
 
-  if(degrees.length <= 0) return null;
-
     return (
       <div className="App">
         <div className="container">
         <form >
-        <div className="form-group">
-            <label className="form-label"><h1>Student Management System in Django React API </h1></label>
+        <div className="form-group">            
+            <label className="form-label col-sm-2"><h2> Degree </h2></label>
+            <label className = "col-sm-1 col-form-label"> <button className="btn btn-primary" onClick={save} disabled={!name}> Save </button></label>
+            <label className = "col-sm-1 col-form-label"> <button className="btn btn-warning" onClick={update}> Update </button> </label>
+            <div className = "col-sm-12" style={{paddingTop: '20px'}}> </div>
             <input type="Text" className="form-control" id="degree_id" hidden
             value={id}
-            onChange={(event)=>{
-              setId(event.target.value);
-            }}/>           
+            onChange={(event)=>{setId(event.target.value); }}/>           
            
           </div>
             
           <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label"> Employee Grade </label>
+            <label className="col-sm-2 col-form-label"> Degree </label> 
+            
               <div class="col-sm-10">
                 <input type="Text" className="form-control" id="degree_name" placeholder = "Enter Employee's Degree"
-                value={name}onChange={(event)=>{setName(event.target.value);}}/> 
+                value={name} onChange={(event)=>{setName(event.target.value);}}/> 
               </div>
           </div>
-
-          <button className="btn btn-primary" onClick={save}> Save </button>
-          <button className="btn btn-warning" onClick={update}> Update </button>
         </form>
 
       <table className="table table-striped" align="center">
