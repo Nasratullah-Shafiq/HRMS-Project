@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { loadUniversity, loadFaculty, loadMajor, loadDegree } from './components/functions/dataLoaders';  // Import the data loaders
+import { loadUniversity, loadFaculty, loadMajor, loadDegree } from './src/functions/dataLoaders';  // Import the data loaders
 // import axios from 'axios';
 // import { Link } from 'react-router-dom';
 // import {useEffect, useState } from "react";
