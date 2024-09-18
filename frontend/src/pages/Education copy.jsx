@@ -131,10 +131,10 @@ function HR_Employee() {
 
   async function editEducation(educations){
     setCountryId(educations.country);
-    // setDegree(educations.degree);
+    setDegree(educations.degree);
     setUniversityId(educations.university);
     setFacultyId(educations.faculty);
-    // setMajor(educations.major);
+    setMajor(educations.major);
     setStartDate(educations.education_start_date);
     setEndDate(educations.education_end_date);
     setBatchNo(educations.batch_no);
@@ -168,10 +168,10 @@ function HR_Employee() {
       toast.success("Data Updated Successfully");
       setId("");
       setCountryId("");
-      // setDegree("");
+      setDegree("");
       setUniversityId("");
       setFacultyId("");
-      // setMajor("");
+      setMajor("");
       setStartDate("");
       setEndDate("");
       setBatchNo("");

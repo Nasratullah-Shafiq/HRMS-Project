@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { loadUniversity, loadFaculty, loadMajor, loadDegree } from './src/functions/dataLoaders';  // Import the data loaders
+import { loadUniversity, loadFaculty, loadMajor, loadDegree } from '../functions/dataLoaders';  // Import the data loaders
 // import axios from 'axios';
 // import { Link } from 'react-router-dom';
 // import {useEffect, useState } from "react";
@@ -189,198 +189,229 @@ const UniversityComponent = () => {
   //   }
   // }
 
-    return (
-      <div className="App">
-        <div className="container">
-        <form >
-        <div className="form-group">
+  //   return (
+  //     <div className="App">
+  //       <div className="container">
+  //       <form >
+  //       <div className="form-group">
          
-            <input type="Text" className="form-control" id="Education_id" hidden
-            value={id}
-            onChange={(event)=>{
-              setId(event.target.value);
-            }}/>           
+  //           <input type="Text" className="form-control" id="Education_id" hidden
+  //           value={id}
+  //           onChange={(event)=>{
+  //             setId(event.target.value);
+  //           }}/>           
            
-          </div>
+  //         </div>
             
-          <div className="mb-3 row">
-            <label className="col-sm-1 col-form-label"> Country </label>
-              <div class="col-sm-5">
-                <select className="form-select" onChange={(event) => setCountryId(event.target.value)}>
-                  <option value={country}> Select a country </option>
-                    {countrys.map((country) => (
-                    <option key={country.id} value={country.id}>
-                      {country.name}
+  //         <div className="mb-3 row">
+  //           <label className="col-sm-1 col-form-label"> Country </label>
+  //             <div class="col-sm-5">
+  //               <select className="form-select" onChange={(event) => setCountryId(event.target.value)}>
+  //                 <option value={country}> Select a country </option>
+  //                   {countrys.map((country) => (
+  //                   <option key={country.id} value={country.id}>
+  //                     {country.name}
                                 
-                      </option>
-                   ))}
-                </select>
-                {/* <input type="Text" className="form-control" id="country" placeholder = "Seletct Country" */}
-                {/* value={country}onChange={(event)=>{setCountry(event.target.value);}}/>  */}
-              </div>
-              <label className="col-sm-1 col-form-label"> University </label>
-              <div class="col-sm-5">
-              <select className="form-select" onChange={(event) => setUniversityId(event.target.value)}>
-                  <option value={university}> Select a University </option>
-                    {universitys.map((university) => (
-                    <option key={university.id} value={university.id}>
-                      {university.name}
+  //                     </option>
+  //                  ))}
+  //               </select>
+  //               {/* <input type="Text" className="form-control" id="country" placeholder = "Seletct Country" */}
+  //               {/* value={country}onChange={(event)=>{setCountry(event.target.value);}}/>  */}
+  //             </div>
+  //             <label className="col-sm-1 col-form-label"> University </label>
+  //             <div class="col-sm-5">
+  //             <select className="form-select" onChange={(event) => setUniversityId(event.target.value)}>
+  //                 <option value={university}> Select a University </option>
+  //                   {universitys.map((university) => (
+  //                   <option key={university.id} value={university.id}>
+  //                     {university.name}
                                 
-                      </option>
-                   ))}
-                </select>
-                {/* <input type="Text" className="form-control" id="university" placeholder = "Enter Your University" */}
-                {/* value={university}onChange={(event)=>{setUniversity(event.target.value);}}/>  */}
-              </div>
-          </div>
+  //                     </option>
+  //                  ))}
+  //               </select>
+  //               {/* <input type="Text" className="form-control" id="university" placeholder = "Enter Your University" */}
+  //               {/* value={university}onChange={(event)=>{setUniversity(event.target.value);}}/>  */}
+  //             </div>
+  //         </div>
 
-          <div className="mb-3 row">
-            <label className="col-sm-1 col-form-label"> Start Date </label>
-              <div class="col-sm-5">
-                <input type="Text" className="form-control" id="start_date" placeholder = "Enter Your Start Date"
-                value={education_start_date}onChange={(event)=>{setStartDate(event.target.value);}}/> 
-              </div>
-              <label className="col-sm-1 col-form-label"> Faculty </label>
-              <div class="col-sm-5">
-              <select className="form-select" onChange={(event) => setFacultyId(event.target.value)}>
-                  <option value={faculty}> Select a Faculty </option>
-                    {facultys.map((faculty) => (
-                    <option key={faculty.id} value={faculty.id}>
-                      {faculty.name}
+  //         <div className="mb-3 row">
+  //           <label className="col-sm-1 col-form-label"> Start Date </label>
+  //             <div class="col-sm-5">
+  //               <input type="Text" className="form-control" id="start_date" placeholder = "Enter Your Start Date"
+  //               value={education_start_date}onChange={(event)=>{setStartDate(event.target.value);}}/> 
+  //             </div>
+  //             <label className="col-sm-1 col-form-label"> Faculty </label>
+  //             <div class="col-sm-5">
+  //             <select className="form-select" onChange={(event) => setFacultyId(event.target.value)}>
+  //                 <option value={faculty}> Select a Faculty </option>
+  //                   {facultys.map((faculty) => (
+  //                   <option key={faculty.id} value={faculty.id}>
+  //                     {faculty.name}
                                 
-                      </option>
-                   ))}
-                </select>
-                {/* <input type="Text" className="form-control" id="faculty" placeholder = "Enter Your Faculty" */}
-                {/* value={faculty}onChange={(event)=>{setFaculty(event.target.value);}}/>  */}
-              </div>
-          </div>
+  //                     </option>
+  //                  ))}
+  //               </select>
+  //               {/* <input type="Text" className="form-control" id="faculty" placeholder = "Enter Your Faculty" */}
+  //               {/* value={faculty}onChange={(event)=>{setFaculty(event.target.value);}}/>  */}
+  //             </div>
+  //         </div>
 
-          <div className="mb-3 row">
-          <label className="col-sm-1 col-form-label"> End Date </label>
-              <div class="col-sm-5">
-                <input type="Text" className="form-control" id="end_date" placeholder = "Enter Your End Date"
-                value={education_end_date}onChange={(event)=>{setEndDate(event.target.value);}}/> 
-              </div>
-              <label className="col-sm-1 col-form-label"> Degree </label>
-              <div class="col-sm-5">
-              <select className="form-select" onChange={(event) => setDegreeId(event.target.value)}>
-                  <option value={faculty}> Select Degree </option>
-                    {degrees.map((degree) => (
-                    <option key={degree.id} value={degree.id}>
-                      {degree.name}
+  //         <div className="mb-3 row">
+  //         <label className="col-sm-1 col-form-label"> End Date </label>
+  //             <div class="col-sm-5">
+  //               <input type="Text" className="form-control" id="end_date" placeholder = "Enter Your End Date"
+  //               value={education_end_date}onChange={(event)=>{setEndDate(event.target.value);}}/> 
+  //             </div>
+  //             <label className="col-sm-1 col-form-label"> Degree </label>
+  //             <div class="col-sm-5">
+  //             <select className="form-select" onChange={(event) => setDegreeId(event.target.value)}>
+  //                 <option value={faculty}> Select Degree </option>
+  //                   {degrees.map((degree) => (
+  //                   <option key={degree.id} value={degree.id}>
+  //                     {degree.name}
                                 
-                      </option>
-                   ))}
-                </select>
-                {/* <input type="Text" className="form-control" id="Degree" placeholder = "Enter Your Degree" */}
-                {/* value={degree}onChange={(event)=>{setDegreeId(event.target.value);}}/>  */}
-              </div>
-          </div>
+  //                     </option>
+  //                  ))}
+  //               </select>
+  //               {/* <input type="Text" className="form-control" id="Degree" placeholder = "Enter Your Degree" */}
+  //               {/* value={degree}onChange={(event)=>{setDegreeId(event.target.value);}}/>  */}
+  //             </div>
+  //         </div>
 
-          <div className="mb-3 row">
-          <label className="col-sm-1 col-form-label"> Batch No </label>
-              <div class="col-sm-5">
-                <input type="Text" className="form-control" id="bacth_no" placeholder = "Enter Your Batch No"
-                value={batch_no}onChange={(event)=>{setBatchNo(event.target.value);}}/> 
-              </div>
-            <label className="col-sm-1 col-form-label"> Major </label>
-              <div class="col-sm-5">
-              <select className="form-select" onChange={(event) => setMajorId(event.target.value)}>
-                  <option value={faculty}> Select Major </option>
-                    {majors.map((major) => (
-                    <option key={major.id} value={major.id}>
-                      {major.name}
+  //         <div className="mb-3 row">
+  //         <label className="col-sm-1 col-form-label"> Batch No </label>
+  //             <div class="col-sm-5">
+  //               <input type="Text" className="form-control" id="bacth_no" placeholder = "Enter Your Batch No"
+  //               value={batch_no}onChange={(event)=>{setBatchNo(event.target.value);}}/> 
+  //             </div>
+  //           <label className="col-sm-1 col-form-label"> Major </label>
+  //             <div class="col-sm-5">
+  //             <select className="form-select" onChange={(event) => setMajorId(event.target.value)}>
+  //                 <option value={faculty}> Select Major </option>
+  //                   {majors.map((major) => (
+  //                   <option key={major.id} value={major.id}>
+  //                     {major.name}
                                 
-                      </option>
-                   ))}
-                </select>
-                {/* <input type="Text" className="form-control" id="major" placeholder = "Enter Your Major" */}
-                {/* value={major}onChange={(event)=>{setMajor(event.target.value);}}/>  */}
-              </div>
-          </div>
+  //                     </option>
+  //                  ))}
+  //               </select>
+  //               {/* <input type="Text" className="form-control" id="major" placeholder = "Enter Your Major" */}
+  //               {/* value={major}onChange={(event)=>{setMajor(event.target.value);}}/>  */}
+  //             </div>
+  //         </div>
 
-          <div className="mb-3 row">
-            <label className="col-sm-1 col-form-label"> Remarks </label>
-              <div class="col-sm-11">
-                <input type="Text" className="form-control" id="remark" placeholder = "Enter Your Remarks"
-                value={education_remarks}onChange={(event)=>{setRemarks(event.target.value);}}/> 
-              </div>
-          </div>
-          <button className="btn btn-primary" onClick={save}>Register</button>
-          <button className="btn btn-warning" onClick={update}>Update</button>
-        </form>
+  //         <div className="mb-3 row">
+  //           <label className="col-sm-1 col-form-label"> Remarks </label>
+  //             <div class="col-sm-11">
+  //               <input type="Text" className="form-control" id="remark" placeholder = "Enter Your Remarks"
+  //               value={education_remarks}onChange={(event)=>{setRemarks(event.target.value);}}/> 
+  //             </div>
+  //         </div>
+  //         <button className="btn btn-primary" onClick={save}>Register</button>
+  //         <button className="btn btn-warning" onClick={update}>Update</button>
+  //       </form>
 
-        <div className='container mt-5'>
-            <div className='row'>
-                <div className='col-md-12'>
-                    <div className='card'>
-                        <div className='card-header'>
-                            <h4> Education
-                                {/* <Link to ="/student/create" style={ {margin: '0px 0px 0px 1000px'} } className = "btn btn-primary">Add Student </Link> */}
-                                <Link to ="/course/store" style={ {margin: '0px 0px 0px 1000px'} } className = "btn btn-primary"> New </Link>
-                            </h4>
-                        </div>
-                        <div className='card-body'>
-                            <table className="table table-stripped">
-                                <thead>
-                                    <tr>
-                                        <td> ID </td>
-                                        <td> Country </td>
-                                        <td> Degree </td>
-                                        <td> University </td>
-                                        <td> Faculty </td>
-                                        <td> Major </td>
-                                        <td> Start Date </td>
-                                        <td> End Date </td>
-                                        <td> Batch No </td>
-                                        <td> Remarks </td>
-                                    </tr>
-                                </thead>
-                              <tbody>
-                                {educations.map((education) => (
-                                <tr key={education.id}>
-                                  <th scope="row">{education.id}</th>
-                                  <td>{education.country}</td>
-                                  <td>{education.degree}</td>
-                                  <td>{education.faculty}</td>
-                                  <td>{education.university}</td>
-                                  <td>{education.major}</td>
-                                  <td>{education.education_start_date}</td>
-                                  <td>{education.education_end_date}</td>
-                                  <td>{education.batch_no}</td>
-                                  <td>{education.education_remarks}</td>
-                                  <td>
-                                    <button
-                                      type="button"
-                                      className="btn btn-warning"
-                                      onClick={() => editEducation(education)}
-                                    >
-                                      Edit
-                                    </button>
-                                    </td>
-                                    <td>
-                                    <button
-                                      type="button"
-                                      className="btn btn-danger"
-                                      onClick={() => DeleteEducation(education.id)}
-                                    >
-                                      Delete
-                                    </button>
-                                  </td>
-                                </tr>
-                              ))}
-                              </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-      </div>      
-    );
-  }
+  //       <div className='container mt-5'>
+  //           <div className='row'>
+  //               <div className='col-md-12'>
+  //                   <div className='card'>
+  //                       <div className='card-header'>
+  //                           <h4> Education
+  //                               {/* <Link to ="/student/create" style={ {margin: '0px 0px 0px 1000px'} } className = "btn btn-primary">Add Student </Link> */}
+  //                               <Link to ="/course/store" style={ {margin: '0px 0px 0px 1000px'} } className = "btn btn-primary"> New </Link>
+  //                           </h4>
+  //                       </div>
+  //                       <div className='card-body'>
+  //                           <table className="table table-stripped">
+  //                               <thead>
+  //                                   <tr>
+  //                                       <td> ID </td>
+  //                                       <td> Country </td>
+  //                                       <td> Degree </td>
+  //                                       <td> University </td>
+  //                                       <td> Faculty </td>
+  //                                       <td> Major </td>
+  //                                       <td> Start Date </td>
+  //                                       <td> End Date </td>
+  //                                       <td> Batch No </td>
+  //                                       <td> Remarks </td>
+  //                                   </tr>
+  //                               </thead>
+  //                             <tbody>
+  //                               {educations.map((education) => (
+  //                               <tr key={education.id}>
+  //                                 <th scope="row">{education.id}</th>
+  //                                 <td>{education.country}</td>
+  //                                 <td>{education.degree}</td>
+  //                                 <td>{education.faculty}</td>
+  //                                 <td>{education.university}</td>
+  //                                 <td>{education.major}</td>
+  //                                 <td>{education.education_start_date}</td>
+  //                                 <td>{education.education_end_date}</td>
+  //                                 <td>{education.batch_no}</td>
+  //                                 <td>{education.education_remarks}</td>
+  //                                 <td>
+  //                                   <button
+  //                                     type="button"
+  //                                     className="btn btn-warning"
+  //                                     onClick={() => editEducation(education)}
+  //                                   >
+  //                                     Edit
+  //                                   </button>
+  //                                   </td>
+  //                                   <td>
+  //                                   <button
+  //                                     type="button"
+  //                                     className="btn btn-danger"
+  //                                     onClick={() => DeleteEducation(education.id)}
+  //                                   >
+  //                                     Delete
+  //                                   </button>
+  //                                 </td>
+  //                               </tr>
+  //                             ))}
+  //                             </tbody>
+  //                           </table>
+  //                       </div>
+  //                   </div>
+  //               </div>
+  //           </div>
+  //       </div>
+  //       </div>
+  //     </div>      
+  //   );
+  // }
+  return (
+    <div>
+      <h1>Universities</h1>
+      <ul>
+        {universities.map((university, index) => (
+          <li key={index}>{university.name}</li>
+        ))}
+      </ul>
 
+      <h1>Faculties</h1>
+      <ul>
+        {faculties.map((faculty, index) => (
+          <li key={index}>{faculty.name}</li>
+        ))}
+      </ul>
+
+      <h1>Majors</h1>
+      <ul>
+        {majors.map((major, index) => (
+          <li key={index}>{major.name}</li>
+        ))}
+      </ul>
+
+      <h1>Degrees</h1>
+      <ul>
+        {degrees.map((degree, index) => (
+          <li key={index}>{degree.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
   export default UniversityComponent;
   
