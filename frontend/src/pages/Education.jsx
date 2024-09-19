@@ -43,7 +43,7 @@ const UniversityComponent = () => {
                       </option>
                    ))}
                 </select>
-              {/* </div> */}
+              </div>
           </div>
         </form>
   </div>
