@@ -40,7 +40,7 @@ const UniversityComponent = () => {
                     <option key={major.id} value={major.id}>
                       {major.name}
                                 
-                      {/* </option>  */}
+                      </option> 
                    ))}
                 </select>
               </div>
