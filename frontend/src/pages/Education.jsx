@@ -34,7 +34,7 @@ const UniversityComponent = () => {
               
             <label className="col-sm-1 col-form-label"> Major </label>
               <div class="col-sm-5">
-              {/* <select className="form-select"> */}
+              <select className="form-select">
                   <option value={major}> Select Major </option>
                     {majors.map((major) => (
                     <option key={major.id} value={major.id}>
