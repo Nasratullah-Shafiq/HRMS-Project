@@ -52,7 +52,7 @@
 // };
 //   export default UniversityComponent;
 import React, { useState, useEffect } from 'react';
-import { loadUniversity, loadFaculty, loadMajor, loadDegree } from '../functions/dataLoaders';  // Import the data loaders
+import { loadUniversity, loadFaculty, loadMajor, loadDegree, loadCountry } from '../functions/dataLoaders';  // Import the data loaders
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -64,6 +64,7 @@ const UniversityComponent = () => {
   const [faculties, setFaculty] = useState([]);
   const [majors, setMajor] = useState([]);
   const [degrees, setDegree] = useState([]);
+  const [countrys, setCountry] = useState([]);
   const [loading, setLoading] = useState(true);  // Added loading state
 
   useEffect(() => {
@@ -72,7 +73,8 @@ const UniversityComponent = () => {
         await loadUniversity(setUniversity);  // Load university data
         await loadFaculty(setFaculty);        // Load faculty data
         await loadMajor(setMajor);            // Load major data
-        await loadDegree(setDegree);          // Load degree data
+        await loadDegree(setDegree);
+        await loadCountry(setCountry);          // Load degree data
       } catch (error) {
         toast.error("Error loading data");
       } finally {
@@ -93,8 +95,19 @@ const UniversityComponent = () => {
         <ToastContainer /> {/* Toast notification container */}
         <form>
           <div className="mb-3 row">
-            <label className="col-sm-1 col-form-label">Batch No</label>
-              
+          <label className="col-sm-1 col-form-label"> Country </label>
+              <div class="col-sm-5">
+              {/* onChange={(event) => setCountryId(event.target.value)}> */}
+                <select className="form-select">
+                  <option value={countrys}> Select a country </option>
+                    {countrys.map((country) => (
+                    <option key={country.id} value={country.id}>
+                      {country.name}
+                                
+                      </option>
+                   ))}
+                </select>
+              </div>  
             <label className="col-sm-1 col-form-label">Major</label>
             <div className="col-sm-5">
               <select className="form-select">
