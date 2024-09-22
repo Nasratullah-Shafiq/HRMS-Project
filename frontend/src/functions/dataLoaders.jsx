@@ -4,7 +4,7 @@ import axios from 'axios';
 // Function to load Countries
 export async function loadCountry(setCountry) {
   try {
-    const result = await axios.get("http://127.0.0.1:8000/coutry/");
+    const result = await axios.get("http://127.0.0.1:8000/country/");
     setCountry(result.data);
   } catch (error) {
     console.error("Error loading Country:", error);
