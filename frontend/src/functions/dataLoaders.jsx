@@ -1,6 +1,16 @@
 // dataLoaders.js
 import axios from 'axios';
 
+// Function to load Countries
+export async function loadCountry(setCountry) {
+  try {
+    const result = await axios.get("http://127.0.0.1:8000/coutry/");
+    setCountry(result.data);
+  } catch (error) {
+    console.error("Error loading Country:", error);
+  }
+}
+
 // Function to load universities
 export async function loadUniversity(setUniversity) {
   try {
