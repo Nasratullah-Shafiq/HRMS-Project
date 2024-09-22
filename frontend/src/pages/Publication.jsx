@@ -11,21 +11,7 @@ function HR_Employee() {
   const [id, setId] = useState('');
   const [full_name, setFull_Name] = useState('');
   const [last_name, setLast_Name] = useState('');
-  // const [father_name, setFater_Name] = useState('');
-  // const [grand_father_name, setGrand_Father_Name] = useState('');
-  // const [date_of_birth, setDate_Of_Birth] = useState('');
-  // const [placce_of_birth, setPlace_Of_Birth] = useState('');
-  // const [gender, setGender] = useState('');
-  // const [natinality, setNationality] = useState('');
-  // const [degree, setDegree] = useState('');
-  // const [gederal_directorate, setGeneral_Directorate] = useState('');
-  // const [directorate, setDirectorate] = useState('');
-  // const [head, setHead] = useState('');
-  // const [job_position, setJob_Position] = useState('');
-  // const [remarks, setRemarks] = useState([]);
-  // const [blood_group, setBlood_Group] = useState('');
-  // const [marital_status, setMarital_Status] = useState('');
-  // const [religion, setReligion] = useState('');
+    // const [religion, setReligion] = useState('');
   const [employees, setEmployee] = useState([]);
   
   useEffect(() =>{
