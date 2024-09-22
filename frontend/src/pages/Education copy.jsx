@@ -245,8 +245,7 @@ function HR_Employee() {
                       </option>
                    ))}
                 </select>
-                {/* <input type="Text" className="form-control" id="faculty" placeholder = "Enter Your Faculty" */}
-                {/* value={faculty}onChange={(event)=>{setFaculty(event.target.value);}}/>  */}
+        
               </div>
           </div>
 
