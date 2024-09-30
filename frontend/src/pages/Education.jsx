@@ -60,11 +60,15 @@ import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
 
 const UniversityComponent = () => {
+  // const [id, setId] = useState('');
+  // const [country, setCountryId] = useState('');
+  // const [university, setUniversityId] = useState('');
+
   const [universitys, setUniversity] = useState([]);
   const [faculties, setFaculty] = useState([]);
   const [majors, setMajor] = useState([]);
   const [degrees, setDegree] = useState([]);
-  const [countrys, setCountry] = useState([]);
+  const [countrys, setCountry] = useState([]); 
   const [loading, setLoading] = useState(true);  // Added loading state
 
   useEffect(() => {
@@ -97,7 +101,7 @@ const UniversityComponent = () => {
           <div className="mb-3 row">
             <label className="col-sm-1 col-form-label"> Country </label>
               <div class="col-sm-5">
-                <select className="form-select" onChange={(event) => setCountryId(event.target.value)}>
+                <select className="form-select" onChange={(event) => setCountry(event.target.value)}>
                   <option value={countrys}> Select a country </option>
                     {countrys.map((country) => (
                     <option key={country.id} value={country.id}>
@@ -109,7 +113,7 @@ const UniversityComponent = () => {
               </div>
               <label className="col-sm-1 col-form-label"> University </label>
               <div class="col-sm-5">
-              <select className="form-select" onChange={(event) => setUniversityId(event.target.value)}>
+              <select className="form-select" onChange={(event) => setUniversity(event.target.value)}>
                   <option value={universitys}> Select a University </option>
                     {universitys.map((university) => (
                     <option key={university.id} value={university.id}>
