@@ -60,7 +60,7 @@ import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
 
 const UniversityComponent = () => {
-  const [universities, setUniversity] = useState([]);
+  const [universitys, setUniversity] = useState([]);
   const [faculties, setFaculty] = useState([]);
   const [majors, setMajor] = useState([]);
   const [degrees, setDegree] = useState([]);
@@ -93,12 +93,11 @@ const UniversityComponent = () => {
     <div className="App">
       <div className="container">
         <ToastContainer /> {/* Toast notification container */}
-        <form>
+          <form>
           <div className="mb-3 row">
-          <label className="col-sm-1 col-form-label"> Country </label>
+            <label className="col-sm-1 col-form-label"> Country </label>
               <div class="col-sm-5">
-              {/* onChange={(event) => setCountryId(event.target.value)}> */}
-                <select className="form-select">
+                <select className="form-select" onChange={(event) => setCountryId(event.target.value)}>
                   <option value={countrys}> Select a country </option>
                     {countrys.map((country) => (
                     <option key={country.id} value={country.id}>
@@ -107,21 +106,49 @@ const UniversityComponent = () => {
                       </option>
                    ))}
                 </select>
-              </div>  
-            <label className="col-sm-1 col-form-label">Major</label>
-            <div className="col-sm-5">
-              <select className="form-select">
-                <option value="">Select Major</option> {/* Fixed placeholder */}
-                {majors.map((major) => (
-                  <option key={major.id} value={major.id}>
-                    {major.name}
-                  </option>
-                ))}
-              </select>
-            </div>
+              </div>
+              <label className="col-sm-1 col-form-label"> University </label>
+              <div class="col-sm-5">
+              <select className="form-select" onChange={(event) => setUniversityId(event.target.value)}>
+                  <option value={universitys}> Select a University </option>
+                    {universitys.map((university) => (
+                    <option key={university.id} value={university.id}>
+                      {university.name}
+                                
+                      </option>
+                   ))}
+                </select>
+              </div>
           </div>
-        </form>
-      </div>
+          
+            <div className="mb-3 row">
+              <label className="col-sm-1 col-form-label"> Country </label>
+                <div class="col-sm-5">
+                {/* onChange={(event) => setCountryId(event.target.value)}> */}
+                  <select className="form-select">
+                    <option value={countrys}> Select a country </option>
+                      {countrys.map((country) => (
+                      <option key={country.id} value={country.id}>
+                        {country.name}
+                                  
+                        </option>
+                    ))}
+                  </select>
+                </div>  
+              <label className="col-sm-1 col-form-label">Major</label>
+              <div className="col-sm-5">
+                <select className="form-select">
+                  <option value="">Select Major</option> {/* Fixed placeholder */}
+                  {majors.map((major) => (
+                    <option key={major.id} value={major.id}>
+                      {major.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
     </div>
   );
 };
