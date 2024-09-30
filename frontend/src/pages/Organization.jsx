@@ -4,8 +4,66 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
+import { saveOrganization } from '../functions/store';  // Import the Save Funtion from Store file
 
-function Faculty() {
+
+
+function Organization() {
+  
+  // const UniversityComponent = () => {
+
+    const [id, setId] = useState("");
+    const [name, setName] = useState("");
+  
+  
+    // Function to load updated data (example)
+    const Load = () => {
+      console.log("Load data after save...");
+    };
+  
+    const handleSave = async (event) => {
+      event.preventDefault();
+  
+      const educationData = {
+        id,
+        name,
+      };
+  
+      const stateSetters = {
+        setId,
+        setCountry,
+        setUniversity,
+        loadFunction: Load
+      };
+  
+      // Call the saveEducation function
+      await saveEducation(educationData, stateSetters);
+    };
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        await loadEducation(setEducation);  //Load Education Data
+        await loadUniversity(setUniversity);  // Load university data
+        await loadFaculty(setFaculty);        // Load faculty data
+        await loadMajor(setMajor);            // Load major data
+        await loadDegree(setDegree);
+        await loadCountry(setCountry);          // Load degree data
+      } catch (error) {
+        toast.error("Error loading data");
+      } finally {
+        setLoading(false);  // Set loading to false after data is loaded
+      }
+    };
+
+    loadData();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  
   const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [organizations, setOrganization] = useState([]);
@@ -20,22 +78,22 @@ function Faculty() {
       setOrganization(result.data);
   }
 
-  async function save(event){
-    event.preventDefault();
-    try{
-      await axios.post("http://127.0.0.1:8000/organization/",{
-        id: id,
-        name: name
-      });
-      toastr.success("Record Registered Successfully");
-      setId("");
-      setName("");
-      Load();
-    }
-    catch(err){
-      toast.error("Faculty Registration Failed");
-    }
-  }
+  // async function save(event){
+  //   event.preventDefault();
+  //   try{
+  //     await axios.post("http://127.0.0.1:8000/organization/",{
+  //       id: id,
+  //       name: name
+  //     });
+  //     toastr.success("Record Registered Successfully");
+  //     setId("");
+  //     setName("");
+  //     Load();
+  //   }
+  //   catch(err){
+  //     toast.error("Faculty Registration Failed");
+  //   }
+  // }
 
   async function editOrganization(organizations){
     setName(organizations.name);
@@ -109,10 +167,14 @@ function Faculty() {
         <td>{organization.name}</td>
         
         <td>
-          <button type="button" className="btn btn-warning" onClick={() => editOrganization(organization)}> Edit </button>
+          <button type="button" className="btn btn-warning" 
+          // onClick={() => editOrganization(organization)}
+          > Edit </button>
           </td>
           <td>
-          <button type="button" className="btn btn-danger" onClick={() => DeleteOrganization(organization.id)}> <i className="fas fa-star"></i> {/* Using a star icon as a favorite icon */} </button>
+          <button type="button" className="btn btn-danger" 
+          // onClick={() => DeleteOrganization(organization.id)}
+          > <i className="fas fa-star"></i> {/* Using a star icon as a favorite icon */} </button>
         </td>
       </tr>
     ))}
@@ -125,5 +187,5 @@ function Faculty() {
     );
   }
   
-  export default Faculty;
+  export default Organization;
   
