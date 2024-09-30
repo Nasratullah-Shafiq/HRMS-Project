@@ -35,7 +35,7 @@ function HR_Employee() {
 
   async function Load(){
     const result = await axios.get(
-      "http://127.0.0.1:8000/employee/");
+      "http://127.0.0.1:8000/education/");
       setEmployee(result.data);
       console.log(result.data);
   }
@@ -43,24 +43,20 @@ function HR_Employee() {
   async function save(event){
     event.preventDefault();
     try{
-      await axios.post("http://127.0.0.1:8000/employee/",{
+      await axios.post("http://127.0.0.1:8000/education/",{
         id: id,
         full_name: full_name,
         last_name: last_name
       });
-    //   alert("This is not enogh");
-      Swal.fire('Success!', 'Record Updated Successfully', 'success'); 
-      toast.success("Course Added Successfully");
+    
       toastr.success("Course Added Successfully");
     
       setId("");
-      setFull_Name("");
+      setCountry("");
       setLast_Name("");
       Load();
     }
     catch(err){
-      // alert("Course Registration Failed");
-      // toast.error("Record Registered failed");
       toastr.error("Course Registration Failed");
     }
   }
