@@ -48,10 +48,7 @@ function HR_Employee() {
         full_name: full_name,
         last_name: last_name
       });
-    //   alert("This is not enogh");
-      Swal.fire('Success!', 'Record Updated Successfully', 'success'); 
-      toast.success("Course Added Successfully");
-      toastr.success("Course Added Successfully");
+        toastr.success("Course Added Successfully");
     
       setId("");
       setFull_Name("");
@@ -59,8 +56,6 @@ function HR_Employee() {
       Load();
     }
     catch(err){
-      // alert("Course Registration Failed");
-      // toast.error("Record Registered failed");
       toastr.error("Course Registration Failed");
     }
   }
