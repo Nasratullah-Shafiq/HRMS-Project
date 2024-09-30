@@ -50,6 +50,16 @@ export async function saveEducation(data, stateSetters) {
   }
 }
 
+// Function to load Education data
+export async function loadEducation(setEducation) {
+  try {
+    const result = await axios.get("http://127.0.0.1:8000/education/");
+    setEducation(result.data);
+  } catch (error) {
+    console.error("Error loading Education:", error);
+  }
+}
+
 // Function to load Countries
 export async function loadCountry(setCountry) {
   try {
