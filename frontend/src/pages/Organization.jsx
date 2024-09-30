@@ -15,7 +15,7 @@ function Organization() {
     const [id, setId] = useState("");
     const [name, setName] = useState("");
   
-  
+
     // Function to load updated data (example)
     const Load = () => {
       console.log("Load data after save...");
