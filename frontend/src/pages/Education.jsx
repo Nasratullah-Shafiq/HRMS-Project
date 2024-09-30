@@ -1,81 +1,26 @@
-// import React, { useState, useEffect } from 'react';
-// import { loadUniversity, loadFaculty, loadMajor, loadDegree } from '../functions/dataLoaders';  // Import the data loaders
-// 
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-// import toastr from 'toastr';
-// import 'toastr/build/toastr.min.css';
-
-  // UniversityComponent.js
-
-// const UniversityComponent = () => {
-//   const [universities, setUniversity] = useState([]);
-//   const [faculties, setFaculty] = useState([]);
-//   const [majors, setMajor] = useState([]);
-//   const [degrees, setDegree] = useState([]);
-
-//   useEffect(() => {
-//     (async () => {
-//       await loadUniversity(setUniversity);  // Load university data
-//       await loadFaculty(setFaculty);        // Load faculty data
-//       await loadMajor(setMajor);            // Load major data
-//       await loadDegree(setDegree);          // Load degree data
-//     })();
-//   }, []);
-
-//     return (
-//       <div className="App">
-//         <div className="container">
-//         <form >
-        
-            
-//           <div className="mb-3 row">
-//           <label className="col-sm-1 col-form-label"> Batch No </label>
-              
-//             <label className="col-sm-1 col-form-label"> Major </label>
-//               <div class="col-sm-5">
-//               <select className="form-select">
-//                   <option value={major}> Select Major </option>
-//                     {majors.map((major) => (
-//                     <option key={major.id} value={major.id}>
-//                       {major.name}
-                                
-//                       </option> 
-//                    ))}
-//                 </select>
-//               </div>
-//           </div>
-//         </form>
-//   </div>
-// </div>
-//   );
-// };
-//   export default UniversityComponent;
-import { Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
-import { saveEducation, loadUniversity, loadFaculty, loadMajor, loadDegree, loadCountry } from '../functions/dataLoaders';  // Import the data loaders
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
+import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { loadEducation, saveEducation, loadUniversity, loadFaculty, loadMajor, loadDegree, loadCountry } from '../functions/dataLoaders';  // Import the data loaders
 
 const UniversityComponent = () => {
-  // const [id, setId] = useState('');
-  // const [country, setCountryId] = useState('');
-  // const [university, setUniversityId] = useState('');
-  // const Education = () => {
+
     const [id, setId] = useState("");
-    const [country, setCountryId] = useState("");
-    // const [degree, setDegree] = useState("");
-    const [university, setUniversityId] = useState("");
-    const [faculty, setFacultyId] = useState("");
-    // const [majors, setMajor] = useState("");
     const [education_start_date, setStartDate] = useState("");
     const [education_end_date, setEndDate] = useState("");
     const [batch_no, setBatchNo] = useState("");
     const [education_remarks, setRemarks] = useState("");
+    
     const [educations, setEducation] = useState([]);
+    const [universitys, setUniversity] = useState([]);
+    const [facultys, setFaculty] = useState([]);
+    const [majors, setMajor] = useState([]);
+    const [degrees, setDegree] = useState([]);
+    const [countrys, setCountry] = useState([]); 
+    const [loading, setLoading] = useState(true);  // Added loading state
   
     // Function to load updated data (example)
     const Load = () => {
@@ -87,10 +32,10 @@ const UniversityComponent = () => {
   
       const educationData = {
         id,
-        country,
+        countrys,
         degrees,
-        university,
-        faculty,
+        universitys,
+        facultys,
         majors,
         education_start_date,
         education_end_date,
@@ -100,9 +45,9 @@ const UniversityComponent = () => {
   
       const stateSetters = {
         setId,
-        setCountryId,
-        setUniversityId,
-        setFacultyId,
+        setCountry,
+        setUniversity,
+        setFaculty,
         setStartDate,
         setEndDate,
         setBatchNo,
@@ -113,25 +58,11 @@ const UniversityComponent = () => {
       // Call the saveEducation function
       await saveEducation(educationData, stateSetters);
     };
-  
-    // return (
-      // <form onSubmit={handleSave}>
-        //  {/* Your form elements here */}
-        //  <button type="submit">Save</button>
-      //  </form>
-    //  );
-  
-  
-  const [universitys, setUniversity] = useState([]);
-  const [faculties, setFaculty] = useState([]);
-  const [majors, setMajor] = useState([]);
-  const [degrees, setDegree] = useState([]);
-  const [countrys, setCountry] = useState([]); 
-  const [loading, setLoading] = useState(true);  // Added loading state
 
   useEffect(() => {
     const loadData = async () => {
       try {
+        await loadEducation(setEducation);  //Load Education Data
         await loadUniversity(setUniversity);  // Load university data
         await loadFaculty(setFaculty);        // Load faculty data
         await loadMajor(setMajor);            // Load major data
@@ -159,7 +90,7 @@ const UniversityComponent = () => {
           <div className="form-group">
             
             <label className="form-label col-sm-2"><h2> Country </h2></label>
-            <label className = "col-sm-1 col-form-label"> <button className="btn btn-primary" disabled={!countrys}> Save </button></label>
+            <label className = "col-sm-1 col-form-label"> <button type="sbmit" className="btn btn-primary" disabled={!countrys}> Save </button></label>
             <label className = "col-sm-1 col-form-label"> <button className="btn btn-warning"> Update </button> </label>
             <div className = "col-sm-12" style={{paddingTop: '20px'}}> </div>
             <input type="Text" className="form-control" id="university_id" hidden
@@ -181,8 +112,8 @@ const UniversityComponent = () => {
        <div className="mb-3 row">
          <label className="col-sm-1 col-form-label"> Country </label>
            <div class="col-sm-5">
-             <select className="form-select" onChange={(event) => setCountryId(event.target.value)}>
-               <option value={country}> Select a country </option>
+             <select className="form-select" onChange={(event) => setCountry(event.target.value)}>
+               <option value={countrys}> Select a country </option>
                  {countrys.map((country) => (
                  <option key={country.id} value={country.id}>
                    {country.name}
@@ -193,8 +124,8 @@ const UniversityComponent = () => {
            </div>
            <label className="col-sm-1 col-form-label"> University </label>
            <div class="col-sm-5">
-           <select className="form-select" onChange={(event) => setUniversityId(event.target.value)}>
-               <option value={university}> Select a University </option>
+           <select className="form-select" onChange={(event) => setUniversity(event.target.value)}>
+               <option value={universitys}> Select a University </option>
                  {universitys.map((university) => (
                  <option key={university.id} value={university.id}>
                    {university.name}
@@ -213,9 +144,9 @@ const UniversityComponent = () => {
            </div>
            <label className="col-sm-1 col-form-label"> Faculty </label>
            <div class="col-sm-5">
-           <select className="form-select" onChange={(event) => setFacultyId(event.target.value)}>
-               <option value={faculty}> Select a Faculty </option>
-                 {faculties.map((faculty) => (
+           <select className="form-select" onChange={(event) => setFaculty(event.target.value)}>
+               <option value={facultys}> Select a Faculty </option>
+                 {facultys.map((faculty) => (
                  <option key={faculty.id} value={faculty.id}>
                    {faculty.name}
                              
@@ -243,8 +174,6 @@ const UniversityComponent = () => {
                    </option>
                 ))}
              </select>
-             {/* <input type="Text" className="form-control" id="Degree" placeholder = "Enter Your Degree" */}
-             {/* value={degree}onChange={(event)=>{setDegreeId(event.target.value);}}/>  */}
            </div>
        </div>
 
@@ -257,7 +186,7 @@ const UniversityComponent = () => {
          <label className="col-sm-1 col-form-label"> Major </label>
            <div class="col-sm-5">
            <select className="form-select" onChange={(event) => setMajor(event.target.value)}>
-               <option value={faculty}> Select Major </option>
+               <option value={majors}> Select Major </option>
                  {majors.map((major) => (
                  <option key={major.id} value={major.id}>
                    {major.name}
@@ -265,8 +194,6 @@ const UniversityComponent = () => {
                    </option>
                 ))}
              </select>
-             {/* <input type="Text" className="form-control" id="major" placeholder = "Enter Your Major" */}
-             {/* value={major}onChange={(event)=>{setMajor(event.target.value);}}/>  */}
            </div>
        </div>
 
