@@ -4,79 +4,93 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
-import { saveOrganization } from '../functions/store';  // Import the Save Funtion from Store file
+import { loadOrganization } from '../functions/load';  // Import the Save Funtion from Store file
 
 
 
-function Organization() {
+// function Organization() {
   
-  // const UniversityComponent = () => {
+  const Organization = () => {
 
     const [id, setId] = useState("");
     const [name, setName] = useState("");
-  
+    const [organizations, setOrganization] = useState([]); 
+    const [loading, setLoading] = useState(true);  // Added loading state
 
     // Function to load updated data (example)
     const Load = () => {
       console.log("Load data after save...");
     };
   
-    const handleSave = async (event) => {
-      event.preventDefault();
+    // const handleSave = async (event) => {
+      // event.preventDefault();
   
-      const educationData = {
-        id,
-        name,
-      };
+      // const educationData = {
+      //   id,
+      //   name
+      // };
   
-      const stateSetters = {
-        setId,
-        setCountry,
-        setUniversity,
-        loadFunction: Load
-      };
+      // const stateSetters = {
+      //   setId,
+      //   setName,
+      //   loadFunction: Load
+      // };
   
       // Call the saveEducation function
-      await saveEducation(educationData, stateSetters);
-    };
+      // await saveEducation(educationData, stateSetters);
+    // };
 
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        await loadEducation(setEducation);  //Load Education Data
-        await loadUniversity(setUniversity);  // Load university data
-        await loadFaculty(setFaculty);        // Load faculty data
-        await loadMajor(setMajor);            // Load major data
-        await loadDegree(setDegree);
-        await loadCountry(setCountry);          // Load degree data
-      } catch (error) {
-        toast.error("Error loading data");
-      } finally {
-        setLoading(false);  // Set loading to false after data is loaded
-      }
-    };
+    useEffect(() => {
+      const loadData = async () => {
+        try {
+          await loadOrganization(setOrganization);  //Load Education Data
+        } catch (error) {
+          toast.error("Error loading data");
+        } finally {
+          setLoading(false);  // Set loading to false after data is loaded
+        }
+      };
+  
+      loadData();
+    }, []);
+  
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+  
 
-    loadData();
-  }, []);
+  // useEffect(() => {
+  //   const loadData = async () => {
+  //     try {
+  //       await loadOrganization(setOrganization);  //Load Education Data
+  //     } catch (error) {
+  //       toast.error("Error loading data");
+  //     } finally {
+  //       setLoading(false);  // Set loading to false after data is loaded
+  //     }
+  //   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  //   loadData();
+  // }, []);
+
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
 
   
-  const [id, setId] = useState('');
-  const [name, setName] = useState('');
-  const [organizations, setOrganization] = useState([]);
+  // const [id, setId] = useState('');
+  // const [name, setName] = useState('');
+  // const [organizations, setOrganization] = useState([]);
   
-  useEffect(() =>{
-    (async()=>await Load())();
-  }, []);
+  // useEffect(() =>{
+  //   (async()=>await Load())();
+  // }, []);
 
-  async function Load(){
-    const result = await axios.get(
-      "http://127.0.0.1:8000/organization/");
-      setOrganization(result.data);
-  }
+  // async function Load(){
+  //   const result = await axios.get(
+  //     "http://127.0.0.1:8000/organization/");
+  //     setOrganization(result.data);
+  // }
 
   // async function save(event){
   //   event.preventDefault();
@@ -95,35 +109,35 @@ function Organization() {
   //   }
   // }
 
-  async function editOrganization(organizations){
-    setName(organizations.name);
-    setId(organizations.id);
-  }
+  // async function editOrganization(organizations){
+  //   setName(organizations.name);
+  //   setId(organizations.id);
+  // }
 
-  async function DeleteOrganization(id){
-    await axios.delete("http://127.0.0.1:8000/organization/"+id);
-        toastr.error("Data Deleted Successfully");
-        Load();
-  }
+  // async function DeleteOrganization(id){
+  //   await axios.delete("http://127.0.0.1:8000/organization/"+id);
+  //       toastr.error("Data Deleted Successfully");
+  //       Load();
+  // }
 
-  async function update(event){
-    event.preventDefault();
-    try{
-      await axios.put("http://127.0.0.1:8000/organization/" + organizations.find(u => u.id === id).id || id,{
-        id: id,
-        name: name
-      });
-      toastr.success("Record updated Successfully");
+  // async function update(event){
+  //   event.preventDefault();
+  //   try{
+  //     await axios.put("http://127.0.0.1:8000/organization/" + organizations.find(u => u.id === id).id || id,{
+  //       id: id,
+  //       name: name
+  //     });
+  //     toastr.success("Record updated Successfully");
     
-      setId("");
-      setName("");
-      Load();
-    }
-    catch(err){
+  //     setId("");
+  //     setName("");
+  //     Load();
+  //   }
+  //   catch(err){
     
-      toast.error("Faculty Registration Failed");
-    }
-  }
+  //     toast.error("Faculty Registration Failed");
+  //   }
+  // }
     return (
       <div className="App">
         <div className="container">
@@ -131,8 +145,12 @@ function Organization() {
         <div className="form-group">
             
             <label className="form-label col-sm-2"><h2> Organization </h2></label>
-            <label className = "col-sm-1 col-form-label"> <button className="btn btn-primary" onClick={save} disabled={!name}> Save </button></label>
-            <label className = "col-sm-1 col-form-label"> <button className="btn btn-warning" onClick={update}> Update </button> </label>
+            <label className = "col-sm-1 col-form-label"> <button className="btn btn-primary" 
+            // onClick={save} 
+            disabled={!name}> Save </button></label>
+            <label className = "col-sm-1 col-form-label"> <button className="btn btn-warning" 
+            // onClick={update}
+            > Update </button> </label>
             <div className = "col-sm-12" style={{paddingTop: '20px'}}> </div>
             <input type="Text" className="form-control" id="organization_id" hidden
             value={id}
