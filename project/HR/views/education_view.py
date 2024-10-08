@@ -69,7 +69,7 @@ def universityApi(request,id=0):
             return JsonResponse("Updated Successfully",safe=False)
         return JsonResponse("Failed to Update")
     elif request.method=="DELETE":
-        university=university.objects.get(id=id)
+        university=University.objects.get(id=id)
         university.delete()
         return JsonResponse("Deleted Successfully",safe=False)
 
