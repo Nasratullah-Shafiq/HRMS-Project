@@ -51,7 +51,7 @@ function University() {
 
   async function DeleteUniversity(id){
     await axios.delete("http://127.0.0.1:8000/university/"+id);
-        toastr.danger("Data Deleted Successfully");
+        toastr.error("Data Deleted Successfully");
         Load();
   }
 
@@ -119,10 +119,10 @@ function University() {
         <td>{university.name}</td>
         
         <td>
-          <button type="button" className="btn btn-warning" onClick={() => editUniversity(university)}> Edit </button>
+           <i className='fa-solid fa-pen-to-square' onClick={() => editUniversity(university)}></i> 
           </td>
           <td>
-          <button type="button" className="btn btn-danger" onClick={() => DeleteUniversity(university.id)}> <i className="fas fa-star"></i> {/* Using a star icon as a favorite icon */} </button>
+          <i class="fa-solid fa-trash" onClick={() => DeleteUniversity(university.id)}></i> {/* Using a star icon as a favorite icon */} 
         </td>
       </tr>
     ))}
