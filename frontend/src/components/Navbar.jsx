@@ -238,7 +238,7 @@ function Navbar(){
 
               <li className="nav-item dropdown">
                 <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
-                  Configuration
+                <i className='fa-solid fa-gear'></i>  Configuration
                 </Link>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><Link className="dropdown-item" to="/country" data-bs-toggle="modal" data-bs-target="#countryModal"> Country </Link></li>
