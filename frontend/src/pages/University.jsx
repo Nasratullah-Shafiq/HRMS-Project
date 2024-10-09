@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import {useEffect, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -77,13 +78,27 @@ function University() {
         <div className="container">
         <form >
         <div className="form-group">
-            
             <label className="form-label col-sm-2"><h2> University </h2></label>
             <label className = "col-sm-1 col-form-label"> <button className="btn btn-primary" onClick={save} disabled={!name}> Save </button></label>
             <label className = "col-sm-1 col-form-label"> <button className="btn btn-warning" onClick={update} disabled={!name}> Update </button> </label>
+            <label className = "col-sm-1 col-form-label"> <button className="btn btn-default"> <i className='fa-solid fa-print'></i> Print </button> </label>
+            <label className = "col-sm-1 col-form-label">
+            <div class="dropdown">
+              <button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown">
+              <i className='fa-solid fa-gear'></i> Action
+              </button>
+              <ul class="dropdown-menu"> 
+                <li><Link to="#" class="dropdown-item"> <i className="fa-solid fa-file-export"></i> Export </Link></li>
+                <li><Link to="#" class="dropdown-item"> <i className='fa-solid fa-archive'></i> Archive </Link></li>
+                <li><Link to="#" class="dropdown-item"> <i className="fa-solid fa-inbox"></i> Unarchive </Link></li>
+                <li><Link to="#" class="dropdown-item"> <i className='fa-solid fa-copy'></i> Duplicate </Link></li>
+                <li><Link to="#" class="dropdown-item"> <i className='fa-solid fa-trash'></i> Delete </Link></li>
+              </ul>
+            </div>
+            </label>
             <div className = "col-sm-12" style={{paddingTop: '20px'}}> </div>
             <input type="Text" className="form-control" id="university_id" hidden
-            value={id}
+            value={id} 
             onChange={(event)=>{setId(event.target.value); }}/>           
            
           </div>
@@ -98,26 +113,24 @@ function University() {
           </div>
         </form>
 
-      <table className="table table-striped" align="center">
+      <table className="table table-stripped table-hover" align="center">
 
   <thead>
     <tr>
-      <th scope="col"> ID </th>
+      <th scope="col"> <input type="checkbox" id="javascript"></input> </th>
       <th scope="col"> University </th>
-      <th scope="col"> Edit </th>
-      <th scope="col"> Delete </th>
+      <th scope="col"> Action </th>
     </tr>
   </thead>
   <tbody>
     {universitys.map((university) => (
       <tr key={university.id}>
-        <th scope="row">{university.id}</th>
+        {/* <th scope="row">{university.id}</th> */}
+        <td><input type="checkbox" id="javascript"/> </td>
         <td>{university.name}</td>
         
         <td>
            <i className='fa-solid fa-pen-to-square' onClick={() => editUniversity(university)}></i> 
-          </td>
-          <td>
           <i class="fa-solid fa-trash" onClick={() => DeleteUniversity(university.id)}></i> {/* Using a star icon as a favorite icon */} 
         </td>
       </tr>
