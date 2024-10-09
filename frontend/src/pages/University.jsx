@@ -10,9 +10,6 @@ function University() {
   const [name, setName] = useState('');
   const [universitys, setUniversity] = useState([]);
   
-  // const handleInputChange = (e) => {
-  //   setId(e.target.value); // Update state on input change
-  // };
   
   useEffect(() =>{
     (async()=>await Load())();
@@ -39,7 +36,6 @@ function University() {
       Load();
     }
     catch(err){
-      // alert("Student Registration Failed");
       toast.error("Student Registration Failed");
     }
   }
@@ -84,7 +80,7 @@ function University() {
             
             <label className="form-label col-sm-2"><h2> University </h2></label>
             <label className = "col-sm-1 col-form-label"> <button className="btn btn-primary" onClick={save} disabled={!name}> Save </button></label>
-            <label className = "col-sm-1 col-form-label"> <button className="btn btn-warning" onClick={update}> Update </button> </label>
+            <label className = "col-sm-1 col-form-label"> <button className="btn btn-warning" onClick={update} disabled={!name}> Update </button> </label>
             <div className = "col-sm-12" style={{paddingTop: '20px'}}> </div>
             <input type="Text" className="form-control" id="university_id" hidden
             value={id}
