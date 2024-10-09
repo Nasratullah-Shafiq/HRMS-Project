@@ -11,7 +11,7 @@ class Employee(models.Model):
     nationality = models.CharField(max_length=50)
     general_directorate = models.CharField(max_length=50)
     directorate = models.CharField(max_length=50)
-    head = models.CharField(max_length=50)
+
     job_position = models.CharField(max_length=50)
     remarks = models.CharField(max_length=255)
     staus = models.CharField(max_length=50)
