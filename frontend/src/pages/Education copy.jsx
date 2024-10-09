@@ -186,7 +186,7 @@ function HR_Employee() {
     return (
       <div className="App">
         <div className="container">
-        <form >
+      <form >
         <div className="form-group">
          
             <input type="Text" className="form-control" id="Education_id" hidden
