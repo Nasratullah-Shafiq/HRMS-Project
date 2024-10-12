@@ -76,11 +76,11 @@ function University() {
     setId(universitys.id);
   }
 
-  // async function DeleteUniversity(id){
-  //   await axios.delete("http://127.0.0.1:8000/university/"+id);
-  //       toastr.error("Data Deleted Successfully");
-  //       Load();
-  // }
+  async function DeleteUniversity(id){
+    await axios.delete("http://127.0.0.1:8000/university/"+id);
+        toastr.error("Data Deleted Successfully");
+        Load();
+  }
 
 
   async function deleteSelectedUniversities() {
@@ -129,22 +129,22 @@ function University() {
             {/* {isChecked && ( */}
             {checkedUniversities.length > 0 && (
             <label className = "col-sm-1 col-form-label"> 
-            <button class="btn btn-default"> <i class='fa-solid fa-print'></i> Print </button> </label>
+            <button className="btn btn-default"> <i className='fa-solid fa-print'></i> Print </button> </label>
             )}
             {/* Conditionally render the buttons based on checkbox selection */}
             {checkedUniversities.length > 0 && (
             <label className = "col-sm-1 col-form-label">
             
-            <div class="dropdown">
-              <button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown">
+            <div className="dropdown">
+              <button type="button" className="btn btn-default dropdown-toggle" data-bs-toggle="dropdown">
               <i className='fa-solid fa-gear'></i> Action
               </button>
-              <ul class="dropdown-menu"> 
-                <li><Link to="#" class="dropdown-item"> <i className="fa-solid fa-file-export"></i> Export </Link></li>
-                <li><Link to="#" class="dropdown-item"> <i className='fa-solid fa-archive'></i> Archive </Link></li>
-                <li><Link to="#" class="dropdown-item"> <i className="fa-solid fa-inbox"></i> Unarchive </Link></li>
-                <li><Link to="#" class="dropdown-item"> <i className='fa-solid fa-copy'></i> Duplicate </Link></li>
-                <li onClick={deleteSelectedUniversities} ><Link to="#" class="dropdown-item"> <i className='fa-solid fa-trash'></i> Delete </Link></li>
+              <ul className="dropdown-menu"> 
+                <li><Link to="#" className="dropdown-item"> <i className="fa-solid fa-file-export"></i> Export </Link></li>
+                <li><Link to="#" className="dropdown-item"> <i className='fa-solid fa-archive'></i> Archive </Link></li>
+                <li><Link to="#" className="dropdown-item"> <i className="fa-solid fa-inbox"></i> Unarchive </Link></li>
+                <li><Link to="#" className="dropdown-item"> <i className='fa-solid fa-copy'></i> Duplicate </Link></li>
+                <li onClick={deleteSelectedUniversities} ><Link to="#" className="dropdown-item"> <i className='fa-solid fa-trash'></i> Delete </Link></li>
               </ul>
             </div>
             
@@ -160,7 +160,7 @@ function University() {
           <div className="mb-3 row">
             <label className="col-sm-2 col-form-label"> University </label> 
             
-              <div class="col-sm-10">
+              <div className="col-sm-10">
                 <input type="Text" className="form-control" id="university_name" placeholder = "Enter Employee's University"
                 value={name} onChange={(event)=>{setName(event.target.value);}}/> 
               </div>
@@ -179,12 +179,10 @@ function University() {
   <tbody>
     {universitys.map((university) => (
       <tr key={university.id}>
-        {/* <th scope="row">{university.id}</th> */}
+    
         {/* <td> */}
         <td className={checkedUniversities.includes(university.id) ? "table-hover" : ""}>
-        <input
-                    type="checkbox"
-                    id="javascript"
+        <input type="checkbox" id="javascript"
                     checked={checkedUniversities.includes(university.id)}
                     onChange={(e) => handleCheckboxChange(e, university.id)}
                   /> </td>
@@ -192,7 +190,7 @@ function University() {
         
         <td>
            <i className='fa-solid fa-pen-to-square' onClick={() => editUniversity(university)}></i> 
-          {/* <i class="fa-solid fa-trash" onClick={() => DeleteUniversity(university.id)}></i> Using a star icon as a favorite icon  */}
+           <i className="fa-solid fa-trash" onClick={() => DeleteUniversity(university.id)}></i> {/*Using a star icon as a favorite icon  */}
         </td>
       </tr>
     ))}
