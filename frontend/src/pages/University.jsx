@@ -76,10 +76,27 @@ function University() {
     setId(universitys.id);
   }
 
-  async function DeleteUniversity(id){
-    await axios.delete("http://127.0.0.1:8000/university/"+id);
-        toastr.error("Data Deleted Successfully");
-        Load();
+  // async function DeleteUniversity(id){
+  //   await axios.delete("http://127.0.0.1:8000/university/"+id);
+  //       toastr.error("Data Deleted Successfully");
+  //       Load();
+  // }
+
+
+  async function deleteSelectedUniversities() {
+    try {
+      // Loop over checked universities and delete them
+      await Promise.all(
+        checkedUniversities.map((universityId) =>
+          axios.delete(`http://127.0.0.1:8000/university/${universityId}`)
+        )
+      );
+      toastr.error("Selected Universities Deleted Successfully");
+      setCheckedUniversities([]); // Reset the selected checkboxes after delete
+      Load(); // Reload the data
+    } catch (err) {
+      toast.error("Failed to Delete Selected Universities");
+    }
   }
 
   async function update(event){
@@ -127,7 +144,7 @@ function University() {
                 <li><Link to="#" class="dropdown-item"> <i className='fa-solid fa-archive'></i> Archive </Link></li>
                 <li><Link to="#" class="dropdown-item"> <i className="fa-solid fa-inbox"></i> Unarchive </Link></li>
                 <li><Link to="#" class="dropdown-item"> <i className='fa-solid fa-copy'></i> Duplicate </Link></li>
-                <li><Link to="#" class="dropdown-item"> <i className='fa-solid fa-trash'></i> Delete </Link></li>
+                <li onClick={deleteSelectedUniversities} ><Link to="#" class="dropdown-item"> <i className='fa-solid fa-trash'></i> Delete </Link></li>
               </ul>
             </div>
             
@@ -154,12 +171,7 @@ function University() {
 
   <thead>
     <tr>
-      <th scope="col">   <input
-                  type="checkbox"
-                  id="select-all"
-                  onChange={handleSelectAllChange}
-                  checked={selectAllChecked}
-                /> </th>
+      <th scope="col">   <input type="checkbox" id="select-all" onChange={handleSelectAllChange} checked={selectAllChecked}/> </th>
       <th scope="col"> University </th>
       <th scope="col"> Action </th>
     </tr>
@@ -180,7 +192,7 @@ function University() {
         
         <td>
            <i className='fa-solid fa-pen-to-square' onClick={() => editUniversity(university)}></i> 
-          <i class="fa-solid fa-trash" onClick={() => DeleteUniversity(university.id)}></i> {/* Using a star icon as a favorite icon */} 
+          {/* <i class="fa-solid fa-trash" onClick={() => DeleteUniversity(university.id)}></i> Using a star icon as a favorite icon  */}
         </td>
       </tr>
     ))}
