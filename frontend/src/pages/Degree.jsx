@@ -7,6 +7,7 @@ import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import * as XLSX from 'xlsx'; // Import the xlsx library
 
 function Degree() {
   // State variables
@@ -177,6 +178,57 @@ function Degree() {
   });
 }
 
+function exportToExcel(event) {
+  event.preventDefault(); // Prevent default behavior
+
+  // Filter the selected degrees
+  const selectedDegrees = degrees.filter((degree) =>
+    checkedDegrees.includes(degree.id)
+  );
+
+  if (selectedDegrees.length === 0) {
+    toast.error("No degrees selected for export.");
+    return;
+  }
+
+  // Prepare the data for Excel
+  const excelData = selectedDegrees.map((degree) => ({
+    ID: degree.id,
+    Name: degree.name,
+  }));
+
+  // Create a new workbook and worksheet
+  const worksheet = XLSX.utils.json_to_sheet(excelData);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Degrees");
+
+  // Generate Excel file and trigger download
+  XLSX.writeFile(workbook, "Selected_Degrees.xlsx");
+}
+
+
+const archiveSelectedDegrees = (e) => {
+  e.preventDefault(); // Prevent page reload
+
+  if (checkedDegrees.length === 0) {
+    alert("No degrees selected for archiving.");
+    return;
+  }
+
+  const updatedDegrees = degrees.map((degree) =>
+    checkedDegrees.includes(degree.id)
+      ? { ...degree, isArchived: true } // Mark as archived
+      : degree
+  );
+
+  setDegrees(updatedDegrees); // Update state with archived degrees
+  setCheckedDegrees([]); // Clear selected checkboxes
+  alert("Selected degrees have been archived.");
+};
+
+
+
+
   // Render component
   return (
     <div className="App">
@@ -201,8 +253,8 @@ function Degree() {
                <i className='fa-solid fa-gear'></i> Action
                </button>
                <ul className="dropdown-menu"> 
-                 <li><Link to="#" className="dropdown-item"> <i className="fa-solid fa-file-export"></i> Export </Link></li>
-                 <li><Link to="#" className="dropdown-item"> <i className='fa-solid fa-archive'></i> Archive </Link></li>
+                 <li><Link to="#" className="dropdown-item"  onClick={(e) => exportToExcel(e)}> <i className="fa-solid fa-file-export"></i> Export </Link></li>
+                 <li><Link to="#" className="dropdown-item" onClick={archiveSelectedDegrees}> <i className='fa-solid fa-archive'></i> Archive </Link></li>
                  <li><Link to="#" className="dropdown-item"> <i className="fa-solid fa-inbox"></i> Unarchive </Link></li>
                  <li><Link to="#" className="dropdown-item"> <i className='fa-solid fa-copy'></i> Duplicate </Link></li>
                  <li onClick={deleteSelectedDegrees} ><Link to="#" className="dropdown-item"> <i className='fa-solid fa-trash'></i> Delete </Link></li>
@@ -227,7 +279,7 @@ function Degree() {
           </div>
         </form>
 
-        <table className="table table-striped" align="center">
+        <table className="table table-striped table-hover" align="center">
           <thead>
             <tr>
               <th style={{ width: '20px' }}>
@@ -243,7 +295,10 @@ function Degree() {
             </tr>
           </thead>
           <tbody>
-            {degrees.map((degree) => (
+          {degrees
+          .filter((degree) => !degree.isArchived) // Show only non-archived degrees
+            .map((degree) => (
+            
               <tr key={degree.id}>
                 <td>
                   <input
