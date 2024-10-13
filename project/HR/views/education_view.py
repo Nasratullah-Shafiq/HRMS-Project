@@ -98,6 +98,7 @@ def degreeApi(request,id=0):
         student=Degree.objects.get(id=id)
         student.delete()
         return JsonResponse("Deleted Successfully",safe=False)
+    
 @csrf_exempt
 def facultyApi(request,id=0):
     if request.method=='GET':
