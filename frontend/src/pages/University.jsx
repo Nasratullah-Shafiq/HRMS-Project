@@ -10,38 +10,14 @@ function University() {
   const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [universitys, setUniversity] = useState([]);
+  const [isChecked, setIsChecked] = useState(false); // State to control visibility
 
-  const [checkedUniversities, setCheckedUniversities] = useState([]); // Track checked universities
-  const [selectAllChecked, setSelectAllChecked] = useState(false); // Track "select all" checkbox
-
-   // Handle individual checkbox change
-   const handleCheckboxChange = (e, universityId) => {
-    if (e.target.checked) {
-      // Add to checked list
-      setCheckedUniversities([...checkedUniversities, universityId]);
-    } else {
-      // Remove from checked list
-      setCheckedUniversities(checkedUniversities.filter((id) => id !== universityId));
-    }
-    
-    // Update "select all" checkbox state based on individual checkbox selection
-    setSelectAllChecked(universitys.length === checkedUniversities.length + (e.target.checked ? 1 : -1));
+  // Function to handle checkbox change
+  const handleCheckboxChange = (e) => {
+    setIsChecked(e.target.checked);
   };
-
-  // Handle "select all" checkbox change
-  const handleSelectAllChange = (e) => {
-    const isChecked = e.target.checked;
-    setSelectAllChecked(isChecked);
-
-    if (isChecked) {
-      // Select all universities
-      const allUniversityIds = universitys.map((university) => university.id);
-      setCheckedUniversities(allUniversityIds);
-    } else {
-      // Deselect all universities
-      setCheckedUniversities([]);
-    }
-  };
+  
+  
   useEffect(() =>{
     (async()=>await Load())();
   }, []);
@@ -82,23 +58,6 @@ function University() {
         Load();
   }
 
-
-  async function deleteSelectedUniversities() {
-    try {
-      // Loop over checked universities and delete them
-      await Promise.all(
-        checkedUniversities.map((universityId) =>
-          axios.delete(`http://127.0.0.1:8000/university/${universityId}`)
-        )
-      );
-      toastr.error("Selected Universities Deleted Successfully");
-      setCheckedUniversities([]); // Reset the selected checkboxes after delete
-      Load(); // Reload the data
-    } catch (err) {
-      toast.error("Failed to Delete Selected Universities");
-    }
-  }
-
   async function update(event){
     event.preventDefault();
     try{
@@ -118,6 +77,8 @@ function University() {
     }
   }
 
+  // if(degrees.length <= 0) return null;
+
     return (
       <div className="App">
         <div className="container">
@@ -127,24 +88,21 @@ function University() {
             <label className = "col-sm-1 col-form-label"> <button className="btn btn-primary" onClick={save} disabled={!name}> Save </button></label>
             <label className = "col-sm-1 col-form-label"> <button className="btn btn-warning" onClick={update} disabled={!name}> Update </button> </label>
             {/* {isChecked && ( */}
-            {checkedUniversities.length > 0 && (
             <label className = "col-sm-1 col-form-label"> 
-            <button className="btn btn-default"> <i className='fa-solid fa-print'></i> Print </button> </label>
-            )}
-            {/* Conditionally render the buttons based on checkbox selection */}
-            {checkedUniversities.length > 0 && (
+            {isChecked && <button class="btn btn-default"> <i class='fa-solid fa-print'></i> Print </button> }</label>
+            {isChecked && (
             <label className = "col-sm-1 col-form-label">
             
-            <div className="dropdown">
-              <button type="button" className="btn btn-default dropdown-toggle" data-bs-toggle="dropdown">
+            <div class="dropdown">
+              <button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown">
               <i className='fa-solid fa-gear'></i> Action
               </button>
-              <ul className="dropdown-menu"> 
-                <li><Link to="#" className="dropdown-item"> <i className="fa-solid fa-file-export"></i> Export </Link></li>
-                <li><Link to="#" className="dropdown-item"> <i className='fa-solid fa-archive'></i> Archive </Link></li>
-                <li><Link to="#" className="dropdown-item"> <i className="fa-solid fa-inbox"></i> Unarchive </Link></li>
-                <li><Link to="#" className="dropdown-item"> <i className='fa-solid fa-copy'></i> Duplicate </Link></li>
-                <li onClick={deleteSelectedUniversities} ><Link to="#" className="dropdown-item"> <i className='fa-solid fa-trash'></i> Delete </Link></li>
+              <ul class="dropdown-menu"> 
+                <li><Link to="#" class="dropdown-item"> <i className="fa-solid fa-file-export"></i> Export </Link></li>
+                <li><Link to="#" class="dropdown-item"> <i className='fa-solid fa-archive'></i> Archive </Link></li>
+                <li><Link to="#" class="dropdown-item"> <i className="fa-solid fa-inbox"></i> Unarchive </Link></li>
+                <li><Link to="#" class="dropdown-item"> <i className='fa-solid fa-copy'></i> Duplicate </Link></li>
+                <li><Link to="#" class="dropdown-item"> <i className='fa-solid fa-trash'></i> Delete </Link></li>
               </ul>
             </div>
             
@@ -160,7 +118,7 @@ function University() {
           <div className="mb-3 row">
             <label className="col-sm-2 col-form-label"> University </label> 
             
-              <div className="col-sm-10">
+              <div class="col-sm-10">
                 <input type="Text" className="form-control" id="university_name" placeholder = "Enter Employee's University"
                 value={name} onChange={(event)=>{setName(event.target.value);}}/> 
               </div>
@@ -171,7 +129,7 @@ function University() {
 
   <thead>
     <tr>
-      <th scope="col">   <input type="checkbox" id="select-all" onChange={handleSelectAllChange} checked={selectAllChecked}/> </th>
+      <th scope="col"> <input type="checkbox" id="select-all" onChange={handleCheckboxChange}/> </th>
       <th scope="col"> University </th>
       <th scope="col"> Action </th>
     </tr>
@@ -179,18 +137,13 @@ function University() {
   <tbody>
     {universitys.map((university) => (
       <tr key={university.id}>
-    
-        {/* <td> */}
-        <td className={checkedUniversities.includes(university.id) ? "table-hover" : ""}>
-        <input type="checkbox" id="javascript"
-                    checked={checkedUniversities.includes(university.id)}
-                    onChange={(e) => handleCheckboxChange(e, university.id)}
-                  /> </td>
+        {/* <th scope="row">{university.id}</th> */}
+        <td><input type="checkbox" id="javascript" onChange={handleCheckboxChange}/> </td>
         <td>{university.name}</td>
         
         <td>
            <i className='fa-solid fa-pen-to-square' onClick={() => editUniversity(university)}></i> 
-           <i className="fa-solid fa-trash" onClick={() => DeleteUniversity(university.id)}></i> {/*Using a star icon as a favorite icon  */}
+          <i class="fa-solid fa-trash" onClick={() => DeleteUniversity(university.id)}></i> {/* Using a star icon as a favorite icon */} 
         </td>
       </tr>
     ))}
