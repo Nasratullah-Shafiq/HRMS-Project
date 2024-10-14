@@ -206,6 +206,27 @@ function exportToExcel(event) {
   XLSX.writeFile(workbook, "Selected_Degrees.xlsx");
 }
 
+ // Notify user when the number of checked degrees changes
+ useEffect(() => {
+  if (checkedDegrees.length > 0) {
+    toast.info(`You have selected ${checkedDegrees.length} degree(s).`, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+}, [checkedDegrees]);
+
+//  // useEffect to display the length of selected checkboxes
+//  useEffect(() => {
+//   if (checkedDegrees.length > 0) {
+//     toastr.success(`You have selected ${checkedDegrees.length} degree(s).`);
+//   }
+// }, [checkedDegrees]); 
 
 const archiveSelectedDegrees = (e) => {
   e.preventDefault(); // Prevent page reload
@@ -241,6 +262,11 @@ const archiveSelectedDegrees = (e) => {
 
             {/* {isChecked && ( */}
              {checkedDegrees.length > 0 && (
+              <label className = "col-sm-1 col-form-label"> 
+                  <span className="btn btn-default" > <p> {checkedDegrees.length} selected </p> </span> 
+              </label>
+              )}
+              {checkedDegrees.length > 0 && (
              <label className = "col-sm-1 col-form-label"> 
              <button className="btn btn-default" onClick={(e) => generatePDF(e)}> <i className='fa-solid fa-print'></i> Print </button> </label>
              )}
