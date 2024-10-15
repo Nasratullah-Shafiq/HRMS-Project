@@ -11,10 +11,10 @@ function App() {
         <div className='col-sm-12' >  
           <Navbar />
         </div>
-        <div className='col-sm-3'>
+        <div className='col-sm-2' >
           <Sidebar />
         </div>
-        <div className='col-sm-9'>
+        <div className='col-sm-10' style={{ paddingLeft: '50px'}}>
           <Titlebar />
           <MyRouter />
         </div>
