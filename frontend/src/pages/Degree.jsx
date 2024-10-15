@@ -8,6 +8,7 @@ import 'toastr/build/toastr.min.css';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import * as XLSX from 'xlsx'; // Import the xlsx library
+import 'jspdf-autotable'; // Import jsPDF's autoTable plugin
 
 function Degree() {
   // State variables
@@ -117,66 +118,161 @@ function Degree() {
     setCheckedDegrees(isChecked ? degrees.map((degree) => degree.id) : []);
   };
 
+// // Generate PDF report for selected degrees
+// const generatePDF = (e) => {
+//   e.preventDefault();
+//   const doc = new jsPDF();
+//   doc.setFontSize(20);
+//   doc.text('Degree Report', 10, 10);  // Title of the PDF
 
-  function generatePDF(event) {
-    event.preventDefault(); // Prevent the default behavior
+//   let y = 30; // Start Y-axis position for content
+
+//   // Populate the PDF with selected degrees
+//   degrees
+//     .filter((degree) => checkedDegrees.includes(degree.id))
+//     .forEach((degree, index) => {
+//       doc.setFontSize(12);
+//       doc.text(`${index + 1}. ${degree.name}`, 10, y);
+//       y += 10; // Move down for the next item
+//     });
+
+//   // Save and open the PDF
+//   doc.save('degree-report.pdf');
+// };
+
+
+
+
+
+
+
+//  this funtion generate pdf report in auto table format. 
+// const generatePDF = (e) => {
+//   e.preventDefault();
+//   const doc = new jsPDF();
+//   doc.setFontSize(18);
+//   doc.text('Selected Degree Report', 14, 22);
+
+//   // Prepare table data
+//   const tableData = degrees
+//     .filter((degree) => checkedDegrees.includes(degree.id))
+//     .map((degree, index) => [index + 1, degree.name]);
+
+//   // Generate table using autoTable
+//   doc.autoTable({
+//     head: [['#', 'Degree Name']], // Table headers
+//     body: tableData, // Table content
+//     startY: 30, // Start position below the title
+//     theme: 'striped', // Optional: "grid", "striped", or "plain"
+//     headStyles: { fillColor: [22, 160, 133] }, // Header styling (optional)
+//   });
+
+//   doc.save('degree-report.pdf');
+// };
+
+
+
+
+// Generate PDF report for selected degrees
+const generatePDF = (e) => {
+  e.preventDefault();
   
-    // Filter the selected degrees based on the checked IDs
-    const selectedDegrees = degrees.filter((degree) =>
-      checkedDegrees.includes(degree.id)
-    );
+  const doc = new jsPDF('p', 'mm', 'a4'); // Create a new PDF with portrait orientation
   
-    if (selectedDegrees.length === 0) {
-      toast.error("No degrees selected for printing.");
-      return;
-    }
+  // Title of the PDF
+  doc.setFontSize(20);
+  doc.text('Degree Report', 105, 15, { align: 'center' });
+
+  // Define starting points and table headers
+  let startY = 30;
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const cellPadding = 5; // Padding inside each cell
+
+  // Table column widths
+  const colWidths = [20, 100, 60]; // Adjust as per your content (ID, Degree Name, Date)
+
+  // Draw Table Header
+  doc.setFontSize(12);
+  doc.setFillColor(200, 200, 200); // Light gray background for the header
+  doc.rect(10, startY, pageWidth - 20, 10, 'F'); // Draw filled header row
+
+  doc.text('ID', 15, startY + 7);             // ID Column
+  doc.text('Degree Name', 35, startY + 7);    // Name Column
+  doc.text('Date', 145, startY + 7);          // Date Column
+
+  startY += 10; // Move Y-axis down for content rows
+
+  // Populate the PDF with selected degrees (striped rows)
+  degrees
+    .filter((degree) => checkedDegrees.includes(degree.id))
+    .forEach((degree, index) => {
+      const isEvenRow = index % 2 === 0; // Check if row is even for striping
+      if (isEvenRow) {
+        doc.setFillColor(240, 240, 240); // Light gray for even rows
+        doc.rect(10, startY, pageWidth - 20, 10, 'F'); // Filled rectangle
+      }
+
+      // Content inside the table row
+      doc.text(`${degree.id}`, 15, startY + 7); // ID
+      doc.text(degree.name, 35, startY + 7);    // Degree Name
+      doc.text(new Date().toLocaleDateString(), 145, startY + 7); // Example date
+
+      startY += 10; // Move Y-axis down for the next row
+
+      // Check if new page is needed
+      if (startY > 280) {
+        doc.addPage(); // Add new page
+        startY = 30; // Reset Y-axis for the new page
+      }
+    });
+
+  // Save the generated PDF
+  doc.save('degree-report.pdf');
+};
+
+
+
+
+
+
+
+
+
+
+
+
+// formated table design.
+// const generatePDF = (e) => {
+//   e.preventDefault();
+//   const doc = new jsPDF();
   
-    // Create a temporary div to hold the HTML content for the PDF
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = `
-      <table style="width: 100%; border-collapse: collapse;">
-        <thead>
-          <tr>
-            <th style="border: 1px solid black; padding: 8px;">ID</th>
-            <th style="border: 1px solid black; padding: 8px;">Degree</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${selectedDegrees
-            .map(
-              (degree) => `
-            <tr>
-              
-              <td style="border: 1px solid black; padding: 8px;">${degree.name}</td>
-            </tr>`
-            )
-            .join('')}
-        </tbody>
-      </table>
-    `;
-  
+//   // Title
+//   doc.setFontSize(18);
+//   doc.text('Selected Degree Report', 14, 20);
 
-  // Append the temporary div to the body (but keep it hidden)
-  document.body.appendChild(tempDiv);
-  tempDiv.style.display = 'none';
+//   // Table Headers
+//   doc.setFontSize(12);
+//   doc.text('S.No', 14, 40); // Header 1
+//   doc.text('Degree Name', 40, 40); // Header 2
+//   doc.line(14, 42, 195, 42); // Horizontal line below header
 
-  // Use html2canvas to convert the content into an image
-  html2canvas(tempDiv).then((canvas) => {
-    const imgData = canvas.toDataURL('image/png');
-    const doc = new jsPDF();
-    const imgWidth = 190; // Fit to A4 width
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+//   // Table Data - Display the checked degrees
+//   let yPosition = 50; // Starting y position for table rows
+//   degrees
+//     .filter((degree) => checkedDegrees.includes(degree.id))
+//     .forEach((degree, index) => {
+//       doc.text(`${index + 1}`, 14, yPosition); // Serial Number
+//       doc.text(degree.name, 40, yPosition); // Degree Name
+//       yPosition += 10; // Move to the next row (adjust spacing)
+//     });
 
-    doc.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
-    doc.save('Selected_Degrees.pdf');
+//   // Draw a border around the table (Optional)
+//   doc.rect(12, 35, 183, yPosition - 35); // x, y, width, height
 
-    // Remove the temporary div from the document after use
-    document.body.removeChild(tempDiv);
-  }).catch((error) => {
-    console.error('Error generating PDF:', error);
-    toast.error('Failed to generate PDF.');
-  });
-}
+//   // Save the generated PDF
+//   doc.save('degree-report.pdf');
+// };
+
 
 function exportToExcel(event) {
   event.preventDefault(); // Prevent default behavior
