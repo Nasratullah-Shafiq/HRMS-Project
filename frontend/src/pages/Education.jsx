@@ -139,8 +139,13 @@ const UniversityComponent = () => {
        <div className="mb-3 row">
          <label className="col-sm-1 col-form-label"> Start Date </label>
            <div class="col-sm-5">
-             <input type="Text" className="form-control" id="start_date" placeholder = "Enter Your Start Date"
-             value={education_start_date}onChange={(event)=>{setStartDate(event.target.value);}}/> 
+             {/* <input type="Text" className="form-control" id="start_date" placeholder = "Enter Your Start Date"
+             value={education_start_date}onChange={(event)=>{setStartDate(event.target.value);}}/>  */}
+             {/* <input type="date-local" id="appointment" 
+       name="appointment" 
+       /> */}
+       <label for="appointment">Select Date and Time:</label>
+       <input type="datetime-local" id="appointment" name="appointment"/>
            </div>
            <label className="col-sm-1 col-form-label"> Faculty </label>
            <div class="col-sm-5">
