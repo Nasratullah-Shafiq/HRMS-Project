@@ -198,6 +198,7 @@ const generatePDF = (e) => {
 
   doc.text('ID', 15, startY + 7);             // ID Column
   doc.text('Degree Name', 35, startY + 7);    // Name Column
+  doc.text('Degree Name', 35, startY + 7);    // Name Column
   doc.text('Date', 145, startY + 7);          // Date Column
 
   startY += 10; // Move Y-axis down for content rows
@@ -358,8 +359,8 @@ const archiveSelectedDegrees = (e) => {
 
             {/* {isChecked && ( */}
              {checkedDegrees.length > 0 && (
-              <label className = "col-sm-1 col-form-label"> 
-                  <span className="btn btn-default" > <p> {checkedDegrees.length} selected </p> </span> 
+              <label className = "alert alert-success" style={{ padding: '7px'}}> 
+                  {checkedDegrees.length} selected
               </label>
               )}
               {checkedDegrees.length > 0 && (
