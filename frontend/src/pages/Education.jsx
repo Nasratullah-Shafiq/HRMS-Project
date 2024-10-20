@@ -1,9 +1,5 @@
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import toastr from 'toastr';
-import 'toastr/build/toastr.min.css';
-import { Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import { React, useEffect, useState, Link, axios, toast, toastr, ToastContainer, jsPDF, XLSX } from '../components/import'; // Adjust path as needed
+
 import { loadEducation, saveEducation, loadUniversity, loadFaculty, loadMajor, loadDegree, loadCountry } from '../functions/dataLoaders';  // Import the data loaders
 
 const UniversityComponent = () => {
