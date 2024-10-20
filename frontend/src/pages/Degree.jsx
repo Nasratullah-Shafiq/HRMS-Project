@@ -1,14 +1,4 @@
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import toastr from 'toastr';
-import 'toastr/build/toastr.min.css';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
-import * as XLSX from 'xlsx'; // Import the xlsx library
-import 'jspdf-autotable'; // Import jsPDF's autoTable plugin
+import { React, useEffect, useState, Link, axios, toast, toastr, jsPDF, XLSX } from '../components/import'; // Adjust path as needed
 
 function Degree() {
   // State variables
@@ -118,60 +108,6 @@ function Degree() {
     setCheckedDegrees(isChecked ? degrees.map((degree) => degree.id) : []);
   };
 
-// // Generate PDF report for selected degrees
-// const generatePDF = (e) => {
-//   e.preventDefault();
-//   const doc = new jsPDF();
-//   doc.setFontSize(20);
-//   doc.text('Degree Report', 10, 10);  // Title of the PDF
-
-//   let y = 30; // Start Y-axis position for content
-
-//   // Populate the PDF with selected degrees
-//   degrees
-//     .filter((degree) => checkedDegrees.includes(degree.id))
-//     .forEach((degree, index) => {
-//       doc.setFontSize(12);
-//       doc.text(`${index + 1}. ${degree.name}`, 10, y);
-//       y += 10; // Move down for the next item
-//     });
-
-//   // Save and open the PDF
-//   doc.save('degree-report.pdf');
-// };
-
-
-
-
-
-
-
-//  this funtion generate pdf report in auto table format. 
-// const generatePDF = (e) => {
-//   e.preventDefault();
-//   const doc = new jsPDF();
-//   doc.setFontSize(18);
-//   doc.text('Selected Degree Report', 14, 22);
-
-//   // Prepare table data
-//   const tableData = degrees
-//     .filter((degree) => checkedDegrees.includes(degree.id))
-//     .map((degree, index) => [index + 1, degree.name]);
-
-//   // Generate table using autoTable
-//   doc.autoTable({
-//     head: [['#', 'Degree Name']], // Table headers
-//     body: tableData, // Table content
-//     startY: 30, // Start position below the title
-//     theme: 'striped', // Optional: "grid", "striped", or "plain"
-//     headStyles: { fillColor: [22, 160, 133] }, // Header styling (optional)
-//   });
-
-//   doc.save('degree-report.pdf');
-// };
-
-
-
 
 // Generate PDF report for selected degrees
 const generatePDF = (e) => {
@@ -230,50 +166,6 @@ const generatePDF = (e) => {
   // Save the generated PDF
   doc.save('degree-report.pdf');
 };
-
-
-
-
-
-
-
-
-
-
-
-
-// formated table design.
-// const generatePDF = (e) => {
-//   e.preventDefault();
-//   const doc = new jsPDF();
-  
-//   // Title
-//   doc.setFontSize(18);
-//   doc.text('Selected Degree Report', 14, 20);
-
-//   // Table Headers
-//   doc.setFontSize(12);
-//   doc.text('S.No', 14, 40); // Header 1
-//   doc.text('Degree Name', 40, 40); // Header 2
-//   doc.line(14, 42, 195, 42); // Horizontal line below header
-
-//   // Table Data - Display the checked degrees
-//   let yPosition = 50; // Starting y position for table rows
-//   degrees
-//     .filter((degree) => checkedDegrees.includes(degree.id))
-//     .forEach((degree, index) => {
-//       doc.text(`${index + 1}`, 14, yPosition); // Serial Number
-//       doc.text(degree.name, 40, yPosition); // Degree Name
-//       yPosition += 10; // Move to the next row (adjust spacing)
-//     });
-
-//   // Draw a border around the table (Optional)
-//   doc.rect(12, 35, 183, yPosition - 35); // x, y, width, height
-
-//   // Save the generated PDF
-//   doc.save('degree-report.pdf');
-// };
-
 
 function exportToExcel(event) {
   event.preventDefault(); // Prevent default behavior
