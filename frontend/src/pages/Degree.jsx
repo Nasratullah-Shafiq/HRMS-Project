@@ -1,28 +1,44 @@
 import { React, useEffect, useState, Link, axios, toast, toastr, jsPDF, XLSX } from '../components/import'; // Adjust path as needed
+import { loadData } from '../functions/dataLoader'; // Adjust path if necessary
+  
+// function Degree() {
 
-function Degree() {
+ const Degree = () => {
   // State variables
   const [id, setId] = useState('');
   const [name, setName] = useState('');
-  const [degrees, setDegrees] = useState([]);
+  // const [degrees, setDegrees] = useState([]);
   const [checkedDegrees, setCheckedDegrees] = useState([]); // Track selected degrees
   const [selectAllChecked, setSelectAllChecked] = useState(false); // Track "Select All" checkbox state
 
-  // Fetch degree data on component mount
-  useEffect(() => {
-    (async () => await loadDegrees())();
-  }, []);
-
+  
+ 
+    const [degrees, setDegrees] = useState([]);
+    const [error, setError] = useState(null);
+  
+    useEffect(() => {
+      async function fetchDegrees() {
+        try {
+          const data = await loadData('degree'); // Use the appropriate endpoint
+          setDegrees(data);
+        } catch (err) {
+          setError('Failed to fetch degrees');
+        }
+      }
+  
+      fetchDegrees(); // Call the function inside useEffect
+    }, []); // Runs once on component mount
+  
   // Fetch all degrees from the API
-  async function loadDegrees() {
-    try {
-      const result = await axios.get('http://127.0.0.1:8000/degree/');
-      setDegrees(result.data);
-      console.log(result.data);
-    } catch (err) {
-      console.error('Error fetching degrees:', err);
-    }
-  }
+  // async function loadDegrees() {
+  //   try {
+  //     const result = await axios.get('http://127.0.0.1:8000/degree/');
+  //     setDegrees(result.data);
+  //     console.log(result.data);
+  //   } catch (err) {
+  //     console.error('Error fetching degrees:', err);
+  //   }
+  // }
 
   // Save a new degree
   async function save(event) {
@@ -31,7 +47,7 @@ function Degree() {
       await axios.post('http://127.0.0.1:8000/degree/', { id, name });
       toastr.success('Record Registered Successfully');
       resetForm();
-      loadDegrees();
+      loadData();
     } catch (err) {
       toast.error('Failed to Register Degree');
     }
@@ -50,7 +66,7 @@ function Degree() {
       await axios.put(`http://127.0.0.1:8000/degree/${id}`, { id, name });
       toast.info('Record Updated Successfully');
       resetForm();
-      loadDegrees();
+      loadData();
     } catch (err) {
       toast.error('Failed to Update Degree');
     }
@@ -61,7 +77,7 @@ function Degree() {
     try {
       await axios.delete(`http://127.0.0.1:8000/degree/${id}`);
       toast.info('Degree Deleted Successfully');
-      loadDegrees();
+      loadData();
     } catch (err) {
       toast.error('Failed to Delete Degree');
     }
@@ -77,7 +93,7 @@ function Degree() {
       );
       toastr.error('Selected Degrees Deleted Successfully');
       setCheckedDegrees([]);
-      loadDegrees();
+      loadData();
     } catch (err) {
       toast.error('Failed to Delete Selected Degrees');
     }
