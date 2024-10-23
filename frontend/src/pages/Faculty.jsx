@@ -1,25 +1,31 @@
-import axios from 'axios';
-import {useEffect, useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import toastr from 'toastr';
-import 'toastr/build/toastr.min.css';
-
+// import axios from 'axios';
+// import {useEffect, useState } from "react";
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+// import toastr from 'toastr';
+// import 'toastr/build/toastr.min.css';
+import { React, useEffect, useState, Link, axios, toast, toastr, jsPDF, XLSX } from '../components/import'; // Adjust path as needed
+import { loadData } from '../functions/dataLoader'; // Adjust path if necessary
 function Faculty() {
   const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [facultys, setFaculty] = useState([]);
-  
-  useEffect(() =>{
-    (async()=>await Load())();
-  }, []);
 
-  async function Load(){
-    const result = await axios.get(
-      "http://127.0.0.1:8000/faculty/");
-      setFaculty(result.data);
-      console.log(result.data);
-  }
+  const [degrees, setDegrees] = useState([]);
+    const [error, setError] = useState(null);
+
+  useEffect(() => {
+    async function fetchDegrees() {
+      try {
+        const data = await loadData('faculty'); // Use the appropriate endpoint
+        setFaculty(data);
+      } catch (err) {
+        setError('Failed to fetch degrees');
+      }
+    }
+
+    fetchDegrees(); // Call the function inside useEffect
+  }, []); // Runs once on component mount
 
   async function save(event){
     event.preventDefault();
@@ -31,7 +37,7 @@ function Faculty() {
       toastr.success("Record Registered Successfully");
       setId("");
       setName("");
-      Load();
+      loadData();
     }
     catch(err){
       toast.error("Faculty Registration Failed");
@@ -46,7 +52,7 @@ function Faculty() {
   async function DeleteFaculty(id){
     await axios.delete("http://127.0.0.1:8000/faculty/"+id);
         toastr.error("Data Deleted Successfully");
-        Load();
+        loadData();
   }
 
   async function update(event){
@@ -60,7 +66,7 @@ function Faculty() {
     
       setId("");
       setName("");
-      Load();
+      loadData();
     }
     catch(err){
     
