@@ -29,6 +29,8 @@ import { loadData } from '../functions/dataLoader'; // Adjust path if necessary
       fetchDegrees(); // Call the function inside useEffect
     }, []); // Runs once on component mount
   
+
+    
   // Fetch all degrees from the API
   // async function loadDegrees() {
   //   try {
