@@ -12,7 +12,6 @@ import { loadData } from '../functions/dataLoader'; // Adjust path if necessary
   const [selectAllChecked, setSelectAllChecked] = useState(false); // Track "Select All" checkbox state
 
   
- 
     const [degrees, setDegrees] = useState([]);
     const [error, setError] = useState(null);
   
@@ -30,7 +29,7 @@ import { loadData } from '../functions/dataLoader'; // Adjust path if necessary
     }, []); // Runs once on component mount
   
 
-    
+
   // Fetch all degrees from the API
   // async function loadDegrees() {
   //   try {
