@@ -28,19 +28,6 @@ import { loadData } from '../functions/dataLoader'; // Adjust path if necessary
       fetchDegrees(); // Call the function inside useEffect
     }, []); // Runs once on component mount
   
-
-
-  // Fetch all degrees from the API
-  // async function loadDegrees() {
-  //   try {
-  //     const result = await axios.get('http://127.0.0.1:8000/degree/');
-  //     setDegrees(result.data);
-  //     console.log(result.data);
-  //   } catch (err) {
-  //     console.error('Error fetching degrees:', err);
-  //   }
-  // }
-
   // Save a new degree
   async function save(event) {
     event.preventDefault();
