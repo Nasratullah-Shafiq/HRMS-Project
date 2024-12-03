@@ -5,6 +5,7 @@ import enTranslation from '../locals/en/english.json';
 import frTranslation from '../locals/fr/dari.json';
 
 i18n.use(initReactI18next).init({
+  
   resources: {
     en: { translation: enTranslation },
     fr: { translation: frTranslation },
