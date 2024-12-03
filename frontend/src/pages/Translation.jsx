@@ -1,8 +1,13 @@
-// src/App.js
-import React from 'react';
-import '../i18n/i18n'; // Import the i18n configuration
+// // src/App.js
+// import React from 'react';
+// import './i18n/i18n'; // Import the i18n configuration
 
+// import { useTranslation } from 'react-i18next';
+
+// import './i18n/i18n'; // Import the i18n configuration
+import '../i18n/i18n';
 import { useTranslation } from 'react-i18next';
+
 
 function Translation() {
   const { t, i18n } = useTranslation();
