@@ -68,9 +68,6 @@ function Department() {
       toastr.error("Registration Failed");
     }
   }
-
-  // if(degrees.length <= 0) return null;
-
     return (
       <div className="App">
         <div className="container">
