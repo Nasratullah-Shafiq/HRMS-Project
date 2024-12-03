@@ -69,6 +69,4 @@ urlpatterns = [
     path('step/', stepApi),  # This handles requests to Step/
     re_path(r'^step/([0-9]+)$', stepApi),  # This handles requests to Step Api /<id>"
 
-    
-
 ]
