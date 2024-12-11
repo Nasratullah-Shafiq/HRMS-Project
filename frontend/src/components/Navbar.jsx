@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
+// import { useTranslation } from 'react-i18next';
 function Navbar(){
   const [id, setId] = useState('');
   const [name, setName] = useState('');
@@ -21,6 +22,7 @@ function Navbar(){
       setCountry(result.data);
       console.log(result.data);
   }
+
 
   async function save(event){
     event.preventDefault();
@@ -236,6 +238,12 @@ function Navbar(){
                 <Link className="nav-link active" aria-current="page" to="/course"> Course </Link>
               </li>
 
+              {/* <select onChange={handleLanguageChange} value={i18n.language}>
+                <option value="en">English</option>
+                <option value="fr">دری (Dari)</option>
+              </select>
+                       */}
+              
               <li className="nav-item dropdown">
                 <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
                 <i className='fa-solid fa-gear'></i>  Configuration
