@@ -14,6 +14,7 @@ function University() {
   const [checkedUniversities, setCheckedUniversities] = useState([]); // Track checked universities
   const [selectAllChecked, setSelectAllChecked] = useState(false); // Track "select all" checkbox
 
+  
    // Handle individual checkbox change
    const handleCheckboxChange = (e, universityId) => {
     if (e.target.checked) {
