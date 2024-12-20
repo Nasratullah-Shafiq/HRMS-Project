@@ -25,8 +25,6 @@ export default function Translation() {
 
 
 
-
-
 // // src/App.jsx
 // import React, { useState, useEffect } from "react";
 // import { getTranslations } from '../i18n/i18n';
