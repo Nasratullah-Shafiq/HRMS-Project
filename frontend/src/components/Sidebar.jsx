@@ -15,6 +15,7 @@ function Sidebar(){
             <svg class="bi pe-none me-2" width="16" height="16"></svg>
             Home
             </Link>
+            
         </li>
         <li>
             <Link to="#" class="nav-link link-body-emphasis">
