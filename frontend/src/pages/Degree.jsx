@@ -1,5 +1,5 @@
 import { React, useEffect, useState, Link, axios, toast, toastr, jsPDF, XLSX } from '../components/import'; // Adjust path as needed
-import { loadData } from '../functions/dataLoader'; // Adjust path if necessary
+// import { loadData } from '../functions/dataLoader'; // Adjust path if necessary
   
 // function Degree() {
 
