@@ -13,7 +13,7 @@ from HR.views.address_view import countryApi, provinceApi, districtApi
 # from HR.views.major_view import majorApi
 from HR.views.experience_view import experienceApi, organizationTypeApi, statusApi, jobPositionApi, stepApi
 # from HR.views.experience_view import 
-urlpatterns = [
+urlpatterns = [ 
     path('student/', studentApi),  # This handles requests to "Student/"
     re_path(r'^student/([0-9]+)$', studentApi),  # This handles requests to "Student/<id>"
     path('admin/', admin.site.urls),  # Admin route
