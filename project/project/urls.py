@@ -16,7 +16,7 @@ from HR.views.experience_view import experienceApi, organizationTypeApi, statusA
 urlpatterns = [ 
     path('student/', studentApi),  # This handles requests to "Student/"
     re_path(r'^student/([0-9]+)$', studentApi),  # This handles requests to "Student/<id>"
-    path('admin/', admin.site.urls),  # Admin route
+    path('admin/', admin.site.urls),  # Admin route 
 
     path('course/', courseApi),  # This handles requests to "Course/"
     re_path(r'^course/([0-9]+)$', courseApi),  # This handles requests to "Course/<id>"
