@@ -6,6 +6,6 @@ from .models import Student, Course, Health
 
 admin.site.register(Student)
 admin.site.register(Course)
-admin.site.register(Health)
+admin.site.register(Health) 
 # admin.site.register(employee)
  
