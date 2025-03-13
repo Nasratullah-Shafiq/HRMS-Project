@@ -229,7 +229,7 @@ function Navbar(){
               </li>
               <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to="/health"> Health </Link>
-              </li> 
+              </li>  
               <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to="/students"> Student </Link>
               </li>
