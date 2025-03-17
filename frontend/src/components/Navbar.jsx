@@ -206,6 +206,7 @@ function Navbar(){
       toastr.error("Registration Failed");
     }
   }
+  
     return(
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
