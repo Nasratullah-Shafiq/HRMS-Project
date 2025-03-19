@@ -29,9 +29,9 @@ import i18n from './i18n/i18n'; // Import initialized i18n instance
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-    <BrowserRouter>
+    // <BrowserRouter>
         <App />
-    </BrowserRouter>
+    // </BrowserRouter>
     
   // </React.StrictMode>
 );
