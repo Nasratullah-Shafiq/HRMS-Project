@@ -7,8 +7,7 @@
   h1 {
     margin-bottom: 20px;
   }
-
-
+  
   /* Grid Container */
   .grid-container {
     display: grid;
@@ -36,4 +35,3 @@
   h2 svg {
     margin-right: 10px;
   }
-  
