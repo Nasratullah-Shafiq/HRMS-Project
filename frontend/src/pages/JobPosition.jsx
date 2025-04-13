@@ -21,23 +21,55 @@ function JobPosition() {
       console.log(result.data);
   }
 
-  async function save(event){
+  // async function save(event){
+  //   event.preventDefault();
+  //   try{
+  //     await axios.post("http://127.0.0.1:8000/job-position/",{
+  //       id: id,
+  //       name: name
+  //     });
+  //     toastr.success("Record Registered Successfully");
+    
+  //     setId("");
+  //     setName("");
+  //     Load();
+  //   }
+  //   catch(err){
+  //     toast.error("Registration Failed");
+  //   }
+  // }
+
+  async function save(event) {
     event.preventDefault();
-    try{
-      await axios.post("http://127.0.0.1:8000/job-position/",{
+    try {
+      // Check if the name already exists in the database
+      const response = await axios.get("http://127.0.0.1:8000/job-position/");
+      const existingData = response.data;
+  
+      // Check if the name already exists
+      const isDuplicate = existingData.some((item) => item.name === name);
+  
+      if (isDuplicate) {
+        toastr.warning("Duplicate Entry! This record already exists.");
+        return;
+      }
+  
+      // Proceed with saving if unique
+      await axios.post("http://127.0.0.1:8000/job-position/", {
         id: id,
         name: name
       });
+  
       toastr.success("Record Registered Successfully");
-    
+  
       setId("");
       setName("");
       Load();
-    }
-    catch(err){
-      toast.error("Registration Failed");
+    } catch (err) {
+      toastr.error("Registration Failed");
     }
   }
+  
 
   async function editJobPosition(job_positions){
     setName(job_positions.name);
