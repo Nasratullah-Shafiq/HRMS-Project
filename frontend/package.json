@@ -15,6 +15,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.4",
+    "bootstrap-icons": "^1.11.3",
     "font-awesome": "^4.7.0",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.2",
