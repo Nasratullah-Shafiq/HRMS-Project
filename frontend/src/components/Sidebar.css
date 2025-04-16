@@ -1,4 +1,4 @@
-.sidebar {
+/* .sidebar {
     width: 250px;
     height: 100vh;
     background-color: #f8f9fa;
@@ -52,7 +52,7 @@
     min-width: 24px;
   }
   
-  /* Colorful icons */
+
   .home-icon { color: #4e73df; }
   .education-icon { color: #1cc88a; }
   .experience-icon { color: #36b9cc; }
@@ -70,4 +70,47 @@
   .sidebar-item span {
     font-size: 0.95rem;
     color: #212529;
+  } */
+
+  .sidebar {
+    width: 280px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
   }
+  
+  .nav-link {
+    border-radius: 4px;
+    margin-bottom: 2px;
+  }
+  
+  .nav-link:hover {
+    background-color: #e9ecef;
+  }
+  
+  .nav-link.active {
+    background-color: #0d6efd;
+    color: white !important;
+  }
+  
+  .bi {
+    font-size: 1.1rem;
+  }
+
+  /* Active link styling */
+.nav-link.active {
+  background-color: #0d6efd; /* Bootstrap primary blue */
+  color: white !important; /* Force white text */
+}
+
+/* Hover effect for all links */
+.nav-link:hover:not(.active) {
+  background-color: #e9ecef; /* Light gray */
+}
+
+/* Icon color for active links */
+.nav-link.active .bi {
+  color: white !important;
+}
