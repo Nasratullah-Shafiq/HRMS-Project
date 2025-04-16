@@ -1,0 +1,73 @@
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #f8f9fa;
+    border-right: 1px solid #dee2e6;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .sidebar-header {
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .sidebar-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .sidebar-section {
+    margin-bottom: 25px;
+  }
+  
+  .sidebar-subheader {
+    margin: 15px 0 10px 0;
+    font-size: 0.9rem;
+    color: #6c757d;
+    padding-left: 10px;
+    font-weight: 600;
+  }
+  
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 5px;
+  }
+  
+  .sidebar-item:hover {
+    background-color: #e9ecef;
+  }
+  
+  .sidebar-icon {
+    margin-right: 10px;
+    font-size: 16px;
+    min-width: 24px;
+  }
+  
+  /* Colorful icons */
+  .home-icon { color: #4e73df; }
+  .education-icon { color: #1cc88a; }
+  .experience-icon { color: #36b9cc; }
+  .travel-icon { color: #f6c23e; }
+  .exam-icon { color: #e74a3b; }
+  .language-icon { color: #5a5c69; }
+  .property-icon { color: #2e59d9; }
+  .guarantee-icon { color: #17a673; }
+  .documents-icon { color: #6f42c1; }
+  .dashboard-icon { color: #fd7e14; }
+  .orders-icon { color: #e83e8c; }
+  .products-icon { color: #20c997; }
+  .customers-icon { color: #6610f2; }
+  
+  .sidebar-item span {
+    font-size: 0.95rem;
+    color: #212529;
+  }
