@@ -126,6 +126,7 @@
 //           <p>Employee search</p>
 //         </div>
 
+
 //         {/* General Reports */}
 //         <div className="grid-item" onClick={() => alert('Navigate to General Reports')}>
 //           <h2>
