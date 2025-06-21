@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';  // Import SweetAlert2
 function Course() {
   const [id, setId] = useState('');
   const [course, setCourse] = useState('');
-  const [fee, setFee] = useState('');
+  const [fee, setFee] = useState(''); 
   const [courses, setUsers] = useState([]);  
   useEffect(() =>{
     (async()=>await Load())();
