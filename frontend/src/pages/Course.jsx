@@ -11,7 +11,7 @@ function Course() {
   const [id, setId] = useState('');
   const [course, setCourse] = useState('');
   const [fee, setFee] = useState(''); 
-  const [courses, setUsers] = useState([]);  
+  const [courses, setUsers] = useState([]);   
   useEffect(() =>{
     (async()=>await Load())();
   }, []);
