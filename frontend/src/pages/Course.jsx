@@ -13,7 +13,7 @@ function Course() {
   const [fee, setFee] = useState(''); 
   const [courses, setUsers] = useState([]);   
   useEffect(() =>{
-    (async()=>await Load())();
+    (async()=>await Load())(); 
   }, []);
 
   async function Load(){
