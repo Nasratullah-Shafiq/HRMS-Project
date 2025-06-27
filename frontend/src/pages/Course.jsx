@@ -15,7 +15,7 @@ function Course() {
   useEffect(() =>{ 
     (async()=>await Load())(); 
   }, []);
-  
+
  
   async function Load(){
     const result = await axios.get(
@@ -23,6 +23,7 @@ function Course() {
       setUsers(result.data);
       console.log(result.data);
   }
+  
 
   async function save(event){
     event.preventDefault();
