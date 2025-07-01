@@ -32,6 +32,7 @@ function Course() {
         fee: fee
       });
       
+
       // alert("This is not enogh");
       // Swal.fire('Success!', 'Record Updated Successfully', 'success'); 
       // toast.success("Course Added Successfully");
