@@ -38,6 +38,7 @@ function Course() {
       // toast.success("Course Added Successfully");
       toastr.success("Course Added Successfully");
     
+      
       setId("");
       setCourse("");
       setFee("");
