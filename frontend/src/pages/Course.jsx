@@ -21,7 +21,7 @@ function Course() {
       "http://127.0.0.1:8000/course/");
       setUsers(result.data);
       console.log(result.data);
-  }
+  } 
   
   async function save(event){
     event.preventDefault();
@@ -38,7 +38,7 @@ function Course() {
       // toast.success("Course Added Successfully");
       toastr.success("Course Added Successfully");
     
-      
+
       setId("");
       setCourse("");
       setFee("");
