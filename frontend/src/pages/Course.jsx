@@ -30,7 +30,7 @@ function Course() {
         id: id,
         course: course,
         fee: fee
-      });
+      }); 
       
 
       // alert("This is not enogh");
