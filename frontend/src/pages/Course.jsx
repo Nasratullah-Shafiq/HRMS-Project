@@ -23,6 +23,7 @@ function Course() {
       console.log(result.data);
   } 
   
+  
   async function save(event){
     event.preventDefault();
     try{
