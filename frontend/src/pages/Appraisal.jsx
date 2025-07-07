@@ -7,6 +7,7 @@ import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
 import Swal from 'sweetalert2';  // Import SweetAlert2
 
+
 function HR_Employee() {
   const [id, setId] = useState('');
   const [full_name, setFull_Name] = useState('');
