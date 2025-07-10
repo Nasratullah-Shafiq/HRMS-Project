@@ -16,6 +16,7 @@ function HR_Employee() {
   // const [date_of_birth, setDate_Of_Birth] = useState('');
   // const [placce_of_birth, setPlace_Of_Birth] = useState('');
   // const [gender, setGender] = useState('');
+  
   // const [natinality, setNationality] = useState('');
   // const [degree, setDegree] = useState('');
   // const [gederal_directorate, setGeneral_Directorate] = useState('');
