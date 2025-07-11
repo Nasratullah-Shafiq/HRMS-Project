@@ -8,6 +8,7 @@ import 'toastr/build/toastr.min.css';
 import Swal from 'sweetalert2';  // Import SweetAlert2
 
 function HR_Employee() {
+  
   const [id, setId] = useState('');
   const [full_name, setFull_Name] = useState('');
   const [last_name, setLast_Name] = useState('');
@@ -16,7 +17,7 @@ function HR_Employee() {
   // const [date_of_birth, setDate_Of_Birth] = useState('');
   // const [placce_of_birth, setPlace_Of_Birth] = useState('');
   // const [gender, setGender] = useState('');
-  
+
   // const [natinality, setNationality] = useState('');
   // const [degree, setDegree] = useState('');
   // const [gederal_directorate, setGeneral_Directorate] = useState('');
