@@ -15,6 +15,7 @@ function HR_Employee() {
   
   const [last_name, setLast_Name] = useState('');
   
+
   // const [father_name, setFater_Name] = useState('');
   // const [grand_father_name, setGrand_Father_Name] = useState('');
   // const [date_of_birth, setDate_Of_Birth] = useState('');
