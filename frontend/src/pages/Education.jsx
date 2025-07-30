@@ -9,14 +9,16 @@ const UniversityComponent = () => {
     const [education_end_date, setEndDate] = useState("");
     const [batch_no, setBatchNo] = useState("");
     const [education_remarks, setRemarks] = useState("");
+    const [checkedEducations, setCheckedEducations] = useState([]);
     
-    const [educations, setEducation] = useState([]);
+    const [education, setEducation] = useState([]);
     const [universitys, setUniversity] = useState([]);
     const [facultys, setFaculty] = useState([]);
     const [majors, setMajor] = useState([]);
     const [degrees, setDegree] = useState([]);
     const [countrys, setCountry] = useState([]); 
     const [loading, setLoading] = useState(true);  // Added loading state
+    const [selectAllChecked, setSelectAllChecked] = useState(false); // Track "Select All" checkbox state
   
     // Function to load updated data (example)
     const Load = () => {
@@ -72,7 +74,27 @@ const UniversityComponent = () => {
     };
 
     loadData();
+    setCheckedEducations([]);
   }, []);
+
+  // Handle individual checkbox change
+  const handleCheckboxChange = (e, educationId) => {
+    const isChecked = e.target.checked;
+    setCheckedEducations((prev) =>
+      isChecked ? [...prev, educationId] : prev.filter((id) => id !== educationId)
+    );
+
+    setSelectAllChecked(
+      education.length === checkedEducations.length + (isChecked ? 1 : -1)
+    );
+  };
+
+  // Handle "Select All" checkbox change
+  const handleSelectAllChange = (e) => {
+    const isChecked = e.target.checked;
+    setSelectAllChecked(isChecked);
+    setCheckedEducations(isChecked ? education.map((education) => education.id) : []);
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -210,67 +232,74 @@ const UniversityComponent = () => {
           <div className='container mt-5'>
             <div className='row'>
                 <div className='col-md-12'>
-                    <div className='card'>
+                    {/* <div className='card'> */}
                         <div className='card-header'>
                             <h4> Education
                                 {/* <Link to ="/student/create" style={ {margin: '0px 0px 0px 1000px'} } className = "btn btn-primary">Add Student </Link> */}
                                 <Link to ="/course/store" style={ {margin: '0px 0px 0px 1000px'} } className = "btn btn-primary"> New </Link>
                             </h4>
                         </div>
-                        <div className='card-body'>
-                            <table className="table table-stripped">
-                                <thead>
-                                    <tr>
-                                        <td> ID </td>
-                                        <td> Country </td>
-                                        <td> Degree </td>
-                                        <td> University </td>
-                                        <td> Faculty </td>
-                                        <td> Major </td>
-                                        <td> Start Date </td>
-                                        <td> End Date </td>
-                                        <td> Batch No </td>
-                                        <td> Remarks </td>
-                                    </tr>
-                                </thead>
-                              <tbody>
-                                {educations.map((education) => (
-                                <tr key={education.id}>
-                                  <th scope="row">{education.id}</th>
-                                  <td>{education.country}</td>
-                                  <td>{education.degree}</td>
-                                  <td>{education.faculty}</td>
-                                  <td>{education.university}</td>
-                                  <td>{education.major}</td>
-                                  <td>{education.education_start_date}</td>
-                                  <td>{education.education_end_date}</td>
-                                  <td>{education.batch_no}</td>
-                                  <td>{education.education_remarks}</td>
-                                  <td>
-                                    <button
-                                      type="button"
-                                      className="btn btn-warning"
-                                      // onClick={() => editEducation(education)}
-                                    >
-                                      Edit
-                                    </button>
-                                    </td>
-                                    <td>
-                                    <button
-                                      type="button"
-                                      className="btn btn-danger"
-                                      // onClick={() => DeleteEducation(education.id)}
-                                    >
-                                      Delete
-                                    </button>
-                                  </td>
-                                </tr>
-                              ))}
-                              </tbody>
-                            </table>
-                        </div>
+                          <table className="table table-striped table-hover" align="center">
+                          <thead>
+                            <tr>
+                              <th style={{ width: '20px' }}>
+                                <input
+                                  type="checkbox"
+                                  id="select-all"
+                                  onChange={handleSelectAllChange}
+                                  checked={selectAllChecked}
+                                />
+                              </th>
+                              <th> Country </th>
+                              <th> Start Date </th>
+                              <th> End Date </th>
+                              <th> Batch No </th>
+                              <th> Remarks </th>
+                              <th> University </th>
+                              <th> Degree </th>
+                              <th> Major </th>
+                              <th style={{ textAlign: 'right' }}>Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          {degrees
+                          .filter((education) => !education.isArchived) // Show only non-archived degrees
+                            .map((education) => (
+                            
+                              <tr key={education.id}>
+                                <td>
+                                  <input
+                                    type="checkbox"
+                                    checked={checkedEducations.includes(education.id)}
+                                    onChange={(e) => handleCheckboxChange(e, education.id)}
+                                  />
+                                </td>
+                                <td>{education.name}</td>
+                                <td>{education.startDate}</td>
+                                <td>{education.endDate}</td>
+                                <td>{education.batchNo}</td>
+                                <td>{education.university}</td>
+                                <td>{education.degree}</td>
+                                <td>{education.major}</td>
+
+                                <td style={{ textAlign: 'right', padding: '10px' }}>
+                                  <i
+                                    className="fa-regular fa-pen-to-square"
+                                    // onClick={() => editEducation(education)}
+                                  ></i>
+                                  <i
+                                    className="fa-solid fa-trash"
+                                    style={{ paddingLeft: '15px' }}
+                                    // onClick={() => DeleteEducation(education.id)}
+                                  ></i>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                       
                     </div>
-                </div>
+                {/* </div> */}
             </div>
         </div>
       
