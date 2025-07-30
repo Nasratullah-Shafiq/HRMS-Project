@@ -15,8 +15,8 @@ function App() {
         
           <Sidebar />
         </div>
-        <div className='col-sm-10' style={{ paddingLeft: '50px'}}>
-          <Titlebar />
+        <div className='col-sm-10' style={{ paddingLeft: '20px'}}>
+          
           <MyRouter />
         </div>
       
