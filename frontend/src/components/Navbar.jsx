@@ -208,7 +208,7 @@ function Navbar(){
   }
   
     return(
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary bg-danger">
         <div className="container-fluid">
           <Link className="navbar-brand" to="#">React</Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -219,23 +219,9 @@ function Navbar(){
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="/">Home</a>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/contact-us"> Contact </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/about-us"> About </Link>
-              </li>   
+ 
               <li className="nav-item"> 
                 <Link className="nav-link active" aria-current="page" to="/education"> Education </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/health"> Health </Link>
-              </li>   
-              <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/students"> Student </Link>
-              </li>  
-              <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/course"> Course </Link>
               </li>
 
               {/* <select onChange={handleLanguageChange} value={i18n.language}>
