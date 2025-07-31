@@ -1,8 +1,7 @@
 import { React, useEffect, useState, Link, axios, toast, toastr, ToastContainer, jsPDF, XLSX } from '../components/import'; // Adjust path as needed
 
-// import { loadEducation, saveEducation, loadUniversity, loadFaculty, loadMajor, loadDegree, loadCountry } from '../functions/dataLoaders';  // Import the data loaders
 import { loadData as loadAllData} from '../functions/dataLoader';
-
+import { saveEducation } from '../functions/dataLoaders'; // Import the save function
 const UniversityComponent = () => {
 
     const [id, setId] = useState("");
@@ -59,26 +58,37 @@ const UniversityComponent = () => {
       // Call the saveEducation function
       await saveEducation(educationData, stateSetters);
     };
+    useEffect(() => {
+  const loadsData = async () => {
+    try {
+      const educationData = await loadAllData('education');
+      setEducation(educationData);
 
-  useEffect(() => {
-    const loadsData = async () => {
-      try {
-        await loadAllData(setEducation);  //Load Education Data
-        await loadUniversity(setUniversity);  // Load university data
-        await loadFaculty(setFaculty);        // Load faculty data
-        await loadMajor(setMajor);            // Load major data
-        await loadDegree(setDegree);
-        await loadCountry(setCountry);          // Load degree data
-      } catch (error) {
-        toast.error("Error loading data");
-      } finally {
-        setLoading(false);  // Set loading to false after data is loaded
-      }
-    };
+      const universityData = await loadAllData('university');
+      setUniversity(universityData);
 
-    loadsData();
-    setCheckedEducations([]);
-  }, []);
+      const facultyData = await loadAllData('faculty');
+      setFaculty(facultyData);
+
+      const majorData = await loadAllData('major');
+      setMajor(majorData);
+
+      const degreeData = await loadAllData('degree');
+      setDegree(degreeData);
+
+      const countryData = await loadAllData('country');
+      setCountry(countryData);
+    } catch (error) {
+      // console.error('Error loading data:', error);
+      toast.error("Error loading data");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  loadsData();
+}, []);
+
 
   // Handle individual checkbox change
   const handleCheckboxChange = (e, educationId) => {
