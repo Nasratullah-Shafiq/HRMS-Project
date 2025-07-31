@@ -7,7 +7,7 @@ export async function loadData(endpoint) {
     const result = await axios.get(`http://127.0.0.1:8000/${endpoint}/`);
     return result.data;
   } catch (err) {
-    console.error('Error fetching degrees:', err);
+    console.error('Error fetching Data:', err);
     throw err; // Rethrow to handle it in the component
   }
 }
