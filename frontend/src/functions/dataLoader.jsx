@@ -14,19 +14,19 @@ export async function loadData(endpoint) {
 
 
 // Save all data via this function 
-// async function saveData(event, endpoint) {
-//     event.preventDefault();
-//     try {
-//       await axios.post(`http://127.0.0.1:8000/${endpoint}/`, {
-//         id: id,
-//         // name: name
-//       });
-//       toastr.success("Record Registered Successfully");
-//       setId("");
-//       setName("");
-//       loadData();
-//     } catch (err) {
-//       toastr.error("Faculty Registration Failed");
-//     }
-  // }
+async function saveData(event, endpoint) {
+    event.preventDefault();
+    try {
+      await axios.post(`http://127.0.0.1:8000/${endpoint}/`, {
+        id: id,
+        // name: name
+      });
+      toastr.success("Record Registered Successfully");
+      setId("");
+      setName("");
+      loadData();
+    } catch (err) {
+      toastr.error("Faculty Registration Failed");
+    }
+  }
   
