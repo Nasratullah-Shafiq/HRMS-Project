@@ -1,6 +1,7 @@
 import { React, useEffect, useState, Link, axios, toast, toastr, ToastContainer, jsPDF, XLSX } from '../components/import'; // Adjust path as needed
 
-import { loadEducation, saveEducation, loadUniversity, loadFaculty, loadMajor, loadDegree, loadCountry } from '../functions/dataLoaders';  // Import the data loaders
+// import { loadEducation, saveEducation, loadUniversity, loadFaculty, loadMajor, loadDegree, loadCountry } from '../functions/dataLoaders';  // Import the data loaders
+import { loadData as loadAllData} from '../functions/dataLoader';
 
 const UniversityComponent = () => {
 
@@ -14,6 +15,8 @@ const UniversityComponent = () => {
     const [education, setEducation] = useState([]);
     const [universitys, setUniversity] = useState([]);
     const [facultys, setFaculty] = useState([]);
+    // const [facultys, setFacultys] = useState([]); // ✅ This is correct
+
     const [majors, setMajor] = useState([]);
     const [degrees, setDegree] = useState([]);
     const [countrys, setCountry] = useState([]); 
@@ -58,9 +61,9 @@ const UniversityComponent = () => {
     };
 
   useEffect(() => {
-    const loadData = async () => {
+    const loadsData = async () => {
       try {
-        await loadEducation(setEducation);  //Load Education Data
+        await loadAllData(setEducation);  //Load Education Data
         await loadUniversity(setUniversity);  // Load university data
         await loadFaculty(setFaculty);        // Load faculty data
         await loadMajor(setMajor);            // Load major data
@@ -73,7 +76,7 @@ const UniversityComponent = () => {
       }
     };
 
-    loadData();
+    loadsData();
     setCheckedEducations([]);
   }, []);
 
@@ -161,6 +164,7 @@ const UniversityComponent = () => {
              value={education_start_date}onChange={(event)=>{setStartDate(event.target.value);}}/>  */}
              {/* <input type="date-local" id="appointment" 
        name="appointment" 
+
        /> */}
        <label for="appointment">Select Date and Time:</label>
        <input type="datetime-local" id="appointment" name="appointment"/>
@@ -178,6 +182,7 @@ const UniversityComponent = () => {
              </select>
      
            </div>
+
        </div>
 
        <div className="mb-3 row">
@@ -256,6 +261,7 @@ const UniversityComponent = () => {
                               <th> Batch No </th>
                               <th> Remarks </th>
                               <th> University </th>
+                              <th> Faculty </th>
                               <th> Degree </th>
                               <th> Major </th>
                               <th style={{ textAlign: 'right' }}>Actions</th>
