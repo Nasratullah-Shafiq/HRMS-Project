@@ -1,35 +1,14 @@
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import toastr from 'toastr';
-import 'toastr/build/toastr.min.css';
+import axios from "axios";
 
-// dataLoaders.js
-import axios from 'axios';
-export async function saveOrganization(data, stateSetters) {
-    const {
-      id, name
-    } = data; // Destructure data object
-  
-    const {
-      setId, setName
-    } = stateSetters; // Destructure state setters
-  
-    try {
-      await axios.post("http://127.0.0.1:8000/organization/", {
-        id,
-        name,
-      });
-  
-      toastr.success("Data Added Successfully");
-  
-      // Reset the fields
-      setId("");
-      setName("");
-        
-      // Load updated data
-      loadFunction();
-    } catch (err) {
-      toastr.error("Course Registration Failed");
-    }
+// Generic save function
+export async function saveData(event, endpoint, data, load, toast, reset) {
+  event.preventDefault();
+  try {
+    await axios.post(`http://127.0.0.1:8000/${endpoint}/`, data);
+    toast.success(`${endpoint} registered successfully`);
+    reset(); // Clear form
+    load();  // Reload data
+  } catch (err) {
+    toast.error(`Failed to register ${endpoint}`);
   }
-  
+}
