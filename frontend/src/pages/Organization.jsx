@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
-import { loadOrganization } from '../functions/load';  // Import the Save Funtion from Store file
+
 
 
 
@@ -40,23 +40,23 @@ import { loadOrganization } from '../functions/load';  // Import the Save Funtio
       // await saveEducation(educationData, stateSetters);
     // };
 
-    useEffect(() => {
-      const loadData = async () => {
-        try {
-          await loadOrganization(setOrganization);  //Load Education Data
-        } catch (error) {
-          toast.error("Error loading data");
-        } finally {
-          setLoading(false);  // Set loading to false after data is loaded
-        }
-      };
+    // useEffect(() => {
+    //   const loadData = async () => {
+    //     try {
+    //       await loadOrganization(setOrganization);  //Load Education Data
+    //     } catch (error) {
+    //       toast.error("Error loading data");
+    //     } finally {
+    //       setLoading(false);  // Set loading to false after data is loaded
+    //     }
+    //   };
   
-      loadData();
-    }, []);
+    //   loadData();
+    // }, []);
   
-    if (loading) {
-      return <div>Loading...</div>;
-    }
+    // if (loading) {
+    //   return <div>Loading...</div>;
+    // }
   
 
   // useEffect(() => {
