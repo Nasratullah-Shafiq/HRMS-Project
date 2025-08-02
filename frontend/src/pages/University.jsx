@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
+import { deleteItem } from "../functions/delete"; 
 
 function University() {
   const [id, setId] = useState('');
@@ -52,11 +53,16 @@ function University() {
     setId(universitys.id);
   }
 
-  async function DeleteUniversity(id){
-    await axios.delete("http://127.0.0.1:8000/university/"+id);
-        toastr.error("Data Deleted Successfully");
-        Load();
-  }
+  // async function DeleteUniversity(id){
+  //   await axios.delete("http://127.0.0.1:8000/university/"+id);
+  //       toastr.error("Data Deleted Successfully");
+  //       Load();
+  // }
+    const handleDelete = (id) => {
+    if (window.confirm("Are you sure you want to delete this degree?")) {
+      deleteItem("university", id, toast);
+    }
+  };
 
   async function update(event){
     event.preventDefault();
@@ -142,9 +148,10 @@ function University() {
         <td>{university.name}</td>
         
         <td>
-           <i className='fa-solid fa-pen-to-square' onClick={() => editUniversity(university)}></i> 
-          <i class="fa-solid fa-trash" onClick={() => DeleteUniversity(university.id)}></i> {/* Using a star icon as a favorite icon */} 
-        </td>
+           <i className='fa-solid fa-pen-to-square' onClick={() => editUniversity(university)}></i>  
+          {/* // <i class="fa-solid fa-trash" onClick={() => DeleteUniversity(university.id)}></i>  */}
+        <i class="fa-solid fa-trash" onClick={() => handleDelete(university.id)}></i>
+          </td>
       </tr>
     ))}
   </tbody>
