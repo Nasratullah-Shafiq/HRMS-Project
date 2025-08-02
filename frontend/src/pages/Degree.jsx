@@ -1,5 +1,6 @@
 import { React, useEffect, useState, Link, axios, toast, toastr, jsPDF, XLSX } from '../components/import'; // Adjust path as needed
 import { loadData } from '../functions/dataLoader'; // Adjust path if necessary
+import { deleteItem } from "../functions/delete"; 
   
 // function Degree() {
 
@@ -70,6 +71,12 @@ import { loadData } from '../functions/dataLoader'; // Adjust path if necessary
       toast.error('Failed to Delete Degree');
     }
   }
+
+  // const handleDelete = (id) => {
+  //   if (window.confirm("Are you sure you want to delete this degree?")) {
+  //     deleteItem("degree", id, toast);
+  //   }
+  // };
 
   // Delete selected degrees
   async function deleteSelectedDegrees() {
@@ -336,6 +343,7 @@ const archiveSelectedDegrees = (e) => {
                     className="fa-solid fa-trash"
                     style={{ paddingLeft: '15px' }}
                     onClick={() => deleteDegree(degree.id)}
+                    // onClick={() => handleDelete(degree.id)}
                   ></i>
                 </td>
               </tr>
