@@ -28,6 +28,10 @@ import { deleteItem } from "../functions/delete";
   
       fetchDegrees(); // Call the function inside useEffect
     }, []); // Runs once on component mount
+
+
+
+
   
   // Save a new degree
   async function save(event) {
@@ -74,7 +78,7 @@ import { deleteItem } from "../functions/delete";
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this degree?")) {
-      deleteItem("degree", id, toast);
+      deleteItem("degree", id, loadData, toast);
     }
   };
 
