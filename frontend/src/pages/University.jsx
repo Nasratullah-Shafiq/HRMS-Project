@@ -6,6 +6,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
 import { deleteItem } from "../functions/delete"; 
+import { loadData } from '../functions/dataLoader';
+import { saveRecord } from "../functions/crudService"; 
+
 
 function University() {
   const [id, setId] = useState('');
@@ -13,40 +16,46 @@ function University() {
   const [universitys, setUniversity] = useState([]);
   const [isChecked, setIsChecked] = useState(false); // State to control visibility
 
+  const resetForm = () => {
+    setId("");
+    setName("");
+  };
+
   // Function to handle checkbox change
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked);
   };
   
-  
-  useEffect(() =>{
-    (async()=>await Load())();
-  }, []);
-
-  async function Load(){
-    const result = await axios.get(
-      "http://127.0.0.1:8000/university/");
-      setUniversity(result.data);
-      console.log(result.data);
-  }
-
-  async function save(event){
-    event.preventDefault();
-    try{
-      await axios.post("http://127.0.0.1:8000/university/",{
-        id: id,
-        name: name
-      });
-      toastr.success("Record Registered Successfully");
+      useEffect(() => {
+        async function fetchUniversity() {
+          try {
+            const data = await loadData('university', toast); // Use the appropriate endpoint
+            setUniversity(data);
+          } catch (err) {
+            // setError('Failed to fetch degrees');
+          }
+        }
     
-      setId("");
-      setName("");
-      Load();
-    }
-    catch(err){
-      toast.error("Student Registration Failed");
-    }
-  }
+        fetchUniversity(); // Call the function inside useEffect
+      }, []);
+  
+  // useEffect(() =>{
+  //   (async()=>await Load())();
+  // }, []);
+
+  // async function Load(){
+  //   const result = await axios.get(
+  //     "http://127.0.0.1:8000/university/");
+  //     setUniversity(result.data);
+
+  // }
+
+
+  const handleSave = (e) => {
+    e.preventDefault();
+    saveRecord("university", { id, name }, resetForm, toast);
+  };
+
 
   async function editUniversity(universitys){
     setName(universitys.name);
@@ -60,7 +69,7 @@ function University() {
   // }
     const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this degree?")) {
-      deleteItem("university", id, toast);
+      deleteItem("university", id, loadData, toast);
     }
   };
 
@@ -75,7 +84,7 @@ function University() {
     
       setId("");
       setName("");
-      Load();
+      loadData();
     }
     catch(err){
     
@@ -91,7 +100,7 @@ function University() {
         <form >
         <div className="form-group">
             <label className="form-label col-sm-2"><h2> University </h2></label>
-            <label className = "col-sm-1 col-form-label"> <button className="btn btn-primary" onClick={save} disabled={!name}> Save </button></label>
+            <label className = "col-sm-1 col-form-label"> <button className="btn btn-primary" onClick={handleSave} disabled={!name}> Save </button></label>
             <label className = "col-sm-1 col-form-label"> <button className="btn btn-warning" onClick={update} disabled={!name}> Update </button> </label>
             {/* {isChecked && ( */}
             <label className = "col-sm-1 col-form-label"> 
