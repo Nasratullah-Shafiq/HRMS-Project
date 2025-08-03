@@ -13,12 +13,12 @@ export const loadRecords = async (endpoint, setData) => {
   }
 };
 
-export const saveRecord = async (endpoint, data, resetForm, loadData) => {
+export const saveRecord = async (endpoint, data, resetForm, toast) => {
   try {
     await axios.post(`${API_BASE}/${endpoint}/`, data);
-    toast.success("Record Saved Successfully");
+    toast.success(`${endpoint} saved successfully`);
     resetForm();
-    loadData();
+    // loadData();
   } catch (err) {
     toast.error("Failed to Save Record");
   }
@@ -27,7 +27,7 @@ export const saveRecord = async (endpoint, data, resetForm, loadData) => {
 export const updateRecord = async (endpoint, id, data, resetForm, loadData) => {
   try {
     await axios.put(`${API_BASE}/${endpoint}/${id}`, data);
-    toast.info("Record Updated Successfully");
+    toast.info(`${endpoint} Updated successfully`);
     resetForm();
     loadData();
   } catch (err) {
@@ -38,7 +38,7 @@ export const updateRecord = async (endpoint, id, data, resetForm, loadData) => {
 export const deleteRecord = async (endpoint, id, loadData) => {
   try {
     await axios.delete(`${API_BASE}/${endpoint}/${id}`);
-    toast.warn("Record Deleted Successfully");
+    toast.warn(`${endpoint} Deleted successfully`);
     loadData();
   } catch (err) {
     toast.error("Failed to Delete Record");
