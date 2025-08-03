@@ -62,21 +62,21 @@ import { deleteItem } from "../functions/delete";
   }
 
   // Delete a single degree
-  async function deleteDegree(id) {
-    try {
-      await axios.delete(`http://127.0.0.1:8000/degree/${id}`);
-      toast.info('Degree Deleted Successfully');
-      loadData();
-    } catch (err) {
-      toast.error('Failed to Delete Degree');
-    }
-  }
-
-  // const handleDelete = (id) => {
-  //   if (window.confirm("Are you sure you want to delete this degree?")) {
-  //     deleteItem("degree", id, toast);
+  // async function deleteDegree(id) {
+  //   try {
+  //     await axios.delete(`http://127.0.0.1:8000/degree/${id}`);
+  //     toast.info('Degree Deleted Successfully');
+  //     loadData();
+  //   } catch (err) {
+  //     toast.error('Failed to Delete Degree');
   //   }
-  // };
+  // }
+
+  const handleDelete = (id) => {
+    if (window.confirm("Are you sure you want to delete this degree?")) {
+      deleteItem("degree", id, toast);
+    }
+  };
 
   // Delete selected degrees
   async function deleteSelectedDegrees() {
@@ -342,8 +342,8 @@ const archiveSelectedDegrees = (e) => {
                   <i
                     className="fa-solid fa-trash"
                     style={{ paddingLeft: '15px' }}
-                    onClick={() => deleteDegree(degree.id)}
-                    // onClick={() => handleDelete(degree.id)}
+                    // onClick={() => deleteDegree(degree.id)}
+                    onClick={() => handleDelete(degree.id)}
                   ></i>
                 </td>
               </tr>
