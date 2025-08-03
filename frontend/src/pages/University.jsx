@@ -5,9 +5,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
-import { deleteItem } from "../functions/delete"; 
+// import { deleteItem } from "../functions/delete"; 
 import { loadData } from '../functions/dataLoader';
-import { saveRecord } from "../functions/crudService"; 
+import { saveRecord, deleteRecord } from "../functions/crudService"; 
 
 
 function University() {
@@ -68,8 +68,8 @@ function University() {
   //       Load();
   // }
     const handleDelete = (id) => {
-    if (window.confirm("Are you sure you want to delete this degree?")) {
-      deleteItem("university", id, loadData, toast);
+    if (window.confirm("Are you sure you want to delete this ?")) {
+      deleteRecord("university", id, toast);
     }
   };
 
