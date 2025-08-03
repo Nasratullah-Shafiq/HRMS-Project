@@ -17,7 +17,6 @@ export async function deleteItem(endpoint, id, loadData, toast) {
     toast.success(`${endpoint} deleted successfully`);
     loadData(); // Refresh data
   } catch (err) {
-    console.error("Delete Error:", err);
     toast.error(err?.response?.data?.message || `Failed to delete ${endpoint}`);
   }
 }
