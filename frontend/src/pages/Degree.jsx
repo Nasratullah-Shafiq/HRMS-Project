@@ -1,6 +1,7 @@
 import { React, useEffect, useState, Link, axios, toast, toastr, jsPDF, XLSX } from '../components/import'; // Adjust path as needed
 import { loadData } from '../functions/dataLoader'; // Adjust path if necessary
 import { deleteItem } from "../functions/delete"; 
+import { saveRecord } from "../functions/crudService"; 
   
 // function Degree() {
 
@@ -31,20 +32,11 @@ import { deleteItem } from "../functions/delete";
 
 
 
-
+  const handleSave = (e) => {
+    e.preventDefault();
+    saveRecord("degree", { id, name }, resetForm, toast);
+  };
   
-  // Save a new degree
-  async function save(event) {
-    event.preventDefault();
-    try {
-      await axios.post('http://127.0.0.1:8000/degree/', { id, name });
-      toastr.success('Record Registered Successfully');
-      resetForm();
-      loadData();
-    } catch (err) {
-      toast.error('Failed to Register Degree');
-    }
-  }
 
   // Edit an existing degree
   async function editDegree(degree) {
@@ -261,7 +253,7 @@ const archiveSelectedDegrees = (e) => {
         <form>
           <div className="form-group">
           <label className="form-label col-sm-2"><h2> Degree </h2></label>
-            <label className = "col-sm-1 col-form-label"> <button className="btn btn-primary" onClick={save} disabled={!name}> Save </button></label>
+            <label className = "col-sm-1 col-form-label"> <button className="btn btn-primary" onClick={handleSave} disabled={!name}> Save </button></label>
             <label className = "col-sm-1 col-form-label"> <button className="btn btn-warning" onClick={update}> Update </button> </label>
 
             {/* {isChecked && ( */}
