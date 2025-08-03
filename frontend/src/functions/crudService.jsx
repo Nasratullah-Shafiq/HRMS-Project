@@ -35,12 +35,22 @@ export const updateRecord = async (endpoint, id, data, resetForm, loadData) => {
   }
 };
 
-export const deleteRecord = async (endpoint, id, loadData) => {
+export async function deleteRecord(endpoint, id, toast) {
   try {
     await axios.delete(`${API_BASE}/${endpoint}/${id}`);
-    toast.warn(`${endpoint} Deleted successfully`);
-    loadData();
+    toast.warn(`${endpoint} deleted successfully`);
+    // loadData(); // Refresh data
   } catch (err) {
-    toast.error("Failed to Delete Record");
+    toast.error(err?.response?.data?.message || `Failed to delete ${endpoint}`);
   }
-};
+}
+
+// export const deleteRecord = async (endpoint, id, loadData) => {
+//   try {
+//     await axios.delete(`${API_BASE}/${endpoint}/${id}`);
+//     toast.warn(`${endpoint} Deleted successfully`);
+//     loadData();
+//   } catch (err) {
+//     toast.error("Failed to Delete Record");
+//   }
+// };
