@@ -6,8 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
 // import { deleteItem } from "../functions/delete"; 
-import { loadData } from '../functions/dataLoader';
-import { saveRecord, deleteRecord } from "../functions/crudService"; 
+// import { loadData } from '../functions/dataLoader';
+import { loadRecord, saveRecord, deleteRecord } from "../functions/crudService"; 
 
 
 function University() {
@@ -26,17 +26,30 @@ function University() {
     setIsChecked(e.target.checked);
   };
   
+      // useEffect(() => {
+      //   async function fetchUniversity() {
+      //     try {
+      //       const data = await loadRecord('university', toast); // Use the appropriate endpoint
+      //       setUniversity(data);
+      //     } catch (err) {
+      //       // setError('Failed to fetch degrees');
+      //     }
+      //   }
+    
+      //   fetchUniversity(); // Call the function inside useEffect
+      // }, []);
+
       useEffect(() => {
         async function fetchUniversity() {
-          try {
-            const data = await loadData('university', toast); // Use the appropriate endpoint
+          // try {
+            const data = await loadRecord('university', toast);
             setUniversity(data);
-          } catch (err) {
-            // setError('Failed to fetch degrees');
-          }
+          // } catch (err) {
+            // handle error if needed
+          // }
         }
-    
-        fetchUniversity(); // Call the function inside useEffect
+
+        fetchUniversity();
       }, []);
   
   // useEffect(() =>{
@@ -49,7 +62,9 @@ function University() {
   //     setUniversity(result.data);
 
   // }
-
+useEffect(() => {
+  loadRecord('university');
+}, []);
 
   const handleSave = (e) => {
     e.preventDefault();
@@ -69,7 +84,7 @@ function University() {
   // }
     const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this ?")) {
-      deleteRecord("university", id, toast);
+      deleteRecord("university", id, loadRecord, toast);
     }
   };
 
@@ -84,7 +99,7 @@ function University() {
     
       setId("");
       setName("");
-      loadData();
+      // loadData();
     }
     catch(err){
     
