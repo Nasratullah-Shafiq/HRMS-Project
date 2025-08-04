@@ -4,14 +4,25 @@ import { toast } from "react-toastify";
 
 const API_BASE = "http://127.0.0.1:8000";
 // Load Records
-export const loadRecords = async (endpoint, setData) => {
+// export const loadRecords = async (endpoint, setData) => {
+//   try {
+//     const response = await axios.get(`${API_BASE}/${endpoint}/`);
+//     setData(response.data);
+//   } catch (err) {
+//     toast.error("Failed to Load Records");
+//   }
+// };
+
+export const loadRecord = async (endpoint) => {
   try {
     const response = await axios.get(`${API_BASE}/${endpoint}/`);
-    setData(response.data);
+    return response.data;
   } catch (err) {
     toast.error("Failed to Load Records");
+    throw err;
   }
 };
+
 
 export const saveRecord = async (endpoint, data, resetForm, toast) => {
   try {
@@ -35,11 +46,11 @@ export const updateRecord = async (endpoint, id, data, resetForm, loadData) => {
   }
 };
 
-export async function deleteRecord(endpoint, id, toast) {
+export async function deleteRecord(endpoint, id, loadRecord, toast) {
   try {
     await axios.delete(`${API_BASE}/${endpoint}/${id}`);
     toast.warn(`${endpoint} deleted successfully`);
-    // loadData(); // Refresh data
+    loadRecord(); // Refresh data
   } catch (err) {
     toast.error(err?.response?.data?.message || `Failed to delete ${endpoint}`);
   }
