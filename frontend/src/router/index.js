@@ -39,8 +39,7 @@ function MyRouter(){
             <Route path="/" element={<Home />} />  
             <Route path="/about-us" element={<About />} />  
             <Route path="/contact-us" element={<Contact />} />
-            <Route path="/students" element={<StudentList />} />
-            <Route path="/course" element={<Courses />} />
+            
             <Route path="/employee" element={<Employee />} />
             <Route path="/health" element={<HealthInfo />} />
             <Route path="/education" element={<EducationData />} />
