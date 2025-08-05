@@ -1,5 +1,4 @@
 import Navbar from './components/Navbar.jsx';
-import Titlebar from './components/Titlebar.jsx';
 import Sidebar from './components/Sidebar.jsx';
 import MyRouter from './router/index.js';
 import { ToastContainer, toast } from 'react-toastify';
@@ -15,7 +14,7 @@ function App() {
         
           <Sidebar />
         </div>
-        <div className='col-sm-10' style={{ paddingLeft: '20px'}}>
+        <div className='col-sm-10' style={{ paddingLeft: '1px'}}>
           
           <MyRouter />
         </div>
