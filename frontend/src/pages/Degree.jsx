@@ -1,15 +1,13 @@
 import { React, useEffect, useState, Link, axios, toast, toastr, jsPDF, XLSX } from '../components/import'; // Adjust path as needed
 import { loadData } from '../functions/dataLoader'; // Adjust path if necessary
-import { deleteItem } from "../functions/delete"; 
-import { saveRecord } from "../functions/crudService"; 
-  
+import { saveRecord, deleteRecord} from "../functions/crudService"; 
+  import excel from '../functions/excel.jsx';
 // function Degree() {
 
  const Degree = () => {
   // State variables
   const [id, setId] = useState('');
   const [name, setName] = useState('');
-  // const [degrees, setDegrees] = useState([]);
   const [checkedDegrees, setCheckedDegrees] = useState([]); // Track selected degrees
   const [selectAllChecked, setSelectAllChecked] = useState(false); // Track "Select All" checkbox state
 
@@ -57,20 +55,11 @@ import { saveRecord } from "../functions/crudService";
     }
   }
 
-  // Delete a single degree
-  // async function deleteDegree(id) {
-  //   try {
-  //     await axios.delete(`http://127.0.0.1:8000/degree/${id}`);
-  //     toast.info('Degree Deleted Successfully');
-  //     loadData();
-  //   } catch (err) {
-  //     toast.error('Failed to Delete Degree');
-  //   }
-  // }
+
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this degree?")) {
-      deleteItem("degree", id, loadData, toast);
+      deleteRecord("degree", id, loadData, toast);
     }
   };
 
