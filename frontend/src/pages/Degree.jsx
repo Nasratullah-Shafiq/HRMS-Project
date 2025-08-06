@@ -29,7 +29,6 @@ import { saveRecord, deleteRecord} from "../functions/crudService";
     }, []); // Runs once on component mount
 
 
-
   const handleSave = (e) => {
     e.preventDefault();
     saveRecord("degree", { id, name }, resetForm, toast);
