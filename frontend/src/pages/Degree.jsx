@@ -33,7 +33,6 @@ import { saveRecord, deleteRecord} from "../functions/crudService";
     e.preventDefault();
     saveRecord("degree", { id, name }, resetForm, toast);
   };
-  
 
   // Edit an existing degree
   async function editDegree(degree) {
