@@ -23,8 +23,8 @@ import { saveRecord, deleteRecord} from "../functions/crudService";
         } catch (err) {
           setError('Failed to fetch degrees');
         }
+        
       }
-      
   
       fetchDegrees(); // Call the function inside useEffect
     }, []); // Runs once on component mount
