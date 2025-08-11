@@ -5,9 +5,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
+import Titlebar from '../components/Titlebar';
 // import { deleteItem } from "../functions/delete"; 
 // import { loadData } from '../functions/dataLoader';
 import { loadRecord, saveRecord, deleteRecord } from "../functions/crudService"; 
+import Titlebar from '../components/Titlebar';
 
 
 function University() {
@@ -115,29 +117,7 @@ useEffect(() => {
         <form >
         <div className="form-group">
             <label className="form-label col-sm-2"><h2> University </h2></label>
-            <label className = "col-sm-1 col-form-label"> <button className="btn btn-primary" onClick={handleSave} disabled={!name}> Save </button></label>
-            <label className = "col-sm-1 col-form-label"> <button className="btn btn-warning" onClick={update} disabled={!name}> Update </button> </label>
-            {/* {isChecked && ( */}
-            <label className = "col-sm-1 col-form-label"> 
-            {isChecked && <button class="btn btn-default"> <i class='fa-solid fa-print'></i> Print </button> }</label>
-            {isChecked && (
-            <label className = "col-sm-1 col-form-label">
-            
-            <div class="dropdown">
-              <button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown">
-              <i className='fa-solid fa-gear'></i> Action
-              </button>
-              <ul class="dropdown-menu"> 
-                <li><Link to="#" class="dropdown-item"> <i className="fa-solid fa-file-export"></i> Export </Link></li>
-                <li><Link to="#" class="dropdown-item"> <i className='fa-solid fa-archive'></i> Archive </Link></li>
-                <li><Link to="#" class="dropdown-item"> <i className="fa-solid fa-inbox"></i> Unarchive </Link></li>
-                <li><Link to="#" class="dropdown-item"> <i className='fa-solid fa-copy'></i> Duplicate </Link></li>
-                <li><Link to="#" class="dropdown-item"> <i className='fa-solid fa-trash'></i> Delete </Link></li>
-              </ul>
-            </div>
-            
-            </label>
-            )}
+            <Titlebar />
             <div className = "col-sm-12" style={{paddingTop: '20px'}}> </div>
             <input type="Text" className="form-control" id="university_id" hidden
             value={id} 
