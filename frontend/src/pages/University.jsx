@@ -9,7 +9,7 @@ import Titlebar from '../components/Titlebar';
 // import { deleteItem } from "../functions/delete"; 
 // import { loadData } from '../functions/dataLoader';
 import { loadRecord, saveRecord, deleteRecord } from "../functions/crudService"; 
-import Titlebar from '../components/Titlebar';
+// import Titlebar from '../components/Titlebar';
 
 
 function University() {
@@ -28,18 +28,6 @@ function University() {
     setIsChecked(e.target.checked);
   };
   
-      // useEffect(() => {
-      //   async function fetchUniversity() {
-      //     try {
-      //       const data = await loadRecord('university', toast); // Use the appropriate endpoint
-      //       setUniversity(data);
-      //     } catch (err) {
-      //       // setError('Failed to fetch degrees');
-      //     }
-      //   }
-    
-      //   fetchUniversity(); // Call the function inside useEffect
-      // }, []);
 
       useEffect(() => {
         async function fetchUniversity() {
@@ -53,17 +41,7 @@ function University() {
 
         fetchUniversity();
       }, []);
-  
-  // useEffect(() =>{
-  //   (async()=>await Load())();
-  // }, []);
 
-  // async function Load(){
-  //   const result = await axios.get(
-  //     "http://127.0.0.1:8000/university/");
-  //     setUniversity(result.data);
-
-  // }
 useEffect(() => {
   loadRecord('university');
 }, []);
@@ -79,11 +57,7 @@ useEffect(() => {
     setId(universitys.id);
   }
 
-  // async function DeleteUniversity(id){
-  //   await axios.delete("http://127.0.0.1:8000/university/"+id);
-  //       toastr.error("Data Deleted Successfully");
-  //       Load();
-  // }
+ 
     const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this ?")) {
       deleteRecord("university", id, loadRecord, toast);
