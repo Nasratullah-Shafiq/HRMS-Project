@@ -3,15 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const API_BASE = "http://127.0.0.1:8000";
-// Load Records
-// export const loadRecords = async (endpoint, setData) => {
-//   try {
-//     const response = await axios.get(`${API_BASE}/${endpoint}/`);
-//     setData(response.data);
-//   } catch (err) {
-//     toast.error("Failed to Load Records");
-//   }
-// };
+
 
 export const loadRecord = async (endpoint) => {
   try {
