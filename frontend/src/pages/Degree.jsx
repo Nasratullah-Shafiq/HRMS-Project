@@ -11,7 +11,6 @@ import { saveRecord, deleteRecord} from "../functions/crudService";
   const [checkedDegrees, setCheckedDegrees] = useState([]); // Track selected degrees
   const [selectAllChecked, setSelectAllChecked] = useState(false); // Track "Select All" checkbox state
 
-  
     const [degrees, setDegrees] = useState([]);
     const [error, setError] = useState(null);
   
