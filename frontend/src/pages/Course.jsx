@@ -84,7 +84,6 @@ function Course() {
   }
 
   if (courses.length <= 0) return null;
-
   return (
     <div className="App">
       <div className="container">
