@@ -24,6 +24,7 @@ function Faculty() {
       }
     }
 
+    
     fetchDegrees(); // Call the function inside useEffect
   }, []); // Runs once on component mount
 
