@@ -24,8 +24,7 @@ function HR_Employee() {
   // const [job_position, setJob_Position] = useState('');
   // const [remarks, setRemarks] = useState([]);
   // const [blood_group, setBlood_Group] = useState('');
-  // const [marital_status, setMarital_Status] = useState('');
-  // const [religion, setReligion] = useState('');
+
   const [employees, setEmployee] = useState([]);
   
   useEffect(() =>{
