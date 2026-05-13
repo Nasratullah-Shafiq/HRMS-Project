@@ -18,8 +18,7 @@ function HR_Employee() {
   // const [gender, setGender] = useState('');
   // const [natinality, setNationality] = useState('');
   // const [degree, setDegree] = useState('');
-  // const [gederal_directorate, setGeneral_Directorate] = useState('');
-  // const [directorate, setDirectorate] = useState('');
+
 
   // const [marital_status, setMarital_Status] = useState('');
   // const [religion, setReligion] = useState('');
