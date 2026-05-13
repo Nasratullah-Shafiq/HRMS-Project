@@ -200,8 +200,6 @@ import 'toastr/build/toastr.min.css';
 </table>
         </div>
       </div>
-
-      
     );
   }
   
