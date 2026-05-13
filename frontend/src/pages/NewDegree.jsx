@@ -210,12 +210,6 @@ function exportToExcel(event) {
   }
 }, [checkedDegrees]);
 
-//  // useEffect to display the length of selected checkboxes
-//  useEffect(() => {
-//   if (checkedDegrees.length > 0) {
-//     toastr.success(`You have selected ${checkedDegrees.length} degree(s).`);
-//   }
-// }, [checkedDegrees]); 
 
 const archiveSelectedDegrees = (e) => {
   e.preventDefault(); // Prevent page reload
