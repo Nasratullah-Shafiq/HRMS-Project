@@ -124,8 +124,6 @@ function Major() {
         </table>
         </div>
       </div>
-
-      
     );
   }
   
