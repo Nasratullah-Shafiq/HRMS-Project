@@ -90,7 +90,6 @@ function HR_Employee() {
     }
   }
 
-  // if(employees.length <= 0) return null;
 
     return (
       <div className="App">
