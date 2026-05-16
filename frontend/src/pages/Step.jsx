@@ -68,7 +68,6 @@ function Major() {
       toastr.error("Registration Failed");
     }
   }
-
   // if(degrees.length <= 0) return null;
 
     return (
