@@ -126,6 +126,5 @@ function Status() {
       </div>
     );
   }
-  
   export default Status;
   
