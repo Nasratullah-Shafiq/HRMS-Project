@@ -22,7 +22,6 @@ function Student() {
       setUsers(result.data);
       console.log(result.data);
   }
-
   async function save(event){
     event.preventDefault();
     try{
