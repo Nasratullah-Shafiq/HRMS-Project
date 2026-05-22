@@ -50,6 +50,7 @@ function Student() {
       toast.error("Student Registration Failed");
     }
   }
+  
 
   async function editStudent(students){
     setName(students.name);
