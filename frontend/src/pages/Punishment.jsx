@@ -53,7 +53,6 @@ function HR_Employee() {
     }
     catch(err){
       // alert("Course Registration Failed");
-      // toast.error("Record Registered failed");
       toastr.error("Course Registration Failed");
     }
   }
