@@ -51,7 +51,6 @@ function Student() {
     }
   }
   
-
   async function editStudent(students){
     setName(students.name);
     setLastName(students.last_name);
