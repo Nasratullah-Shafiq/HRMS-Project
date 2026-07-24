@@ -18,7 +18,6 @@ function HR_Employee() {
   useEffect(() =>{
     (async()=>await Load())();
   }, []);
-
   async function Load(){
     const result = await axios.get(
       "http://127.0.0.1:8000/employee/");
