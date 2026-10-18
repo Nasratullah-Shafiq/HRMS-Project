@@ -82,7 +82,6 @@ function Course() {
       alert("Course Registration Failed");
     }
   }
-
   if (courses.length <= 0) return null;
   return (
     <div className="App">
