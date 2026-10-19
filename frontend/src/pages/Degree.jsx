@@ -16,6 +16,7 @@ import { saveRecord, deleteRecord} from "../functions/crudService";
 
     useEffect(() => {
       async function fetchDegrees() {
+        
         try {
           const data = await loadData('degree'); // Use the appropriate endpoint
           setDegrees(data);
