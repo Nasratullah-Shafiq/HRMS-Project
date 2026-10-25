@@ -15,6 +15,7 @@ export const loadRecord = async (endpoint) => {
 };
 
 
+
 export const saveRecord = async (endpoint, data, resetForm, toast) => {
   try {
     await axios.post(`${API_BASE}/${endpoint}/`, data);

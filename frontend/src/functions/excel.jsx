@@ -12,6 +12,7 @@ function exportToExcel(event) {
     return;
   }
 
+  
   // Prepare the data for Excel
   const excelData = selectedDegrees.map((degree) => ({
     ID: degree.id,
