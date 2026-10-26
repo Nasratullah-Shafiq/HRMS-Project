@@ -56,6 +56,7 @@ function HR_Employee() {
     setLast_Name(employees.last_name);
     setId(employees.id);
   }
+  
 
   async function DeleteStudent(id){
     await axios.delete("http://127.0.0.1:8000/employee/"+id);

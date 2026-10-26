@@ -373,6 +373,7 @@ function Experience() {
       await axios.post(API_URL, formData);
       toast.success("Experience added successfully");
 
+      
       resetForm();
       fetchExperiences();
     } catch (error) {

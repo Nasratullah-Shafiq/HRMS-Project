@@ -53,6 +53,7 @@ const UniversityComponent = () => {
         setRemarks,
         loadFunction: Load
       };
+      
   
       // Call the saveEducation function
       await saveEducation(educationData, stateSetters);

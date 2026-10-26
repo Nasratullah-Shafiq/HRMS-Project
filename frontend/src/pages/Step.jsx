@@ -63,6 +63,7 @@ function Major() {
       setName("");
       Load();
     }
+    
     catch(err){
     
       toastr.error("Registration Failed");

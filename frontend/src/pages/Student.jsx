@@ -45,6 +45,7 @@ function Student() {
       setFee("");
       Load();
     }
+    
     catch(err){
       // alert("Student Registration Failed");
       toast.error("Student Registration Failed");
