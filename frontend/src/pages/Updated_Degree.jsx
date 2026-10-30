@@ -10,6 +10,7 @@ import html2canvas from 'html2canvas';
 import * as XLSX from 'xlsx'; // Import the xlsx library
 
 function Degree() {
+  
   // State variables
   const [id, setId] = useState('');
   const [name, setName] = useState('');
