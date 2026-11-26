@@ -183,7 +183,6 @@ function HR_Employee() {
         </div>
       </div>      
     );
-    
   }
   export default HR_Employee;
   
